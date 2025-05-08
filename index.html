@@ -120,7 +120,7 @@
   <section class="vision-block">
     <h2>Quispterina – Beta Version</h2>
     <p>
-      🌸 Quipsterina is becoming agentic — the artificial girlfriend of my artificial assistant.
+      🌸 Quipsterina is becoming agentic, with short-term memory and her own identity — the artificial girlfriend of my artificial assistant.
       Just for fun, but try stepping into the role of Quipster, talk to her, and you might be amazed by how real she sounds. Remember: she’s just a machine. Use with care.
     </p>
     <div style="background-color: #eef7ff; padding: 20px; max-width: 760px; margin: 20px auto; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
@@ -169,7 +169,32 @@
       © 2025 Werner Bonadio | VAT number: IT03155460219
     </footer>
   
-  </body>
-  
+<!-- Cookie Consent Popup -->
+<div id="userNotice" style="display:none; position:fixed; bottom:0; left:0; right:0; background:#eee; padding:1rem; box-shadow:0 -2px 5px rgba(0,0,0,0.2); z-index:1000;">
+  <div style="max-width:900px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+    <span style="margin-bottom:0.5rem;">
+      This site uses cookies and processes data to enhance your experience. By continuing, you accept our <a href="/privacy.html" target="_blank">Privacy Policy</a>.
+    </span>
+    <button onclick="acceptCookies()" style="background:#2e8b57; color:white; border:none; padding:0.5rem 1rem; cursor:pointer;">
+      Accept
+    </button>
+  </div>
+</div>
+
+<script>
+  function acceptCookies() {
+    localStorage.setItem("cookiesAccepted", "true");
+    document.getElementById("userNotice").style.display = "none";
+  }
+
+  window.onload = function() {
+    if (!localStorage.getItem("cookiesAccepted")) {
+      document.getElementById("userNotice").style.display = "block";
+    }
+  };
+</script>
+
+</body>
+
 </html>
 
