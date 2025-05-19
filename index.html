@@ -139,8 +139,13 @@
     This tool was built by humans — but at extremely high speed with the help of AI.<br>
     Explore how we make price revision more transparent and accessible.
   </p>
-  <div style="background-color: #fff7e6; padding: 26px; max-width: 760px; margin: 20px auto; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.08);">
-    <a href="https://wernerbonadio.github.io/revisione_prezzi_SF/" target="_blank" style="font-size: 1.1em; display: inline-block; padding: 12px 20px; background-color: #ffaa33; color: white; border-radius: 8px; text-decoration: none; font-weight: bold;">
+
+  <div style="background-color: #fff7e6; padding: 26px; max-width: 760px; margin: 20px auto; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.08); display: flex; justify-content: center;">
+    <a href="https://wernerbonadio.github.io/revisione_prezzi_SF/" target="_blank" style="font-size: 1.1em; padding: 12px 20px; background-color: #ffaa33; color: white; border-radius: 8px; text-decoration: none; font-weight: bold;">
+    👉 Open Tabella Revisione Prezzi
+    </a>
+  </div>
+
 
   <section class="vision-block">
     <h2>📊 Tabella Revisione Prezzi – Servizi e Forniture</h2>
@@ -149,7 +154,7 @@
     Explore how we make price revision more transparent and accessible (D.Lgs. 36/2023).
     </p>
     <div style="background-color: #fff7e6; padding: 26px; max-width: 760px; margin: 20px auto; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.08);">
-      <a href="https://wernerbonadio.github.io/revisione_prezzi_SF/" target="_blank" style="font-size: 1.1em; display: inline-block; padding: 12px 20px; background-color: #ffaa33; color: white; border-radius: 8px; text-decoration: none; font-weight: bold;">
+      <a href="https://wernerbonadio.github.io/revisione_prezzi_SF/" target="_blank" style="font-size: 1.1em; display: inline-block; padding: 12px 20px; background-color: #f2b96a; color: white; border-radius: 8px; text-decoration: none; font-weight: bold;">
       👉 Open Tabella Revisione Prezzi
      </a>
     </div>
@@ -209,15 +214,30 @@
 
 <!-- Contact Popup -->
 <div id="contactBox" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999;">
-  <div style="background:white; padding:20px; max-width:400px; margin:100px auto; border-radius:12px; text-align:center; position:relative;">
+  <div style="background:white; padding:20px; max-width:400px; margin:100px auto; border-radius:12px; text-align:center; position:relative; font-size: 1.1em;">
     <h3>Write to me</h3>
-    <p style="font-size: 1.1em;">
-      📧 Email (copy and paste):<br>
-      <strong style="user-select: all;">werner.bonadio@wernerbot.com</strong>
-    </p>
+    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 15px;">
+      <span id="emailToCopy" style="font-weight: bold;">werner.bonadio@wernerbot.com</span>
+      <button onclick="copyEmail()" title="Copy email" style="background: none; border: none; cursor: pointer;">
+        📋
+      </button>
+    </div>
+    <p id="copyStatus" style="color: green; font-size: 0.9em; margin-top: 10px;"></p>
     <button onclick="document.getElementById('contactBox').style.display='none';" style="margin-top:15px; padding:8px 20px; border:none; background:#0055aa; color:white; border-radius:8px;">Close</button>
   </div>
 </div>
+
+<script>
+  function copyEmail() {
+    const email = document.getElementById("emailToCopy").innerText;
+    navigator.clipboard.writeText(email).then(function () {
+      document.getElementById("copyStatus").innerText = "✔ Copied!";
+    }, function () {
+      document.getElementById("copyStatus").innerText = "❌ Failed to copy.";
+    });
+  }
+</script>
+
   
 <!-- Cookie Consent Popup -->
 <div id="userNotice" style="display:none; position:fixed; bottom:0; left:0; right:0; background:#eee; padding:1rem; box-shadow:0 -2px 5px rgba(0,0,0,0.2); z-index:1000;">
