@@ -101,20 +101,18 @@
   <h1>Werner Bonadio</h1>
   <p class="description">Economist · Explorer · AI Practitioner · Recovery Plan Consultant (esperto Pnrr)</p>
     <a href="#" onclick="document.getElementById('contactBox').style.display='block'; return false;">Contact</a>
-  <p>
   
-  <!-- Contact Popup -->
-  <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 15px; text-align: center;">
-    <span id="emailToCopy" style="font-weight: bold; word-break: break-word; font-size: 1.05em;">
-    werner.bonadio@wernerbot.com
+  <!-- Cookie Consent Popup -->
+<div id="userNotice" style="display:none; position:fixed; bottom:0; left:0; right:0; background:#eee; padding:1rem; box-shadow:0 -2px 5px rgba(0,0,0,0.2); z-index:1000;">
+  <div style="max-width:900px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+    <span style="margin-bottom:0.5rem;">
+      This site uses cookies and processes data to enhance your experience. By continuing, you accept our <a href="/privacy.html" target="_blank">Privacy Policy</a>.
     </span>
-    <div style="display: flex; flex-direction: column; align-items: center; margin-top: 10px;">
-     <button onclick="copyEmail()" title="Copy email" style="background: none; border: none; cursor: pointer; font-size: 2em;">
-      📋
-      </button>
-      <span style="font-size: 0.85em; color: #555;">Copy</span>
-    </div>
+    <button onclick="acceptCookies()" style="background:#2e8b57; color:white; border:none; padding:0.5rem 1rem; cursor:pointer;">
+      Accept
+    </button>
   </div>
+</div>
 
   <section class="vision-block">
     <h2>Embracing Change</h2>
@@ -196,13 +194,21 @@
         ⚠️Please note: Data are limited and not updated in real time. This is just a showcase. 
       </p>
       <div style="background-color: #eef7ff; padding: 20px; width: 100%; box-sizing: border-box; border-radius: 12px; margin: 20px auto; max-width: 760px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
-        <div style="position: relative; width: 100%; padding-top: 133%; overflow: hidden; border-radius: 10px;">
-          <iframe
-            src="https://sudtour-assistant-894385917658.europe-west4.run.app/"
-            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;">
-          </iframe>
-        </div>
-      </div>
+        <div style="background-color: #eef7ff; padding: 20px; width: 100%; box-sizing: border-box; border-radius: 12px; margin: 20px auto; max-width: 760px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
+      <div style="
+          position: relative;
+          width: 100%;
+          aspect-ratio: 3 / 2;
+          max-height: 600px;
+          overflow: hidden;
+          border-radius: 10px;">
+      <iframe
+          src="https://sudtour-assistant-894385917658.europe-west4.run.app/"
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;">
+      </iframe>
+    </div>
+  </div>
+
     </section>
   
 
