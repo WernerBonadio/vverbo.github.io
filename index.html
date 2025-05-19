@@ -202,8 +202,25 @@
     </section>
   
     <footer>
-      © 2025 Werner Bonadio | VAT number: IT03155460219
+      © 2025 Werner Bonadio | VAT number: IT03155460219 | 
     </footer>
+
+<footer>
+  © 2025 Werner Bonadio | VAT number: IT03155460219 |
+  <a href="#" onclick="document.getElementById('contactBox').style.display='block'; return false;">Contact</a>
+</footer>
+
+<!-- Contact Popup -->
+<div id="contactBox" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999;">
+  <div style="background:white; padding:20px; max-width:400px; margin:100px auto; border-radius:12px; text-align:center; position:relative;">
+    <h3>Write to me</h3>
+    <p style="font-size: 1.1em;">
+      📧 Email (copy and paste):<br>
+      <strong style="user-select: all;">werner [dot] bonadio [at] wernerbot [dot] com</strong>
+    </p>
+    <button onclick="document.getElementById('contactBox').style.display='none';" style="margin-top:15px; padding:8px 20px; border:none; background:#0055aa; color:white; border-radius:8px;">Close</button>
+  </div>
+</div>
   
 <!-- Cookie Consent Popup -->
 <div id="userNotice" style="display:none; position:fixed; bottom:0; left:0; right:0; background:#eee; padding:1rem; box-shadow:0 -2px 5px rgba(0,0,0,0.2); z-index:1000;">
