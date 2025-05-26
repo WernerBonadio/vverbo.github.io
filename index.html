@@ -146,14 +146,14 @@
   </section>
 
 <section class="vision-block">
-  <h2>📊 Tabella Revisione Prezzi – Servizi e Forniture</h2>
+  <h2>📊 Tabella Calcolo Revisione Prezzi – Servizi e Forniture</h2>
   <p>
     This tool was built by humans — but at extremely high speed with the help of AI.<br>
-    Explore how we make price revision more transparent and accessible - D.Lgs. 36/2023.
+    Click the link below to visit the official website of the Agenzia dei Contratti Pubblici, where you can download both the revision table (tabella calcolo revisione prezzi) and the instructions (istruzioni) - D.Lgs. 36/2023.
   </p>
 
   <div style="background-color: #fff0ae; padding: 26px; max-width: 760px; margin: 20px auto; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.08); display: flex; justify-content: center;">
-    <a href="https://wernerbonadio.github.io/revisione_prezzi_SF/" target="_blank" style="font-size: 1.1em; padding: 12px 20px; background-color: #8dbac7; color: white; border-radius: 8px; text-decoration: none; font-weight: bold;">
+    <a href="https://www.provincia.bz.it/lavoro-economia/appalti/news.asp?news_action=4&news_article_id=689841" target="_blank" style="font-size: 1.1em; padding: 12px 20px; background-color: #8dbac7; color: white; border-radius: 8px; text-decoration: none; font-weight: bold;">
     👉 Open Tabella Revisione Prezzi
     </a>
   </div>
@@ -248,32 +248,27 @@
 </script>
 
   
-<!-- Cookie Consent Popup -->
+<!-- Privacy Notice Popup -->
 <div id="userNotice" style="display:none; position:fixed; bottom:0; left:0; right:0; background:#eee; padding:1rem; box-shadow:0 -2px 5px rgba(0,0,0,0.2); z-index:1000;">
   <div style="max-width:900px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
     <span style="margin-bottom:0.5rem;">
-      This site uses cookies and processes data to enhance your experience. By continuing, you accept our <a href="/privacy.html" target="_blank">Privacy Policy</a>.
+      This site does not use cookies or tracking. Messages sent to the assistant are processed by OpenAI. See our <a href="/privacy.html" target="_blank">Privacy Policy</a>.
     </span>
-    <button onclick="acceptCookies()" style="background:#2e8b57; color:white; border:none; padding:0.5rem 1rem; cursor:pointer;">
-      Accept
+    <button onclick="acceptNotice()" style="background:#2e8b57; color:white; border:none; padding:0.5rem 1rem; cursor:pointer;">
+      OK
     </button>
   </div>
 </div>
 
 <script>
-  function acceptCookies() {
-    localStorage.setItem("cookiesAccepted", "true");
+  function acceptNotice() {
+    sessionStorage.setItem("noticeAccepted", "true");
     document.getElementById("userNotice").style.display = "none";
   }
 
   window.onload = function() {
-    if (!localStorage.getItem("cookiesAccepted")) {
+    if (!sessionStorage.getItem("noticeAccepted")) {
       document.getElementById("userNotice").style.display = "block";
     }
   };
 </script>
-
-</body>
-
-</html>
-
