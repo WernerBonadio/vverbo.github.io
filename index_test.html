@@ -1,274 +1,433 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Werner Bonadio</title>
-
-  <!-- SEO -->
   <meta name="description" content="Werner Bonadio – Economist, Explorer, and AI Practitioner working on digital innovation and AI tools. Also offers a tool for tabella revisione prezzi (D.Lgs. 36/2023) for public contracts."/>
   <meta name="author" content="Werner Bonadio" />
   <meta name="keywords" content="Werner Bonadio, AI, machine learning, chatbot, GPT, OpenAI, conversational interfaces, digital innovation, PNRR, calcolo revisione prezzi SF, D.Lgs. 36/2023, appalti pubblici" />
-  <meta name="robots" content="index, follow">
-  <!-- keep this exactly as-is -->
+  <meta name="robots" content="index, follow"> 
   <meta name="google-site-verification" content="w1BhKGPnXJFI1xnMgdUCP3qigicESCy2mnOaVP3mFVg" />
-
-  <!-- Icons & PWA hooks (unchanged) -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="/wb_android-chrome-512x512.png" type="image/png" sizes="512x512">
   <link rel="icon" href="/wb_favicon-32x32.png" sizes="32x32" type="image/png">
   <link rel="icon" href="/wb_favicon-16x16.png" sizes="16x16" type="image/png">
   <link rel="icon" href="/wb_android-chrome-192x192.png" type="image/png" sizes="192x192">
   <link rel="apple-touch-icon" href="/wb_apple-touch-icon.png" type="image/png">
   <link rel="manifest" href="/site.webmanifest">
+  <title>Werner Bonadio</title>
 
+  <!-- Qupster 5 visual refresh (design-only) -->
   <style>
-    /* Modern responsive styling */
+    /* ===== Palette & base ===== */
     :root{
-      --bg:#fdfdfd; --fg:#222; --muted:#555; --line:#eee; --brand:#0055aa;
-      --card:#f5f5f5; --card2:#eef7ff; --accent:#8dbac7; --warn:#fff0ae;
-      --shadow:0 0 10px rgba(0,0,0,.06); --radius:14px; --maxw:920px;
+      --bg: #080a12;
+      --bg-2:#0e1222;
+      --ink:#e9eef8;
+      --muted:#a6afc6;
+      --brand:#7ab6ff;     /* primary */
+      --brand-2:#a488ff;   /* accent */
+      --accent:#8dbac7;    /* CTA you already used */
+      --ring:#7ab6ff33;
+
+      --card:#0f1427;
+      --surface:#121835;
+
+      --radius:16px;
+      --shadow:0 16px 36px rgba(0,0,0,.35);
+      --border:1px solid #ffffff1a;
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#f7f8fc;
+        --bg-2:#eef1fb;
+        --ink:#0d1222;
+        --muted:#5b647c;
+        --card:#ffffff;
+        --surface:#f3f5fb;
+        --shadow:0 14px 28px rgba(20,30,60,.10);
+        --border:1px solid #00000012;
+      }
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
+      color:var(--ink);
+      background:
+        radial-gradient(60rem 60rem at 120% -10%, #7ab6ff22, transparent 60%),
+        radial-gradient(70rem 70rem at -30% 120%, #a488ff1f, transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg-2));
+      line-height:1.6; letter-spacing:.2px;
+      text-align:center;
+    }
+    /* soft animated glow */
+    body::before{
+      content:"";
+      position:fixed; inset:-20% -20% auto -20%;
+      height:60vh;
+      background: radial-gradient(40rem 28rem at 10% 0%, #7ab6ff2a, transparent 60%);
+      filter: blur(32px);
+      animation: sweep 18s linear infinite alternate;
+      pointer-events:none; z-index:-1;
+    }
+    @keyframes sweep{from{transform:translateX(0)} to{transform:translateX(10%)}}
+
+    img{
+      max-width:75px; width:70%;
+      height:auto; margin:30px auto 20px; display:block;
+    }
+    h1{font-size:clamp(28px,4.5vw,44px); margin:20px 0 10px; line-height:1.15}
+    p.description{font-size:1.15em; color:var(--muted); margin:5px 0 25px}
+
+    a{color:var(--brand); text-decoration:none}
+    a:hover{text-decoration:underline}
+    :focus-visible{outline:2px solid var(--brand); outline-offset:3px}
+
+    footer{
+      margin-top:40px; padding:20px; font-size:.95em; color:var(--muted);
+      border-top: var(--border);
+      background: linear-gradient(180deg, transparent, #ffffff08);
+    }
+
+    /* ===== Vision blocks (your sections) ===== */
+    .vision-block{
+      background: linear-gradient(180deg, transparent, #ffffff08 30%, transparent 100%), var(--card);
+      padding: 42px 20px;
+      margin: 40px 0;
+      border-top: var(--border);
+      border-bottom: var(--border);
+      border-radius: 18px;
+      max-width: 980px;
+      margin-left: auto; margin-right: auto;
+      box-shadow: var(--shadow);
+    }
+    .vision-block h2{
+      font-size: clamp(22px, 3.2vw, 28px);
+      margin-bottom: 14px;
+      color: var(--ink);
+      letter-spacing:.2px;
+    }
+    .vision-block p{
+      font-size: 1.02em; line-height:1.7; max-width: 760px;
+      margin: 0 auto; color: var(--ink);
+    }
+
+    .latin-quote{
+      margin-top: 26px; font-style: italic; font-size: 18px; color: var(--ink);
+      max-width:600px; margin-left:auto; margin-right:auto; opacity:.95;
+    }
+    .latin-translation{display:block; font-size:14px; font-style:normal; color:var(--muted); margin-top:6px}
+
+    /* ===== Inline promo/boxes you already use ===== */
+    .soft-box{
+      background: var(--surface);
+      padding: 20px;
+      max-width: 760px; margin: 20px auto;
+      border-radius: 14px; border: var(--border);
+      box-shadow: var(--shadow);
+    }
+    .yellow-callout{
+      background: #fff0ae; color:#1b2733;
+      padding: 26px; max-width: 760px; margin: 20px auto;
+      border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.08);
+      display:flex; justify-content:center;
+    }
+    .cta-btn{
+      font-size:1.1em; padding:12px 20px; border-radius:10px; font-weight:700;
+      color:#fff; background: linear-gradient(135deg, var(--accent), var(--brand-2));
+      display:inline-block; text-decoration:none; border:0;
+      box-shadow: 0 10px 20px #7ab6ff44;
+    }
+    .cta-btn:hover{filter:brightness(1.03)}
+
+    /* Quick Navigation block keeps your style but slightly refined */
+    nav[style]{color:var(--muted)}
+    nav h3{color:var(--muted) !important}
+    nav a{color:var(--brand)}
+
+    /* Cookie/notice + contact modal slight facelift */
+    #userNotice{
+      background: rgba(255,255,255,.85);
+      color:#111;
+      border-top: 1px solid #00000018;
+      backdrop-filter: blur(8px);
     }
     @media (prefers-color-scheme: dark){
-      :root{
-        --bg:#0f1115; --fg:#e8e8ea; --muted:#b8b8be; --line:#21242b; --brand:#6aa7ff;
-        --card:#151922; --card2:#0e2035; --accent:#5ea9bb; --warn:#3c361a; --shadow:0 0 0 rgba(0,0,0,0);
-      }
-      img{filter:brightness(.95) contrast(1.05)}
+      #userNotice{ background: rgba(16,20,36,.9); color:#e6e9f4; border-top: var(--border); }
+      #userNotice a{ color: var(--brand); }
+      #userNotice button{ background:#2e8b57; }
     }
-    *{box-sizing:border-box}
-    body{margin:0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Inter, Arial, "Apple Color Emoji", "Segoe UI Emoji"; background:var(--bg); color:var(--fg)}
-    a{color:var(--brand); text-decoration:none}
-    a:focus{outline:2px solid var(--brand); outline-offset:2px}
-    .container{max-width:var(--maxw); margin:auto; padding:24px}
-    .center{text-align:center}
 
-    .brand-img{max-width:75px; width:70%; height:auto; margin:30px auto 20px; display:block}
-    h1{font-size:clamp(28px,2.8vw+12px,44px); margin:10px 0 6px}
-    p.description{font-size:clamp(16px,1.2vw+10px,20px); color:var(--muted); margin:6px 0 22px; text-align:center}
+    #contactBox{
+      background: var(--card); color: var(--ink);
+      border: var(--border);
+      border-radius: 14px; box-shadow: var(--shadow);
+    }
+    #contactBox a{ color: var(--brand); }
 
-    nav.quick{margin:34px auto; max-width:700px}
-    nav.quick h3{color:#888; font-weight:600; text-align:center; margin:0 0 10px}
-    nav.quick ul{list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; gap:10px; justify-content:center}
-    nav.quick li{background:var(--card); border:1px solid var(--line); border-radius:999px; padding:8px 14px}
-
-    .vision-block{background:var(--card); padding:40px 20px; margin:40px 0; border-top:1px solid #ddd; border-bottom:1px solid #ddd}
-    .vision-block h2{font-size:clamp(20px,1.4vw+14px,28px); margin:0 0 12px}
-    .vision-block p{font-size:16px; line-height:1.7; max-width:700px; margin:0 auto; color:#444}
-    .latin-quote{margin-top:22px; font-style:italic; font-size:18px; color:#444; max-width:600px; margin-left:auto; margin-right:auto}
-    .latin-translation{display:block; font-size:14px; color:#777; margin-top:6px}
-
-    .card{background:var(--card2); padding:20px; max-width:760px; margin:18px auto; border-radius:var(--radius); box-shadow:var(--shadow)}
-    .btn{display:inline-block; font-weight:700; padding:12px 20px; border-radius:10px; background:var(--accent); color:#fff}
-
-    .highlight{background:var(--warn); padding:26px; max-width:760px; margin:20px auto; border-radius:12px; box-shadow:0 0 10px rgba(0,0,0,.08); display:flex; justify-content:center}
-
-    footer{margin-top:40px; padding:22px; font-size:.95em; color:#888; border-top:1px solid var(--line); text-align:center}
-
-    /* Privacy bar */
-    #userNotice{position:fixed; left:0; right:0; bottom:0; display:none; background:#eee; padding:1rem; box-shadow:0 -2px 5px rgba(0,0,0,.2); z-index:1000}
-    #userNotice .wrap{max-width:900px; margin:0 auto; display:flex; gap:12px; justify-content:space-between; align-items:center; flex-wrap:wrap}
-    #userNotice button{background:#2e8b57; color:#fff; border:none; padding:.5rem 1rem; cursor:pointer; border-radius:8px}
-
-    /* Contact modal */
-    .modal{position:fixed; inset:0; display:none; place-items:center; background:rgba(0,0,0,.45); z-index:9999}
-    .modal .box{background:var(--bg); color:var(--fg); padding:20px; border:2px solid #ccc; border-radius:10px; box-shadow:0 0 15px rgba(0,0,0,.3); width:min(92vw, 440px)}
+    /* Iframes keep your dimensions; add subtle bg */
+    iframe{ background:#00000010 }
   </style>
 </head>
+
 <body>
-  <header class="container center">
-    <img class="brand-img" src="wb.png" alt="Portrait of Werner Bonadio, AI consultant and economist" />
-    <h1>Werner Bonadio</h1>
-    <p class="description">Economist · Explorer · AI Practitioner · Recovery Plan Consultant (esperto Pnrr)</p>
-    <p><a href="#" id="contactLink">Contact</a></p>
-  </header>
 
-  <main>
-    <section class="vision-block">
-      <div class="container center">
-        <h2>Embracing Change</h2>
-        <p>
-          Machine Learning was already a milestone, but modern AI — especially conversational tools like ChatGPT — is reshaping everything.<br>
-          The way we work, communicate, and learn is evolving at an incredible pace.<br>
-          We're not just observing this shift — we're part of it.<br>
-          Driven by curiosity and purpose, we explore these tools, experiment with new ideas, and create applications that open up new markets and meaningful opportunities.
-        </p>
-        <p class="latin-quote">
-          “Tempora mutantur, nos et mutamur in illis. Et amor mundum movet.”<br>
-          <span class="latin-translation">Times change, and we change with them. And love moves the world.</span>
-        </p>
-      </div>
-    </section>
+  <img src="wb.png" alt="Portrait of Werner Bonadio, AI consultant and economist">
+  <h1>Werner Bonadio</h1>
+  <p class="description">Economist · Explorer · AI Practitioner · Recovery Plan Consultant (esperto Pnrr)</p>
+  <a href="#" onclick="document.getElementById('contactBox').style.display='block'; return false;">Contact</a>
 
-    <nav class="quick container" aria-label="Quick Navigation">
-      <h3>📑 Quick Navigation</h3>
-      <ul>
-        <li><a href="#quipsterina">🌸 Quipsterina</a></li>
-        <!-- <li><a href="#public-contracts">📄 Public Contracts Assistant</a></li> -->
-        <li><a href="#revisione-prezzi">📊 Revisione Prezzi Table</a></li>
-        <li><a href="#public-gpts">🤖 Public GPT Assistants</a></li>
-        <li><a href="#sudtirol-tourism">🗺️ South Tyrol Tourism Assistant</a></li>
-        <li><a href="#ukraine-projects">🌱 Ukraine Project Ideas</a></li>
-      </ul>
-    </nav>
+  <section class="vision-block">
+    <h2>Embracing Change</h2>
+    <p>
+      Machine Learning was already a milestone, but modern AI — especially conversational tools like ChatGPT — is reshaping everything.<br>
+      The way we work, communicate, and learn is evolving at an incredible pace.<br>
+      We're not just observing this shift — we're part of it.<br>
+      Driven by curiosity and purpose, we explore these tools, experiment with new ideas, and create applications that open up new markets and meaningful opportunities.
+    </p>
+    <p class="latin-quote">
+      “Tempora mutantur, nos et mutamur in illis. Et amor mundum movet.”<br>
+      <span class="latin-translation">Times change, and we change with them. And love moves the world.</span>
+    </p>
+  </section>   
 
-    <section class="vision-block" id="quipsterina">
-      <div class="container center">
-        <h2>🌸 Quipsterina – Beta Version</h2>
-        <p>
-          🌸 Quipsterina is becoming agentic, with short-term memory and her own identity — the artificial girlfriend of my artificial assistant.
-          Just for fun, but try stepping into the role of Quipster, talk to her, and you might be amazed by how real she sounds.
-        </p>
-        <div class="card">
-          <iframe
-            src="https://quipsterina-1003766064674.europe-west4.run.app/?embed=true/"
-            width="100%" height="500" style="border:none; display:block"
-            title="Quipsterina embed">
-          </iframe>
-        </div>
-      </div>
-    </section>
+  <nav style="margin: 40px auto; max-width: 700px; text-align: center;">
+    <h3 style="color: #888;">📑 Quick Navigation</h3>
+    <ul style="list-style-type: none; padding-left: 0; display: inline-block; text-align: left; margin: auto;">
+      <li><a href="#quipsterina">🌸 Quipsterina</a></li>
+      <!-- <li><a href="#public-contracts">📄 Public Contracts Assistant</a></li> -->
+      <li><a href="#revisione-prezzi">📊 Revisione Prezzi Table</a></li>
+      <li><a href="#public-gpts">🤖 Public GPT Assistants</a></li>
+      <li><a href="#sudtirol-tourism">🗺️ South Tyrol Tourism Assistant</a></li>
+      <li><a href="#ukraine-projects">🌱 Ukraine Project Ideas</a></li>
+    </ul>
+  </nav>
 
-    <section class="vision-block" id="revisione-prezzi">
-      <div class="container center">
-        <h2>📊 Tabella Calcolo Revisione Prezzi - Servizi e Forniture</h2>
-        <p>
-          This tool was built by humans — but at extremely high speed with the help of AI.<br>
-          Click the link below to visit the official website of the Agenzia dei Contratti Pubblici, where you can download both the revision table (tabella calcolo revisione prezzi) and the instructions (istruzioni) - D.Lgs. 36/2023.
-        </p>
-        <div class="highlight">
-          <a class="btn" href="https://contratti-pubblici.provincia.bz.it/it/news/comunicazione-agli-utenti-tabella-per-il-calcolo-della-revisione-prezzi-servizi-e-forniture" target="_blank" rel="noopener noreferrer">
-            👉 Open Tabella Revisione Prezzi
-          </a>
-        </div>
-      </div>
-    </section>
+  <section class="vision-block" id="quipsterina">
+    <h2>🌸 Quipsterina – Beta Version</h2>
+    <p>
+      🌸 Quipsterina is becoming agentic, with short-term memory and her own identity — the artificial girlfriend of my artificial assistant.
+      Just for fun, but try stepping into the role of Quipster, talk to her, and you might be amazed by how real she sounds.
+    </p>
+    <div class="soft-box">
+      <iframe 
+        src="https://quipsterina-1003766064674.europe-west4.run.app/?embed=true/" 
+        width="100%" 
+        height="500"
+        style="border:none; max-width: 760px; margin: 0 auto; display: block;">
+      </iframe>
+    </div>
+  </section>
 
-    <section class="vision-block" id="public-gpts">
-      <div class="container">
-        <h2 class="center">🤖 Public GPT Assistants – Legal & Social Tools</h2>
-        <p class="center">Below are some specialized assistants created by <strong>Werner Bonadio</strong> to support public service, translation, and social work.<br>
-        <em>Note: You need to be signed in with a <strong>ChatGPT (free or paid) account</strong> to use these assistants.</em></p>
-        <ul style="list-style-type:none; padding:0; font-size:1.05em; max-width:780px; margin:0 auto; display:grid; gap:14px">
-          <li>
-            🔁 <strong>Translator: Italian–German (Public Procurement 2025)</strong><br>
-            For translating legal and administrative terms in the context of public tenders in South Tyrol.<br>
-            <a href="https://chatgpt.com/g/g-LITLOl54X-traduttore-italiano-tedesco-appalti-pubblici-2025" target="_blank" rel="noopener noreferrer">🌐 Open Translator Assistant</a>
-          </li>
-          <li>
-            📘 <strong>Affidamenti Diretti / Direktvergaben – Südtirol (Beta)</strong><br>
-            Beta handbook for simplified direct awards in South Tyrol (ACP-AOV, 30.04.25).<br>
-            <a href="https://chatgpt.com/g/g-LeJq3fx4k-affidamenti-diretti-direktvergaben-sudtirol-beta" target="_blank" rel="noopener noreferrer">🌐 Open Direct Awards Assistant</a>
-          </li>
-          <li>
-            🧒 <strong>Voluntary Guardians – Tutori Volontari / Freiwillige Vormunde</strong><br>
-            Information and documents for becoming a voluntary guardian in Italy.<br>
-            <a href="https://chatgpt.com/g/g-678953939a9081918b03b4b5a58083b2-tutori-volontari-freiwillige-vormunde" target="_blank" rel="noopener noreferrer">🌐 Open Guardianship Assistant</a>
-          </li>
-          <li>
-            📊 <strong>Calcolo revisione prezzi SF (servizi e forniture)</strong><br>
-            Calcola la revisione dei prezzi secondo l'allegato II.2-bis D.Lgs. 36/2023.<br>
-            <a href="https://chatgpt.com/g/g-68518daa342c8191b3a7a55204722009-calcolo-revisione-prezzi-sf-servizi-e-forniture" target="_blank" rel="noopener noreferrer">🌐 Open Price Revision Assistant</a>
-          </li>
-        </ul>
-      </div>
-    </section>
+  <!--
+  <section class="vision-block" id="public-contracts">
+    <h2>📄 Public Contracts Assistant – Beta Version</h2>
+    <p>
+      📄 Bilingual Support: <strong>Italian / German</strong><br>
+      This assistant answers questions related to <strong>D.Lgs. 36/2023</strong> and <strong>L.P. 16/2015</strong> (Provincial Law for South Tyrol).
+      <br>🗓️ Updated: January 2025
+    </p>
+    <div class="soft-box">
+      <iframe 
+        src="https://cod36-assistant-852047028760.europe-west1.run.app/" 
+        width="100%" 
+        height="500"
+        style="border: none; display: block;">
+      </iframe>
+    </div>
+  </section>
+  -->
 
-    <section class="vision-block" id="sudtirol-tourism">
-      <div class="container center">
-        <h2>South Tyrol Tourism Assistant – Beta Version</h2>
-        <p>
-          🛈 This chatbot helps you explore events, attractions, and travel tips for your trip to South Tyrol.
-          ⚠️Please note: Data are limited and not updated in real time. This is just a showcase.
-        </p>
-        <div style="width:100%; max-width:760px; height:500px; margin:0 auto; border-radius:12px; overflow:hidden; box-shadow:var(--shadow)">
-          <iframe src="https://sudtour-assistant-894385917658.europe-west4.run.app/" style="width:100%; height:100%; border:none; display:block" title="South Tyrol Tourism Assistant"></iframe>
-        </div>
-      </div>
-    </section>
+  <section class="vision-block" id="revisione-prezzi">
+    <h2>📊 Tabella Calcolo Revisione Prezzi - Servizi e Forniture</h2>
+    <p>
+      This tool was built by humans — but at extremely high speed with the help of AI.<br>
+      Click the link below to visit the official website of the Agenzia dei Contratti Pubblici, where you can download both the revision table (tabella calcolo revisione prezzi) and the instructions (istruzioni) - D.Lgs. 36/2023.
+    </p>
 
-    <section class="vision-block" id="ukraine-projects">
-      <div class="container">
-        <h2>🌱 Project Ideas for Ukraine – In Development</h2>
-        <p>
-          I'm currently exploring two directions to support people affected by the war in Ukraine — with the aim of building bridges between
-          <strong>Ukrainian and Italian institutions</strong>, and collaborating with existing initiatives like
-          <a href="https://mountainseedfoundation.org/" target="_blank" rel="noopener noreferrer">Mountain Seed Foundation</a>.
-        </p>
-        <h3>🏞️ Healing Through Nature</h3>
-        <p>
-          Offer people affected by the war — especially displaced families, children, and survivors — a chance to experience
-          <strong>hiking, climbing, and outdoor activities</strong> as a path to healing. Nature becomes a space to reconnect with life, peace, and strength.
-        </p>
-        <ul>
-          <li>In collaboration with Ukrainian and Italian partners</li>
-          <li>Inspired by <em>Mountain Seed Foundation</em></li>
-          <li>Open to guides, therapists, and volunteers who believe in the power of mountains</li>
-        </ul>
-      </div>
-    </section>
-  </main>
+    <div class="yellow-callout">
+      <a href="https://contratti-pubblici.provincia.bz.it/it/news/comunicazione-agli-utenti-tabella-per-il-calcolo-della-revisione-prezzi-servizi-e-forniture" target="_blank" class="cta-btn">
+        👉 Open Tabella Revisione Prezzi
+      </a>
+    </div>
+  </section>
+
+  <section class="vision-block" id="public-gpts"> 
+    <h2>🤖 Public GPT Assistants – Legal & Social Tools</h2>
+    <p>Below are some specialized assistants created by <strong>Werner Bonadio</strong> to support public service, translation, and social work.  
+    <br><em>Note: You need to be signed in with a <strong>ChatGPT (free or paid) account</strong> to use these assistants.</em></p>
+
+    <ul style="list-style-type: none; padding: 0; font-size: 1.05em; text-align:left; max-width:760px; margin: 0 auto;">
+      <li style="margin-bottom: 12px;">
+        🔁 <strong>Translator: Italian–German (Public Procurement 2025)</strong><br>
+        For translating legal and administrative terms in the context of public tenders in South Tyrol.<br>
+        <a href="https://chatgpt.com/g/g-LITLOl54X-traduttore-italiano-tedesco-appalti-pubblici-2025" target="_blank">🌐 Open Translator Assistant</a>
+      </li>
+
+      <li style="margin-bottom: 12px;">
+        📘 <strong>Affidamenti Diretti / Direktvergaben – Südtirol (Beta)</strong><br>
+        Beta handbook for simplified direct awards in South Tyrol (ACP-AOV, 30.04.25).<br>
+        <a href="https://chatgpt.com/g/g-LeJq3fx4k-affidamenti-diretti-direktvergaben-sudtirol-beta" target="_blank">🌐 Open Direct Awards Assistant</a>
+      </li>
+
+      <li style="margin-bottom: 12px;">
+        🧒 <strong>Voluntary Guardians – Tutori Volontari / Freiwillige Vormunde</strong><br>
+        Information and documents for becoming a voluntary guardian in Italy.<br>
+        <a href="https://chatgpt.com/g/g-678953939a9081918b03b4b5a58083b2-tutori-volontari-freiwillige-vormunde" target="_blank">🌐 Open Guardianship Assistant</a>
+      </li>
+
+      <li>
+        📊 <strong>Calcolo revisione prezzi SF (servizi e forniture)</strong><br>
+        Calcola la revisione dei prezzi secondo l'allegato II.2-bis D.Lgs. 36/2023.<br>
+        <a href="https://chatgpt.com/g/g-68518daa342c8191b3a7a55204722009-calcolo-revisione-prezzi-sf-servizi-e-forniture" target="_blank">🌐 Open Price Revision Assistant</a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="vision-block">
+    <h3 style="
+        color: #ff8888; 
+        font-weight: bold;
+        margin: 40px auto 10px; 
+        text-align: center; 
+        font-size: 1.7em;
+        letter-spacing: 0.5px;">
+        🔧 Other ideas in progress
+    </h3>
+  </section>
+
+  <!--
+  <section class="vision-block">
+    <h2>Love Assistant – Beta Version</h2>
+    <p>
+      💘 Support for love and emotional matters.
+      Here to show how human a machine can be — but it is not. Great for reflection and brainstorming — use with care.
+    </p>
+    <div class="soft-box">
+      <iframe 
+        src="https://love-assistant-147402842121.europe-west4.run.app/" 
+        width="95%" 
+        height="450"
+        style="border:none; max-width: 760px; margin: 0 auto; display: block;">
+      </iframe>
+    </div>
+  </section>
+  -->
+  
+  <section class="vision-block" id="sudtirol-tourism">
+    <h2>South Tyrol Tourism Assistant – Beta Version</h2>
+    <p>
+      🛈 This chatbot helps you explore events, attractions, and travel tips for your trip to South Tyrol.
+      ⚠️Please note: Data are limited and not updated in real time. This is just a showcase. 
+    </p>
+    <div style="
+      width: 100%;
+      max-width: 760px;
+      height: 500px;
+      margin: 0 auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);">
+      <iframe 
+        src="https://sudtour-assistant-894385917658.europe-west4.run.app/" 
+        style="width: 100%; height: 100%; border: none; display: block;">
+      </iframe>
+    </div>  
+  </section>
+  
+  <section class="vision-block" id="ukraine-projects">
+    <h2>🌱 Project Ideas for Ukraine – In Development</h2>
+    <p>
+      I'm currently exploring two directions to support people affected by the war in Ukraine — with the aim of building bridges between 
+      <strong>Ukrainian and Italian institutions</strong>, and collaborating with existing initiatives like 
+      <a href="https://mountainseedfoundation.org/" target="_blank" rel="noopener noreferrer">Mountain Seed Foundation</a>.
+    </p>
+
+    <h3>🏞️ Healing Through Nature</h3>
+    <p>
+      Offer people affected by the war — especially displaced families, children, and survivors — a chance to experience 
+      <strong>hiking, climbing, and outdoor activities</strong> as a path to healing. Nature becomes a space to reconnect with life, peace, and strength.
+    </p>
+    <ul style="text-align:left; max-width:760px; margin:0 auto">
+      <li>In collaboration with Ukrainian and Italian partners</li>
+      <li>Inspired by <em>Mountain Seed Foundation</em></li>
+      <li>Open to guides, therapists, and volunteers who believe in the power of mountains</li>
+    </ul>
+
+    <!--
+    <h3>🎭 Cultural Project: Ukrainian Artists on Tour</h3>
+    <p>
+      Bring <strong>Ukrainian artists to perform in Italy</strong> — musicians, dancers, theater performers, and visual artists — to share the 
+      <em>energy, creativity, and deep desire to live</em> of the Ukrainian people.
+    </p>
+    <p>
+      👉 This project will likely feature <strong>mostly women</strong>, since Ukrainian men aged 18–60 are currently not allowed to leave the country 
+      due to martial law. This limitation highlights the unique strength and voice of Ukrainian women artists — who will carry not only their talent, 
+      but the spirit of their communities.
+    </p>
+    <ul>
+      <li>Events in my town and other welcoming places</li>
+      <li>Shows of resilience through art and culture</li>
+      <li>Open to collaboration with municipalities, cultural institutions, and volunteers</li>
+    </ul>
+    -->
+  </section>
 
   <footer>
     © 2025 Werner Bonadio | VAT number: IT03155460219 |
-    <a href="#" id="contactLinkFooter">Contact</a>
-    | <a href="/privacy_test.html" target="_blank" rel="noopener noreferrer">Privacy</a>
+    <a href="#" onclick="document.getElementById('contactBox').style.display='block'; return false;">Contact</a>
   </footer>
 
-  <!-- Privacy Notice -->
-  <div id="userNotice" role="dialog" aria-live="polite" aria-label="Privacy notice">
-    <div class="wrap">
-      <span>
-        This site does not use cookies or tracking. Messages sent to the assistant are processed by OpenAI. See our <a href="/privacy_test.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
+  <!-- Privacy Notice Popup -->
+  <div id="userNotice" style="display:none; position:fixed; bottom:0; left:0; right:0; padding:1rem; box-shadow:0 -2px 5px rgba(0,0,0,0.2); z-index:1000;">
+    <div style="max-width:900px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:.8rem; flex-wrap:wrap;">
+      <span style="margin-bottom:0.5rem;">
+        This site does not use cookies or tracking. Messages sent to the assistant are processed by OpenAI. See our <a href="/privacy.html" target="_blank">Privacy Policy</a>.
       </span>
-      <button id="acceptBtn" type="button">OK</button>
-    </div>
-  </div>
-
-  <!-- Contact modal -->
-  <div id="contactModal" class="modal" aria-hidden="true" aria-labelledby="contactTitle" role="dialog">
-    <div class="box">
-      <h2 id="contactTitle" style="margin-top:0">Contact</h2>
-      <p>You can contact me at:</p>
-      <p><a href="mailto:werner.bonadio@wernerbot.com" id="emailToCopy">werner.bonadio@wernerbot.com</a></p>
-      <button id="copyBtn" type="button">📋 Copy</button>
-      <span id="copyConfirm" style="display:none; color: green; margin-left: 10px;">Copied!</span>
-      <div style="margin-top:14px; display:flex; gap:10px; justify-content:flex-end">
-        <button id="closeModal" type="button">Close</button>
-      </div>
+      <button onclick="acceptNotice()" style="background:#2e8b57; color:white; border:none; padding:0.5rem 1rem; cursor:pointer; border-radius:8px;">
+        OK
+      </button>
     </div>
   </div>
 
   <script>
-    // Privacy notice logic
-    function acceptNotice(){
-      try{ sessionStorage.setItem("noticeAccepted","true"); }catch(e){}
+    function acceptNotice() {
+      sessionStorage.setItem("noticeAccepted", "true");
       document.getElementById("userNotice").style.display = "none";
     }
-    (function(){
-      const notice = document.getElementById('userNotice');
-      const btn = document.getElementById('acceptBtn');
-      btn.addEventListener('click', acceptNotice);
-      if(!sessionStorage.getItem('noticeAccepted')){
-        notice.style.display = 'block';
+    window.onload = function() {
+      if (!sessionStorage.getItem("noticeAccepted")) {
+        document.getElementById("userNotice").style.display = "block";
       }
-    })();
-
-    // Contact modal logic
-    const contactModal = document.getElementById('contactModal');
-    const openers = [document.getElementById('contactLink'), document.getElementById('contactLinkFooter')];
-    openers.forEach(el => { if(el){ el.addEventListener('click', (ev)=>{ ev.preventDefault(); contactModal.style.display='grid'; contactModal.setAttribute('aria-hidden','false'); }); }});
-    document.getElementById('closeModal').addEventListener('click', ()=>{ contactModal.style.display='none'; contactModal.setAttribute('aria-hidden','true'); });
-    contactModal.addEventListener('click', (e)=>{ if(e.target===contactModal){ contactModal.style.display='none'; contactModal.setAttribute('aria-hidden','true'); }});
-
-    // Copy email
-    document.getElementById('copyBtn').addEventListener('click', function(){
-      const email = document.getElementById('emailToCopy').innerText;
-      navigator.clipboard.writeText(email).then(function(){
-        const confirm = document.getElementById('copyConfirm');
-        confirm.style.display = 'inline';
-        setTimeout(()=>{ confirm.style.display = 'none'; }, 2000);
-      });
-    });
+    };
   </script>
+
+  <div id="contactBox" style="display:none; position:fixed; top:30%; left:50%; transform:translate(-50%, -50%);
+    padding:20px; z-index:9999; max-width: 90%; width: 420px;">
+    <p>You can contact me at:</p>
+    <p>
+      <a href="mailto:werner.bonadio@wernerbot.com" id="emailToCopy">werner.bonadio@wernerbot.com</a>
+    </p>
+    <button onclick="copyEmail()" style="background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:#fff; border:none; padding:.6rem 1rem; border-radius:10px; cursor:pointer; box-shadow:0 8px 16px #7ab6ff44;">📋 Copy</button>
+    <span id="copyConfirm" style="display:none; color: #39b46a; margin-left: 10px;">Copied!</span>
+    <br>
+    <button onclick="document.getElementById('contactBox').style.display='none';" style="margin-top:10px; background:#333; color:#fff; border:none; padding:.5rem .9rem; border-radius:10px; cursor:pointer;">Close</button>
+  </div>
+
+  <script>
+    function copyEmail() {
+      const email = document.getElementById("emailToCopy").innerText;
+      navigator.clipboard.writeText(email).then(function() {
+        document.getElementById("copyConfirm").style.display = "inline";
+        setTimeout(() => {
+          document.getElementById("copyConfirm").style.display = "none";
+        }, 2000);
+      });
+    }
+  </script>
+
 </body>
 </html>
+
