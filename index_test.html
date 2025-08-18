@@ -1,185 +1,257 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="system">
 <head>
+  <!-- Primary Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Werner Bonadio — GPT‑5 Showcase</title>
   <meta name="description" content="Werner Bonadio – Economist, Explorer, and AI Practitioner working on digital innovation and AI tools. Also offers a tool for tabella revisione prezzi (D.Lgs. 36/2023) for public contracts."/>
   <meta name="author" content="Werner Bonadio" />
   <meta name="keywords" content="Werner Bonadio, AI, machine learning, chatbot, GPT, OpenAI, conversational interfaces, digital innovation, PNRR, calcolo revisione prezzi SF, D.Lgs. 36/2023, appalti pubblici" />
-  <meta name="robots" content="index, follow"> 
+  <meta name="robots" content="index, follow" />
   <meta name="google-site-verification" content="w1BhKGPnXJFI1xnMgdUCP3qigicESCy2mnOaVP3mFVg" />
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- PWA / Icons -->
   <link rel="icon" href="/wb_android-chrome-512x512.png" type="image/png" sizes="512x512">
   <link rel="icon" href="/wb_favicon-32x32.png" sizes="32x32" type="image/png">
   <link rel="icon" href="/wb_favicon-16x16.png" sizes="16x16" type="image/png">
   <link rel="icon" href="/wb_android-chrome-192x192.png" type="image/png" sizes="192x192">
   <link rel="apple-touch-icon" href="/wb_apple-touch-icon.png" type="image/png">
   <link rel="manifest" href="/site.webmanifest">
-  <title>Werner Bonadio</title>
+  <meta name="theme-color" content="#0e1222" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f7f8fc" media="(prefers-color-scheme: light)">
 
-  <!-- Qupster 5 visual refresh (design-only) -->
+  <!-- Fonts (optional; remove if you prefer system fonts only) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&display=swap" rel="stylesheet">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Werner Bonadio — GPT‑5 Showcase" />
+  <meta property="og:description" content="Economist · Explorer · AI Practitioner · Recovery Plan Consultant (esperto PNRR). Building useful AI tools and public service assistants." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/wb_android-chrome-512x512.png" />
+  <meta name="twitter:card" content="summary" />
+
+  <!-- ===== Qupster 5 visual refresh (design-only) ===== -->
   <style>
-    /* ===== Palette & base ===== */
+    /* ===== Base, palette & tokens ===== */
     :root{
-      --bg: #080a12;
-      --bg-2:#0e1222;
-      --ink:#e9eef8;
-      --muted:#a6afc6;
-      --brand:#7ab6ff;     /* primary */
-      --brand-2:#a488ff;   /* accent */
-      --accent:#8dbac7;    /* CTA you already used */
-      --ring:#7ab6ff33;
-
-      --card:#0f1427;
-      --surface:#121835;
-
+      --bg: #080a12;          /* page background */
+      --bg-2:#0e1222;         /* gradient bottom */
+      --ink:#e9eef8;          /* primary text */
+      --muted:#a6afc6;        /* secondary text */
+      --brand:#7ab6ff;        /* primary accent */
+      --brand-2:#a488ff;      /* secondary accent */
+      --accent:#8dbac7;       /* CTA */
+      --ring:#7ab6ff33;       /* focus ring */
+      --card:#0f1427;         /* card bg */
+      --surface:#121835;      /* surface bg */
+      --border-color: #ffffff1a;
       --radius:16px;
       --shadow:0 16px 36px rgba(0,0,0,.35);
-      --border:1px solid #ffffff1a;
+      --blur: 14px;
     }
     @media (prefers-color-scheme: light){
       :root{
-        --bg:#f7f8fc;
-        --bg-2:#eef1fb;
-        --ink:#0d1222;
-        --muted:#5b647c;
-        --card:#ffffff;
-        --surface:#f3f5fb;
+        --bg:#f7f8fc; --bg-2:#eef1fb; --ink:#0d1222; --muted:#5b647c;
+        --card:#ffffff; --surface:#f3f5fb; --border-color:#00000012;
         --shadow:0 14px 28px rgba(20,30,60,.10);
-        --border:1px solid #00000012;
       }
     }
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
+    /* Light/Dark override via toggle */
+    html[data-theme="light"]{ color-scheme: light; }
+    html[data-theme="dark"]{ color-scheme: dark; }
+
+    *{ box-sizing:border-box }
+    html,body{ height:100% }
+    html{ scroll-behavior:smooth; }
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
       color:var(--ink);
       background:
         radial-gradient(60rem 60rem at 120% -10%, #7ab6ff22, transparent 60%),
         radial-gradient(70rem 70rem at -30% 120%, #a488ff1f, transparent 60%),
         linear-gradient(180deg, var(--bg), var(--bg-2));
-      line-height:1.6; letter-spacing:.2px;
-      text-align:center;
+      line-height:1.65; letter-spacing:.2px; text-align:center;
     }
-    /* soft animated glow */
-    body::before{
-      content:"";
-      position:fixed; inset:-20% -20% auto -20%;
-      height:60vh;
-      background: radial-gradient(40rem 28rem at 10% 0%, #7ab6ff2a, transparent 60%);
-      filter: blur(32px);
-      animation: sweep 18s linear infinite alternate;
-      pointer-events:none; z-index:-1;
-    }
-    @keyframes sweep{from{transform:translateX(0)} to{transform:translateX(10%)}}
-
-    img{
-      max-width:75px; width:70%;
-      height:auto; margin:30px auto 20px; display:block;
-    }
-    h1{font-size:clamp(28px,4.5vw,44px); margin:20px 0 10px; line-height:1.15}
-    p.description{font-size:1.15em; color:var(--muted); margin:5px 0 25px}
-
-    a{color:var(--brand); text-decoration:none}
-    a:hover{text-decoration:underline}
-    :focus-visible{outline:2px solid var(--brand); outline-offset:3px}
-
-    footer{
-      margin-top:40px; padding:20px; font-size:.95em; color:var(--muted);
-      border-top: var(--border);
-      background: linear-gradient(180deg, transparent, #ffffff08);
+    @media (prefers-reduced-motion: no-preference){
+      body::before{
+        content:""; position:fixed; inset:-20% -20% auto -20%; height:60vh;
+        background: radial-gradient(40rem 28rem at 10% 0%, #7ab6ff2a, transparent 60%);
+        filter: blur(32px);
+        animation: sweep 18s linear infinite alternate;
+        pointer-events:none; z-index:-1;
+      }
+      @keyframes sweep{from{transform:translateX(0)} to{transform:translateX(10%)}}
     }
 
-    /* ===== Vision blocks (your sections) ===== */
+    a{ color:var(--brand); text-decoration:none }
+    a:hover{ text-decoration:underline }
+    :focus-visible{ outline:2px solid var(--brand); outline-offset:3px }
+
+    /* ===== Layout ===== */
+    .container{ width:100%; max-width:1100px; margin-inline:auto; padding-inline:20px }
+    .stack{ display:grid; gap:28px }
+
+    /* ===== Header / Hero ===== */
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(var(--blur));
+      background: color-mix(in oklab, var(--bg), transparent 55%);
+      border-bottom: 1px solid var(--border-color);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+      padding: 10px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; text-align:left;
+    }
+    .brand img{ width:40px; height:40px; border-radius:12px }
+    .brand .title{ line-height:1.1; }
+    .brand .title strong{ display:block; font-size:clamp(18px,2.2vw,22px) }
+    .brand .title span{ font-size:12px; color:var(--muted) }
+
+    .nav-actions{ display:flex; align-items:center; gap:10px }
+    .btn{ border:1px solid var(--border-color); background:var(--card); color:var(--ink);
+          padding:.55rem .8rem; border-radius:12px; cursor:pointer; display:inline-flex; align-items:center; gap:8px;
+          box-shadow:var(--shadow); text-decoration:none }
+    .btn:hover{ filter:brightness(1.05) }
+    .btn-cta{ border:0; background: linear-gradient(135deg, var(--accent), var(--brand-2)); color:#fff;
+              box-shadow: 0 10px 20px #7ab6ff44; }
+
+    .hero{ padding: 34px 0 12px; text-align:center }
+    .hero img{ max-width:86px; height:auto; display:block; margin: 18px auto }
+    h1{ font-size:clamp(30px,4.8vw,48px); margin:10px 0 6px; line-height:1.1 }
+    .tagline{ font-size:clamp(14px,1.6vw,16px); color:var(--muted); margin-bottom:14px }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px; padding:.4rem .6rem; border-radius:999px;
+      background: linear-gradient(135deg, #7ab6ff22, #a488ff22);
+      border: 1px solid var(--border-color);
+      font-size:12px; color:var(--ink)
+    }
+    .badge .dot{ width:8px; height:8px; border-radius:50%; background:radial-gradient(circle at 30% 30%, #7ab6ff, #a488ff) }
+
+    /* Quick Navigation */
+    .quicknav{ margin: 18px auto 26px; }
+    .quicknav ul{ list-style:none; padding:0; display:flex; flex-wrap:wrap; gap:10px; justify-content:center }
+    .quicknav a{
+      display:inline-flex; gap:8px; align-items:center; padding:.6rem .8rem; border-radius:999px;
+      border:1px solid var(--border-color); background: color-mix(in oklab, var(--card), transparent 20%);
+      text-decoration:none; font-size:14px
+    }
+    .quicknav a.active{ outline:2px solid var(--brand); outline-offset:2px }
+
+    /* ===== Sections ===== */
+    section{ scroll-margin-top: 90px; }
     .vision-block{
       background: linear-gradient(180deg, transparent, #ffffff08 30%, transparent 100%), var(--card);
-      padding: 42px 20px;
-      margin: 40px 0;
-      border-top: var(--border);
-      border-bottom: var(--border);
-      border-radius: 18px;
-      max-width: 980px;
-      margin-left: auto; margin-right: auto;
+      padding: 42px 22px; border-radius: 18px; border: 1px solid var(--border-color);
+      max-width: 980px; margin: 34px auto; box-shadow: var(--shadow);
+    }
+    .vision-block h2{ font-size:clamp(22px,3.2vw,30px); margin:0 0 10px }
+    .vision-block p{ font-size: 1.05em; line-height:1.75; max-width: 760px; margin: 0 auto; }
+
+    .latin-quote{ margin-top: 22px; font-style: italic; font-size: 18px; opacity:.95 }
+    .latin-translation{ display:block; font-size:14px; font-style:normal; color:var(--muted); margin-top:6px }
+
+    .soft-box{ background: var(--surface); padding: 20px; max-width:760px; margin: 18px auto; border-radius:14px; border:1px solid var(--border-color); box-shadow: var(--shadow) }
+    .yellow-callout{ background:#fff0ae; color:#1b2733; padding: 24px; max-width:760px; margin: 18px auto; border-radius:12px; box-shadow: 0 0 10px rgba(0,0,0,0.08); display:flex; justify-content:center }
+    .cta-btn{ font-size:1.1em; padding:12px 20px; border-radius:10px; font-weight:700; color:#fff; background: linear-gradient(135deg, var(--accent), var(--brand-2)); display:inline-block; border:0; box-shadow: 0 10px 20px #7ab6ff44 }
+    .cta-btn:hover{ filter:brightness(1.03) }
+
+    /* Link cards grid for assistants */
+    .cards{ display:grid; gap:14px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); max-width: 980px; margin: 14px auto 0 }
+    .card{
+      text-align:left; padding:16px; border:1px solid var(--border-color); border-radius:14px; background:var(--surface);
       box-shadow: var(--shadow);
     }
-    .vision-block h2{
-      font-size: clamp(22px, 3.2vw, 28px);
-      margin-bottom: 14px;
-      color: var(--ink);
-      letter-spacing:.2px;
-    }
-    .vision-block p{
-      font-size: 1.02em; line-height:1.7; max-width: 760px;
-      margin: 0 auto; color: var(--ink);
-    }
+    .card h4{ margin:0 0 6px; font-size:16px }
+    .card p{ margin:0 0 10px; color:var(--muted); font-size:14px }
+    .card a{ text-decoration:none }
 
-    .latin-quote{
-      margin-top: 26px; font-style: italic; font-size: 18px; color: var(--ink);
-      max-width:600px; margin-left:auto; margin-right:auto; opacity:.95;
-    }
-    .latin-translation{display:block; font-size:14px; font-style:normal; color:var(--muted); margin-top:6px}
+    /* Footer */
+    footer{ margin-top:40px; padding:22px; font-size:.95em; color:var(--muted); border-top: 1px solid var(--border-color); background: linear-gradient(180deg, transparent, #ffffff08) }
 
-    /* ===== Inline promo/boxes you already use ===== */
-    .soft-box{
-      background: var(--surface);
-      padding: 20px;
-      max-width: 760px; margin: 20px auto;
-      border-radius: 14px; border: var(--border);
-      box-shadow: var(--shadow);
-    }
-    .yellow-callout{
-      background: #fff0ae; color:#1b2733;
-      padding: 26px; max-width: 760px; margin: 20px auto;
-      border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.08);
-      display:flex; justify-content:center;
-    }
-    .cta-btn{
-      font-size:1.1em; padding:12px 20px; border-radius:10px; font-weight:700;
-      color:#fff; background: linear-gradient(135deg, var(--accent), var(--brand-2));
-      display:inline-block; text-decoration:none; border:0;
-      box-shadow: 0 10px 20px #7ab6ff44;
-    }
-    .cta-btn:hover{filter:brightness(1.03)}
+    /* Reveal on scroll */
+    .reveal{ opacity:0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease }
+    .reveal.in{ opacity:1; transform:none }
 
-    /* Quick Navigation block keeps your style but slightly refined */
-    nav[style]{color:var(--muted)}
-    nav h3{color:var(--muted) !important}
-    nav a{color:var(--brand)}
-
-    /* Cookie/notice + contact modal slight facelift */
+    /* Modals / Notices */
     #userNotice{
-      background: rgba(255,255,255,.85);
-      color:#111;
-      border-top: 1px solid #00000018;
-      backdrop-filter: blur(8px);
+      position:fixed; bottom:0; left:0; right:0; display:none; padding:1rem; z-index:1000;
+      box-shadow:0 -2px 5px rgba(0,0,0,.2);
+      background: rgba(255,255,255,.85); color:#111; border-top: 1px solid #00000018; backdrop-filter: blur(8px);
     }
     @media (prefers-color-scheme: dark){
-      #userNotice{ background: rgba(16,20,36,.9); color:#e6e9f4; border-top: var(--border); }
-      #userNotice a{ color: var(--brand); }
-      #userNotice button{ background:#2e8b57; }
+      #userNotice{ background: rgba(16,20,36,.9); color:#e6e9f4; border-top: 1px solid var(--border-color) }
+      #userNotice a{ color: var(--brand) }
+      #userNotice button{ background:#2e8b57 }
     }
 
-    #contactBox{
-      background: var(--card); color: var(--ink);
-      border: var(--border);
-      border-radius: 14px; box-shadow: var(--shadow);
-    }
-    #contactBox a{ color: var(--brand); }
+    dialog#contactBox{ border:1px solid var(--border-color); border-radius:14px; background: var(--card); color:var(--ink); box-shadow: var(--shadow); max-width: 480px; width: calc(100% - 40px); padding:20px }
+    dialog::backdrop{ backdrop-filter: blur(8px); background: #0006 }
+    .contact-actions{ display:flex; gap:10px; align-items:center; margin-top:8px }
 
-    /* Iframes keep your dimensions; add subtle bg */
-    iframe{ background:#00000010 }
+    /* Keyboard palette (⌘/Ctrl + K) */
+    .kp{ position: fixed; inset: 0; display:none; align-items: flex-start; justify-content:center; padding-top:12vh; z-index:1001 }
+    .kp .panel{ width:min(720px, 92vw); background:var(--card); border:1px solid var(--border-color); border-radius:16px; box-shadow: var(--shadow) }
+    .kp header{ position:unset; backdrop-filter:none; border:0 }
+    .kp input{ width:100%; padding:14px 16px; border:0; outline:none; border-bottom:1px solid var(--border-color); background:transparent; color:var(--ink); font-size:16px }
+    .kp ul{ list-style:none; margin:0; padding:10px; max-height:50vh; overflow:auto }
+    .kp li a{ display:block; padding:10px 12px; border-radius:10px; text-decoration:none; color:var(--ink) }
+    .kp li a:hover{ background: color-mix(in oklab, var(--surface), transparent 10%) }
+
+    /* Accessibility helpers */
+    .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0 }
   </style>
 </head>
 
 <body>
+  <!-- Sticky nav / brand -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <img src="wb.png" alt="Portrait of Werner Bonadio">
+        <div class="title">
+          <strong>Werner Bonadio</strong>
+          <span>Economist · Explorer · AI Practitioner · PNRR expert</span>
+        </div>
+      </div>
+      <div class="nav-actions">
+        <a class="btn" href="#" id="openContact" aria-haspopup="dialog" aria-controls="contactBox">Contact</a>
+        <button class="btn" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">🌓 Theme</button>
+        <button class="btn btn-cta" id="openK">⌘K Quick Jump</button>
+      </div>
+    </div>
+  </header>
 
-  <img src="wb.png" alt="Portrait of Werner Bonadio, AI consultant and economist">
-  <h1>Werner Bonadio</h1>
-  <p class="description">Economist · Explorer · AI Practitioner · Recovery Plan Consultant (esperto Pnrr)</p>
-  <a href="#" onclick="document.getElementById('contactBox').style.display='block'; return false;">Contact</a>
+  <!-- Hero -->
+  <div class="container hero reveal">
+    <span class="badge" aria-label="Powered by GPT‑5">
+      <span class="dot" aria-hidden="true"></span> Powered by <strong>&nbsp;GPT‑5</strong>
+    </span>
+    <img src="wb.png" alt="Portrait of Werner Bonadio, AI consultant and economist">
+    <h1>Building simple, useful AI for real people</h1>
+    <p class="tagline">Conversational tools, public service assistants, and rapid prototypes that open markets and opportunities.</p>
+  </div>
 
-  <section class="vision-block">
+  <!-- Quick Navigation -->
+  <nav class="quicknav container" aria-label="Quick navigation">
+    <ul>
+      <li><a href="#quipsterina">🌸 Quipsterina</a></li>
+      <li><a href="#revisione-prezzi">📊 Revisione Prezzi</a></li>
+      <li><a href="#public-gpts">🤖 Public GPT Assistants</a></li>
+      <li><a href="#sudtirol-tourism">🗺️ South Tyrol Tourism</a></li>
+      <li><a href="#ukraine-projects">🌱 Ukraine Projects</a></li>
+    </ul>
+  </nav>
+
+  <!-- Embracing Change -->
+  <section class="vision-block reveal" id="embracing-change">
     <h2>Embracing Change</h2>
     <p>
       Machine Learning was already a milestone, but modern AI — especially conversational tools like ChatGPT — is reshaping everything.<br>
@@ -191,21 +263,10 @@
       “Tempora mutantur, nos et mutamur in illis. Et amor mundum movet.”<br>
       <span class="latin-translation">Times change, and we change with them. And love moves the world.</span>
     </p>
-  </section>   
+  </section>
 
-  <nav style="margin: 40px auto; max-width: 700px; text-align: center;">
-    <h3 style="color: #888;">📑 Quick Navigation</h3>
-    <ul style="list-style-type: none; padding-left: 0; display: inline-block; text-align: left; margin: auto;">
-      <li><a href="#quipsterina">🌸 Quipsterina</a></li>
-      <!-- <li><a href="#public-contracts">📄 Public Contracts Assistant</a></li> -->
-      <li><a href="#revisione-prezzi">📊 Revisione Prezzi Table</a></li>
-      <li><a href="#public-gpts">🤖 Public GPT Assistants</a></li>
-      <li><a href="#sudtirol-tourism">🗺️ South Tyrol Tourism Assistant</a></li>
-      <li><a href="#ukraine-projects">🌱 Ukraine Project Ideas</a></li>
-    </ul>
-  </nav>
-
-  <section class="vision-block" id="quipsterina">
+  <!-- Quipsterina -->
+  <section class="vision-block reveal" id="quipsterina">
     <h2>🌸 Quipsterina – Beta Version</h2>
     <p>
       🌸 Quipsterina is becoming agentic, with short-term memory and her own identity — the artificial girlfriend of my artificial assistant.
@@ -214,137 +275,78 @@
     <div class="soft-box">
       <iframe 
         src="https://quipsterina-1003766064674.europe-west4.run.app/?embed=true/" 
-        width="100%" 
-        height="500"
-        style="border:none; max-width: 760px; margin: 0 auto; display: block;">
+        width="100%" height="500" style="border:none; max-width: 760px; margin: 0 auto; display: block;">
       </iframe>
     </div>
   </section>
 
-  <!--
-  <section class="vision-block" id="public-contracts">
-    <h2>📄 Public Contracts Assistant – Beta Version</h2>
-    <p>
-      📄 Bilingual Support: <strong>Italian / German</strong><br>
-      This assistant answers questions related to <strong>D.Lgs. 36/2023</strong> and <strong>L.P. 16/2015</strong> (Provincial Law for South Tyrol).
-      <br>🗓️ Updated: January 2025
-    </p>
-    <div class="soft-box">
-      <iframe 
-        src="https://cod36-assistant-852047028760.europe-west1.run.app/" 
-        width="100%" 
-        height="500"
-        style="border: none; display: block;">
-      </iframe>
-    </div>
-  </section>
-  -->
-
-  <section class="vision-block" id="revisione-prezzi">
+  <!-- Revisione Prezzi -->
+  <section class="vision-block reveal" id="revisione-prezzi">
     <h2>📊 Tabella Calcolo Revisione Prezzi - Servizi e Forniture</h2>
     <p>
       This tool was built by humans — but at extremely high speed with the help of AI.<br>
       Click the link below to visit the official website of the Agenzia dei Contratti Pubblici, where you can download both the revision table (tabella calcolo revisione prezzi) and the instructions (istruzioni) - D.Lgs. 36/2023.
     </p>
-
     <div class="yellow-callout">
-      <a href="https://contratti-pubblici.provincia.bz.it/it/news/comunicazione-agli-utenti-tabella-per-il-calcolo-della-revisione-prezzi-servizi-e-forniture" target="_blank" class="cta-btn">
-        👉 Open Tabella Revisione Prezzi
-      </a>
+      <a href="https://contratti-pubblici.provincia.bz.it/it/news/comunicazione-agli-utenti-tabella-per-il-calcolo-della-revisione-prezzi-servizi-e-forniture" target="_blank" class="cta-btn">👉 Open Tabella Revisione Prezzi</a>
     </div>
   </section>
 
-  <section class="vision-block" id="public-gpts"> 
+  <!-- Public GPTs (cards) -->
+  <section class="vision-block reveal" id="public-gpts">
     <h2>🤖 Public GPT Assistants – Legal & Social Tools</h2>
-    <p>Below are some specialized assistants created by <strong>Werner Bonadio</strong> to support public service, translation, and social work.  
-    <br><em>Note: You need to be signed in with a <strong>ChatGPT (free or paid) account</strong> to use these assistants.</em></p>
-
-    <ul style="list-style-type: none; padding: 0; font-size: 1.05em; text-align:left; max-width:760px; margin: 0 auto;">
-      <li style="margin-bottom: 12px;">
-        🔁 <strong>Translator: Italian–German (Public Procurement 2025)</strong><br>
-        For translating legal and administrative terms in the context of public tenders in South Tyrol.<br>
-        <a href="https://chatgpt.com/g/g-LITLOl54X-traduttore-italiano-tedesco-appalti-pubblici-2025" target="_blank">🌐 Open Translator Assistant</a>
-      </li>
-
-      <li style="margin-bottom: 12px;">
-        📘 <strong>Affidamenti Diretti / Direktvergaben – Südtirol (Beta)</strong><br>
-        Beta handbook for simplified direct awards in South Tyrol (ACP-AOV, 30.04.25).<br>
-        <a href="https://chatgpt.com/g/g-LeJq3fx4k-affidamenti-diretti-direktvergaben-sudtirol-beta" target="_blank">🌐 Open Direct Awards Assistant</a>
-      </li>
-
-      <li style="margin-bottom: 12px;">
-        🧒 <strong>Voluntary Guardians – Tutori Volontari / Freiwillige Vormunde</strong><br>
-        Information and documents for becoming a voluntary guardian in Italy.<br>
-        <a href="https://chatgpt.com/g/g-678953939a9081918b03b4b5a58083b2-tutori-volontari-freiwillige-vormunde" target="_blank">🌐 Open Guardianship Assistant</a>
-      </li>
-
-      <li>
-        📊 <strong>Calcolo revisione prezzi SF (servizi e forniture)</strong><br>
-        Calcola la revisione dei prezzi secondo l'allegato II.2-bis D.Lgs. 36/2023.<br>
-        <a href="https://chatgpt.com/g/g-68518daa342c8191b3a7a55204722009-calcolo-revisione-prezzi-sf-servizi-e-forniture" target="_blank">🌐 Open Price Revision Assistant</a>
-      </li>
-    </ul>
-  </section>
-
-  <section class="vision-block">
-    <h3 style="
-        color: #ff8888; 
-        font-weight: bold;
-        margin: 40px auto 10px; 
-        text-align: center; 
-        font-size: 1.7em;
-        letter-spacing: 0.5px;">
-        🔧 Other ideas in progress
-    </h3>
-  </section>
-
-  <!--
-  <section class="vision-block">
-    <h2>Love Assistant – Beta Version</h2>
-    <p>
-      💘 Support for love and emotional matters.
-      Here to show how human a machine can be — but it is not. Great for reflection and brainstorming — use with care.
+    <p>Below are some specialized assistants created by <strong>Werner Bonadio</strong> to support public service, translation, and social work.<br>
+      <em>Note: You need to be signed in with a <strong>ChatGPT (free or paid) account</strong> to use these assistants.</em>
     </p>
-    <div class="soft-box">
-      <iframe 
-        src="https://love-assistant-147402842121.europe-west4.run.app/" 
-        width="95%" 
-        height="450"
-        style="border:none; max-width: 760px; margin: 0 auto; display: block;">
-      </iframe>
+
+    <div class="cards">
+      <div class="card">
+        <h4>🔁 Translator: Italian–German (Public Procurement 2025)</h4>
+        <p>Translate legal/administrative terms for tenders in South Tyrol.</p>
+        <a href="https://chatgpt.com/g/g-LITLOl54X-traduttore-italiano-tedesco-appalti-pubblici-2025" target="_blank">🌐 Open Translator Assistant</a>
+      </div>
+      <div class="card">
+        <h4>📘 Affidamenti Diretti / Direktvergaben – Südtirol (Beta)</h4>
+        <p>Beta handbook for simplified direct awards in South Tyrol (ACP-AOV, 30.04.25).</p>
+        <a href="https://chatgpt.com/g/g-LeJq3fx4k-affidamenti-diretti-direktvergaben-sudtirol-beta" target="_blank">🌐 Open Direct Awards Assistant</a>
+      </div>
+      <div class="card">
+        <h4>🧒 Voluntary Guardians – Tutori Volontari / Freiwillige Vormunde</h4>
+        <p>Info and documents for becoming a voluntary guardian in Italy.</p>
+        <a href="https://chatgpt.com/g/g-678953939a9081918b03b4b5a58083b2-tutori-volontari-freiwillige-vormunde" target="_blank">🌐 Open Guardianship Assistant</a>
+      </div>
+      <div class="card">
+        <h4>📊 Calcolo revisione prezzi SF (servizi e forniture)</h4>
+        <p>Calcola la revisione dei prezzi secondo l'allegato II.2-bis D.Lgs. 36/2023.</p>
+        <a href="https://chatgpt.com/g/g-68518daa342c8191b3a7a55204722009-calcolo-revisione-prezzi-sf-servizi-e-forniture" target="_blank">🌐 Open Price Revision Assistant</a>
+      </div>
     </div>
   </section>
-  -->
-  
-  <section class="vision-block" id="sudtirol-tourism">
-    <h2>South Tyrol Tourism Assistant – Beta Version</h2>
-    <p>
-      🛈 This chatbot helps you explore events, attractions, and travel tips for your trip to South Tyrol.
-      ⚠️Please note: Data are limited and not updated in real time. This is just a showcase. 
-    </p>
-    <div style="
-      width: 100%;
-      max-width: 760px;
-      height: 500px;
-      margin: 0 auto;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);">
-      <iframe 
-        src="https://sudtour-assistant-894385917658.europe-west4.run.app/" 
-        style="width: 100%; height: 100%; border: none; display: block;">
-      </iframe>
-    </div>  
+
+  <!-- Other ideas in progress -->
+  <section class="vision-block reveal">
+    <h2>🔧 Other ideas in progress</h2>
   </section>
-  
-  <section class="vision-block" id="ukraine-projects">
+
+  <!-- South Tyrol Tourism -->
+  <section class="vision-block reveal" id="sudtirol-tourism">
+    <h2>🗺️ South Tyrol Tourism Assistant – Beta Version</h2>
+    <p>🛈 This chatbot helps you explore events, attractions, and travel tips for your trip to South Tyrol.
+      <br>⚠️ Please note: Data are limited and not updated in real time. This is just a showcase.
+    </p>
+    <div style="width:100%; max-width:760px; height:500px; margin:0 auto; border-radius:12px; overflow:hidden; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
+      <iframe src="https://sudtour-assistant-894385917658.europe-west4.run.app/" style="width:100%; height:100%; border:none; display:block;"></iframe>
+    </div>
+  </section>
+
+  <!-- Ukraine Projects -->
+  <section class="vision-block reveal" id="ukraine-projects">
     <h2>🌱 Project Ideas for Ukraine – In Development</h2>
     <p>
       I'm currently exploring two directions to support people affected by the war in Ukraine — with the aim of building bridges between 
       <strong>Ukrainian and Italian institutions</strong>, and collaborating with existing initiatives like 
       <a href="https://mountainseedfoundation.org/" target="_blank" rel="noopener noreferrer">Mountain Seed Foundation</a>.
     </p>
-
     <h3>🏞️ Healing Through Nature</h3>
     <p>
       Offer people affected by the war — especially displaced families, children, and survivors — a chance to experience 
@@ -355,79 +357,158 @@
       <li>Inspired by <em>Mountain Seed Foundation</em></li>
       <li>Open to guides, therapists, and volunteers who believe in the power of mountains</li>
     </ul>
-
-    <!--
-    <h3>🎭 Cultural Project: Ukrainian Artists on Tour</h3>
-    <p>
-      Bring <strong>Ukrainian artists to perform in Italy</strong> — musicians, dancers, theater performers, and visual artists — to share the 
-      <em>energy, creativity, and deep desire to live</em> of the Ukrainian people.
-    </p>
-    <p>
-      👉 This project will likely feature <strong>mostly women</strong>, since Ukrainian men aged 18–60 are currently not allowed to leave the country 
-      due to martial law. This limitation highlights the unique strength and voice of Ukrainian women artists — who will carry not only their talent, 
-      but the spirit of their communities.
-    </p>
-    <ul>
-      <li>Events in my town and other welcoming places</li>
-      <li>Shows of resilience through art and culture</li>
-      <li>Open to collaboration with municipalities, cultural institutions, and volunteers</li>
-    </ul>
-    -->
   </section>
 
   <footer>
     © 2025 Werner Bonadio | VAT number: IT03155460219 |
-    <a href="#" onclick="document.getElementById('contactBox').style.display='block'; return false;">Contact</a>
+    <a href="#" id="footerContact">Contact</a>
   </footer>
 
   <!-- Privacy Notice Popup -->
-  <div id="userNotice" style="display:none; position:fixed; bottom:0; left:0; right:0; padding:1rem; box-shadow:0 -2px 5px rgba(0,0,0,0.2); z-index:1000;">
-    <div style="max-width:900px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:.8rem; flex-wrap:wrap;">
+  <div id="userNotice" role="region" aria-live="polite">
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; gap:.8rem; flex-wrap:wrap;">
       <span style="margin-bottom:0.5rem;">
         This site does not use cookies or tracking. Messages sent to the assistant are processed by OpenAI. See our <a href="/privacy.html" target="_blank">Privacy Policy</a>.
       </span>
-      <button onclick="acceptNotice()" style="background:#2e8b57; color:white; border:none; padding:0.5rem 1rem; cursor:pointer; border-radius:8px;">
-        OK
-      </button>
+      <button id="okNotice" class="btn btn-cta" style="padding:.5rem 1rem;">OK</button>
+    </div>
+  </div>
+
+  <!-- Contact modal (native <dialog>) -->
+  <dialog id="contactBox" aria-labelledby="contactTitle" aria-describedby="contactDesc">
+    <h3 id="contactTitle" style="margin:0 0 6px">Get in touch</h3>
+    <p id="contactDesc" style="margin:0 0 10px">You can contact me at:</p>
+    <p>
+      <a href="mailto:werner.bonadio@wernerbot.com" id="emailToCopy">werner.bonadio@wernerbot.com</a>
+    </p>
+    <div class="contact-actions">
+      <button class="btn btn-cta" id="copyBtn">📋 Copy</button>
+      <span id="copyConfirm" style="display:none; color: #39b46a;">Copied!</span>
+      <button class="btn" id="closeContact">Close</button>
+    </div>
+  </dialog>
+
+  <!-- Keyboard Palette -->
+  <div class="kp" id="kp" aria-hidden="true">
+    <div class="panel">
+      <header><input id="kpq" type="text" placeholder="Type to jump… (e.g., ‘tourism’, ‘Ukraine’, ‘Quipsterina’)" aria-label="Quick jump" /></header>
+      <ul id="kplist"></ul>
     </div>
   </div>
 
   <script>
-    function acceptNotice() {
-      sessionStorage.setItem("noticeAccepted", "true");
-      document.getElementById("userNotice").style.display = "none";
-    }
-    window.onload = function() {
-      if (!sessionStorage.getItem("noticeAccepted")) {
-        document.getElementById("userNotice").style.display = "block";
+    // ===== Theme toggle (system / dark / light) =====
+    (function(){
+      const html = document.documentElement;
+      const key = 'wb-theme';
+      function apply(theme){
+        if(theme === 'system'){ html.setAttribute('data-theme','system'); return; }
+        html.setAttribute('data-theme', theme);
       }
-    };
-  </script>
-
-  <div id="contactBox" style="display:none; position:fixed; top:30%; left:50%; transform:translate(-50%, -50%);
-    padding:20px; z-index:9999; max-width: 90%; width: 420px;">
-    <p>You can contact me at:</p>
-    <p>
-      <a href="mailto:werner.bonadio@wernerbot.com" id="emailToCopy">werner.bonadio@wernerbot.com</a>
-    </p>
-    <button onclick="copyEmail()" style="background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:#fff; border:none; padding:.6rem 1rem; border-radius:10px; cursor:pointer; box-shadow:0 8px 16px #7ab6ff44;">📋 Copy</button>
-    <span id="copyConfirm" style="display:none; color: #39b46a; margin-left: 10px;">Copied!</span>
-    <br>
-    <button onclick="document.getElementById('contactBox').style.display='none';" style="margin-top:10px; background:#333; color:#fff; border:none; padding:.5rem .9rem; border-radius:10px; cursor:pointer;">Close</button>
-  </div>
-
-  <script>
-    function copyEmail() {
-      const email = document.getElementById("emailToCopy").innerText;
-      navigator.clipboard.writeText(email).then(function() {
-        document.getElementById("copyConfirm").style.display = "inline";
-        setTimeout(() => {
-          document.getElementById("copyConfirm").style.display = "none";
-        }, 2000);
+      const saved = localStorage.getItem(key) || 'system';
+      apply(saved);
+      document.getElementById('themeToggle').addEventListener('click', () => {
+        const current = html.getAttribute('data-theme') || 'system';
+        const next = current === 'system' ? 'dark' : current === 'dark' ? 'light' : 'system';
+        localStorage.setItem(key, next); apply(next);
+        document.getElementById('themeToggle').innerText = '🌓 ' + (next.charAt(0).toUpperCase()+next.slice(1));
       });
-    }
-  </script>
+      document.getElementById('themeToggle').innerText = '🌓 ' + (saved.charAt(0).toUpperCase()+saved.slice(1));
+    })();
 
+    // ===== Reveal on scroll =====
+    (function(){
+      const els = document.querySelectorAll('.reveal');
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(prefersReduced){ els.forEach(e=>e.classList.add('in')); return; }
+      const io = new IntersectionObserver((entries)=>{
+        for(const e of entries){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }
+      },{ threshold: 0.12 });
+      els.forEach(el=>io.observe(el));
+    })();
+
+    // ===== Quick navigation active state (scroll spy) =====
+    (function(){
+      const links = Array.from(document.querySelectorAll('.quicknav a'));
+      const map = new Map(links.map(a=>[document.querySelector(a.getAttribute('href')), a]));
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(({target, isIntersecting})=>{
+          const a = map.get(target);
+          if(a){ if(isIntersecting){ links.forEach(l=>l.classList.remove('active')); a.classList.add('active'); } }
+        });
+      }, { rootMargin: '-30% 0% -60% 0%', threshold: [0, .2, .6] });
+      map.forEach((_, sec)=>{ if(sec) io.observe(sec); });
+    })();
+
+    // ===== Privacy notice =====
+    (function(){
+      const box = document.getElementById('userNotice');
+      const ok = document.getElementById('okNotice');
+      const k = 'noticeAccepted';
+      function hide(){ box.style.display = 'none'; }
+      function show(){ box.style.display = 'block'; }
+      if(!sessionStorage.getItem(k)) show();
+      ok.addEventListener('click', ()=>{ sessionStorage.setItem(k, 'true'); hide(); });
+    })();
+
+    // ===== Contact dialog (ESC closes, focus trap) =====
+    (function(){
+      const d = document.getElementById('contactBox');
+      const openers = [document.getElementById('openContact'), document.getElementById('footerContact')];
+      const closeBtn = document.getElementById('closeContact');
+      const email = document.getElementById('emailToCopy');
+      const copyBtn = document.getElementById('copyBtn');
+      const copied = document.getElementById('copyConfirm');
+
+      function open(){ if(typeof d.showModal === 'function'){ d.showModal(); } else { d.setAttribute('open',''); }
+        // focus first focusable
+        setTimeout(()=>{ closeBtn.focus(); }, 20);
+      }
+      function close(){ if(d.open) d.close(); d.removeAttribute('open'); }
+
+      openers.forEach(btn=> btn && btn.addEventListener('click', (e)=>{ e.preventDefault(); open(); }));
+      closeBtn.addEventListener('click', close);
+      d.addEventListener('cancel', (e)=>{ e.preventDefault(); close(); });
+
+      copyBtn.addEventListener('click', ()=>{
+        const text = email.innerText.trim();
+        navigator.clipboard.writeText(text).then(()=>{
+          copied.style.display = 'inline'; setTimeout(()=> copied.style.display='none', 2000);
+        });
+      });
+    })();
+
+    // ===== Command palette (⌘/Ctrl + K) =====
+    (function(){
+      const kp = document.getElementById('kp');
+      const q = document.getElementById('kpq');
+      const list = document.getElementById('kplist');
+      const items = [
+        {label:'🌸 Quipsterina', id:'#quipsterina'},
+        {label:'📊 Revisione Prezzi', id:'#revisione-prezzi'},
+        {label:'🤖 Public GPT Assistants', id:'#public-gpts'},
+        {label:'🗺️ South Tyrol Tourism', id:'#sudtirol-tourism'},
+        {label:'🌱 Ukraine Projects', id:'#ukraine-projects'},
+        {label:'Embracing Change', id:'#embracing-change'},
+      ];
+      function render(filter=''){
+        const f = filter.toLowerCase();
+        list.innerHTML = items
+          .filter(i => i.label.toLowerCase().includes(f))
+          .map(i => `<li><a href="${i.id}">${i.label}</a></li>`)
+          .join('');
+        Array.from(list.querySelectorAll('a')).forEach(a=> a.addEventListener('click', close));
+      }
+      function open(){ kp.style.display='flex'; kp.setAttribute('aria-hidden','false'); q.value=''; render(''); q.focus(); }
+      function close(){ kp.style.display='none'; kp.setAttribute('aria-hidden','true'); }
+      document.getElementById('openK').addEventListener('click', open);
+      document.addEventListener('keydown', (e)=>{
+        if((e.ctrlKey || e.metaKey) && e.key.toLowerCase()==='k'){ e.preventDefault(); open(); }
+        if(e.key==='Escape' && kp.style.display==='flex'){ close(); }
+      });
+      q.addEventListener('input', ()=> render(q.value));
+      render('');
+    })();
+  </script>
 </body>
 </html>
-
