@@ -1,127 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="description" content="Werner Bonadio – Economist, Explorer, and AI Practitioner working on digital innovation and AI tools. Also offers a tool for tabella revisione prezzi (D.Lgs. 36/2023) for public contracts."/>
-  <meta name="author" content="Werner Bonadio" />
-  <meta name="keywords" content="Werner Bonadio, AI, machine learning, chatbot, GPT, OpenAI, conversational interfaces, digital innovation, PNRR, calcolo revisione prezzi SF, D.Lgs. 36/2023, appalti pubblici" />
-  <meta name="robots" content="index, follow"> 
-  <meta name="google-site-verification" content="w1BhKGPnXJFI1xnMgdUCP3qigicESCy2mnOaVP3mFVg" />
   <meta charset="UTF-8">
+  <title>Werner Bonadio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="/wb_android-chrome-512x512.png" type="image/png" sizes="512x512">
+
+  <meta name="description" content="Werner Bonadio – Economist, Explorer, and AI Practitioner working on digital innovation and AI tools. Also offers a tool for tabella revisione prezzi (D.Lgs. 36/2023) for public contracts.">
+  <meta name="author" content="Werner Bonadio">
+  <meta name="robots" content="index, follow">
+  <meta name="google-site-verification" content="w1BhKGPnXJFI1xnMgdUCP3qigicESCy2mnOaVP3mFVg">
+  <link rel="canonical" href="https://wernerbot.com/">
+
+  <!-- Favicons (ensure these paths exist or remove leading / if local) -->
   <link rel="icon" href="/wb_favicon-32x32.png" sizes="32x32" type="image/png">
   <link rel="icon" href="/wb_favicon-16x16.png" sizes="16x16" type="image/png">
-  <link rel="icon" href="/wb_android-chrome-192x192.png" type="image/png" sizes="192x192">
-  <link rel="apple-touch-icon" href="/wb_apple-touch-icon.png" type="image/png">
+  <link rel="icon" href="/wb_android-chrome-192x192.png" sizes="192x192" type="image/png">
+  <link rel="icon" href="/wb_android-chrome-512x512.png" sizes="512x512" type="image/png">
+  <link rel="apple-touch-icon" href="/wb_apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <title>Werner Bonadio</title>
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Werner Bonadio">
+  <meta property="og:description" content="Economist · Explorer · AI Practitioner · Recovery Plan Consultant (esperto PNRR)">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wernerbot.com/">
+  <meta property="og:image" content="https://wernerbot.com/wb_og.png">
+  <meta name="twitter:card" content="summary_large_image">
+
   <style>
-    .vision-block {
-      background-color: #f5f5f5;
-      padding: 40px 20px;
-      margin: 40px 0;
-      border-top: 1px solid #ddd;
-      border-bottom: 1px solid #ddd;
-      margin-bottom: 40px; /* 👈 ADD THIS LINE */
-    }
-
-    .vision-block h2 {
-      font-size: 24px;
-      margin-bottom: 15px;
-      color: #333;
-    }
-
-    .vision-block p {
-      font-size: 16px;
-      line-height: 1.6;
-      max-width: 700px;
-      margin: 0 auto;
-      color: #444;
-    }
-
-    .latin-quote {
-      margin-top: 30px;
-      font-style: italic;
-      font-size: 18px;
-      color: #444;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .latin-translation {
-      display: block;
-      font-size: 14px;
-      font-style: normal;
-      color: #777;
-      margin-top: 5px;
-    }
-
+    :root { color-scheme: light dark; }
     body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-      background-color: #fdfdfd;
-      color: #222;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      margin: 0; padding: 0; text-align: center;
+      background-color: #fdfdfd; color: #222;
     }
-
-    img {
-      max-width: 75px;
-      width: 70%;
-      height: auto;
-      margin: 30px auto 20px;
-      display: block;
+    img.logo {
+      display: block; margin: 30px auto 20px;
+      max-width: 96px; height: auto; /* keep it small but crisp */
     }
-
-    h1 {
-      font-size: 2em;
-      margin: 20px 0 10px;
-    }
-
-    p.description {
-      font-size: 1.2em;
-      color: #555;
-      margin: 5px 0 25px;
-    }
-
-    a {
-      color: #0055aa;
-      text-decoration: none;
-    }
-
-    footer {
-      margin-top: 40px;
-      padding: 20px;
-      font-size: 0.9em;
-      color: #888;
-      border-top: 1px solid #eee;
-    }
+    h1 { font-size: 2rem; margin: 20px 0 10px; }
+    p.description { font-size: 1.1rem; color: #555; margin: 5px 0 25px; }
+    a { color: #0055aa; text-decoration: none; }
     .rotate-notice {
-      display: none;
-      background: #fffae6;
-      color: #333;
-      padding: 10px;
-      margin: 10px 0;
-      font-size: 0.9em;
+      display: none; background: #fffae6; color: #333;
+      padding: 10px; margin: 10px 0; font-size: 0.9rem;
     }
-
     @media screen and (max-width: 768px) and (orientation: portrait) {
-      .rotate-notice {
-        display: block;
-      }
-    }  
-
+      .rotate-notice { display: block; }
+    }
+    .vision-block {
+      background-color: #f5f5f5; padding: 40px 20px;
+      margin: 40px 0; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd;
+    }
+    .vision-block h2 { font-size: 24px; margin-bottom: 15px; color: #333; }
+    .vision-block p { font-size: 16px; line-height: 1.6; max-width: 700px; margin: 0 auto; color: #444; }
+    .latin-quote { margin-top: 30px; font-style: italic; font-size: 18px; color: #444; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .latin-translation { display: block; font-size: 14px; font-style: normal; color: #777; margin-top: 5px; }
+    footer { margin-top: 40px; padding: 20px; font-size: 0.9rem; color: #888; border-top: 1px solid #eee; }
   </style>
 </head>
-
 <body>
+  <main>
+    <img class="logo" src="wb.png" alt="Portrait of Werner Bonadio, AI consultant and economist" width="96" height="96">
+    <h1>Werner Bonadio</h1>
+    <p class="description">Economist · Explorer · AI Practitioner · Recovery Plan Consultant (esperto PNRR)</p>
 
-  <img src="wb.png" alt="Portrait of Werner Bonadio, AI consultant and economist">
-  <h1>Werner Bonadio</h1>
-  <p class="description">Economist · Explorer · AI Practitioner · Recovery Plan Consultant (esperto Pnrr)</p>
-    <a href="#" onclick="document.getElementById('contactBox').style.display='block'; return false;">Contact</a>
-  <div class="rotate-notice">📱🔄 Rotate your phone horizontally for the best experience.</div>
+    <p>
+      <button id="contactBtn" type="button" aria-controls="contactBox" aria-expanded="false">Contact</button>
+    </p>
+    <div id="contactBox" hidden>
+      <p><a href="mailto:werner@wernerbot.com">werner@wernerbot.com</a></p>
+    </div>
+
+    <div class="rotate-notice">📱🔄 For the best experience, rotate your phone horizontally.</div>
 
   <section class="vision-block">
     <h2>Embracing Change</h2>
