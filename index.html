@@ -1,93 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Werner Bonadio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Werner Bonadio – Economist, Explorer, and AI Practitioner working on digital innovation and AI tools. Includes a tool for 'tabella revisione prezzi' (D.Lgs. 36/2023) for public contracts." />
+  <meta name="author" content="Werner Bonadio" />
+  <meta name="robots" content="index, follow" />
+  <meta name="google-site-verification" content="w1BhKGPnXJFI1xnMgdUCP3qigicESCy2mnOaVP3mFVg" />
+  <link rel="canonical" href="https://wernerbot.com/" />
 
-  <meta name="description" content="Werner Bonadio – Economist, Explorer, and AI Practitioner working on digital innovation and AI tools. Also offers a tool for tabella revisione prezzi (D.Lgs. 36/2023) for public contracts.">
-  <meta name="author" content="Werner Bonadio">
-  <meta name="robots" content="index, follow">
-  <meta name="google-site-verification" content="w1BhKGPnXJFI1xnMgdUCP3qigicESCy2mnOaVP3mFVg">
-  <link rel="canonical" href="https://wernerbot.com/">
-
-  <!-- Favicons (ensure these paths exist or remove leading / if local) -->
-  <link rel="icon" href="/wb_favicon-32x32.png" sizes="32x32" type="image/png">
-  <link rel="icon" href="/wb_favicon-16x16.png" sizes="16x16" type="image/png">
-  <link rel="icon" href="/wb_android-chrome-192x192.png" sizes="192x192" type="image/png">
-  <link rel="icon" href="/wb_android-chrome-512x512.png" sizes="512x512" type="image/png">
-  <link rel="apple-touch-icon" href="/wb_apple-touch-icon.png">
-  <link rel="manifest" href="/site.webmanifest">
-  <meta name="theme-color" content="#ffffff">
+  <!-- Favicons (ensure these paths exist; if files live beside index.html, remove leading /) -->
+  <link rel="icon" href="/wb_favicon-16x16.png" sizes="16x16" type="image/png" />
+  <link rel="icon" href="/wb_favicon-32x32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="/wb_android-chrome-192x192.png" sizes="192x192" type="image/png" />
+  <link rel="icon" href="/wb_android-chrome-512x512.png" sizes="512x512" type="image/png" />
+  <link rel="apple-touch-icon" href="/wb_apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#ffffff" />
 
   <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="Werner Bonadio">
-  <meta property="og:description" content="Economist · Explorer · AI Practitioner · Recovery Plan Consultant (esperto PNRR)">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://wernerbot.com/">
-  <meta property="og:image" content="https://wernerbot.com/wb_og.png">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:title" content="Werner Bonadio" />
+  <meta property="og:description" content="Economist · Explorer · AI Practitioner · Recovery Plan Consultant (esperto PNRR)" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://wernerbot.com/" />
+  <meta property="og:image" content="https://wernerbot.com/wb_og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Dev only: uncomment to defeat caching while you iterate -->
+  <!--
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  -->
 
   <style>
     :root { color-scheme: light dark; }
+    * { box-sizing: border-box; }
     body {
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
       margin: 0; padding: 0; text-align: center;
       background-color: #fdfdfd; color: #222;
     }
+    header { padding: 24px 16px 8px; }
     img.logo {
-      display: block; margin: 30px auto 20px;
-      max-width: 96px; height: auto; /* keep it small but crisp */
+      display: block; margin: 28px auto 12px;
+      width: 96px; height: 96px; object-fit: contain;
     }
-    h1 { font-size: 2rem; margin: 20px 0 10px; }
-    p.description { font-size: 1.1rem; color: #555; margin: 5px 0 25px; }
-    a { color: #0055aa; text-decoration: none; }
+    h1 { font-size: 2rem; margin: 12px 0 6px; }
+    p.description { font-size: 1.05rem; color: #555; margin: 0 0 16px; }
+    a, button.link {
+      color: #0055aa; background: none; border: 0; padding: 0;
+      font: inherit; cursor: pointer; text-decoration: none;
+    }
+    .divider {
+      margin: 24px auto 0; max-width: 960px; border: 0; border-top: 1px solid #eee;
+    }
     .rotate-notice {
       display: none; background: #fffae6; color: #333;
-      padding: 10px; margin: 10px 0; font-size: 0.9rem;
+      padding: 10px; margin: 10px auto; font-size: 0.9rem; max-width: 960px;
     }
     @media screen and (max-width: 768px) and (orientation: portrait) {
       .rotate-notice { display: block; }
     }
+
+    /* Vision block */
     .vision-block {
-      background-color: #f5f5f5; padding: 40px 20px;
-      margin: 40px 0; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd;
+      background-color: #f5f5f5;
+      padding: 40px 20px;
+      margin: 40px 0;
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
     }
-    .vision-block h2 { font-size: 24px; margin-bottom: 15px; color: #333; }
-    .vision-block p { font-size: 16px; line-height: 1.6; max-width: 700px; margin: 0 auto; color: #444; }
-    .latin-quote { margin-top: 30px; font-style: italic; font-size: 18px; color: #444; max-width: 600px; margin-left: auto; margin-right: auto; }
-    .latin-translation { display: block; font-size: 14px; font-style: normal; color: #777; margin-top: 5px; }
-    footer { margin-top: 40px; padding: 20px; font-size: 0.9rem; color: #888; border-top: 1px solid #eee; }
+    .vision-inner { max-width: 900px; margin: 0 auto; }
+    .vision-block h2 { font-size: 24px; margin: 0 0 18px; color: #333; }
+    .vision-block p { font-size: 16px; line-height: 1.7; color: #444; margin: 0 0 12px; }
+    .latin-quote { margin-top: 20px; font-style: italic; font-size: 18px; color: #444; }
+    .latin-translation { display: block; font-size: 14px; color: #777; margin-top: 6px; }
+
+    footer {
+      margin-top: 32px; padding: 20px;
+      font-size: 0.9rem; color: #888; border-top: 1px solid #eee;
+    }
   </style>
 </head>
 <body>
   <main>
-    <img class="logo" src="wb.png" alt="Portrait of Werner Bonadio, AI consultant and economist" width="96" height="96">
-    <h1>Werner Bonadio</h1>
-    <p class="description">Economist · Explorer · AI Practitioner · Recovery Plan Consultant (esperto PNRR)</p>
+    <header>
+      <img class="logo" src="wb.png" alt="Portrait of Werner Bonadio, AI consultant and economist" width="96" height="96" />
+      <h1>Werner Bonadio</h1>
+      <p class="description">Economist · Explorer · AI Practitioner · Recovery Plan Consultant (esperto PNRR)</p>
 
-    <p>
-      <button id="contactBtn" type="button" aria-controls="contactBox" aria-expanded="false">Contact</button>
-    </p>
-    <div id="contactBox" hidden>
-      <p><a href="mailto:werner@wernerbot.com">werner@wernerbot.com</a></p>
-    </div>
+      <p>
+        <button id="contactBtn" class="link" type="button" aria-controls="contactBox" aria-expanded="false">Contact</button>
+      </p>
+      <div id="contactBox" hidden>
+        <p><a href="mailto:werner@wernerbot.com">werner@wernerbot.com</a></p>
+      </div>
+      <div class="rotate-notice">📱🔄 For the best experience, rotate your phone horizontally.</div>
+    </header>
 
-    <div class="rotate-notice">📱🔄 For the best experience, rotate your phone horizontally.</div>
+    <hr class="divider" />
 
-  <section class="vision-block">
-    <h2>Embracing Change</h2>
-    <p>
-      Machine Learning was already a milestone, but modern AI — especially conversational tools like ChatGPT — is reshaping everything.<br>
-      The way we work, communicate, and learn is evolving at an incredible pace.<br>
-      We're not just observing this shift — we're part of it.<br>
-      Driven by curiosity and purpose, we explore these tools, experiment with new ideas, and create applications that open up new markets and meaningful opportunities.
-    </p>
-    <p class="latin-quote">
-      “Tempora mutantur, nos et mutamur in illis. Et amor mundum movet.”<br>
-      <span class="latin-translation">Times change, and we change with them. And love moves the world.</span>
-    </p>
-  </section>   
+    <section class="vision-block" aria-labelledby="vision-title">
+      <div class="vision-inner">
+        <h2 id="vision-title">Embracing Change</h2>
+        <p>Machine Learning was already a milestone, but modern AI — especially conversational tools like ChatGPT — is reshaping everything.</p>
+        <p>The way we work, communicate, and learn is evolving at an incredible pace. We’re not just observing this shift — we’re part of it.</p>
+        <p>Driven by curiosity and purpose, we explore these tools, experiment with new ideas, and create applications that open up new markets and meaningful opportunities.</p>
+        <p class="latin-quote">
+          “Tempora mutantur, nos et mutamur in illis. Et amor mundum movet.”
+          <span class="latin-translation">Times change, and we change with them. And love moves the world.</span>
+        </p>
+      </div>
+    </section>
+  </main>   
 
 <nav style="margin: 40px auto; max-width: 700px; text-align: center;">
   <h3 style="color: #888;">📑 Quick Navigation</h3>
