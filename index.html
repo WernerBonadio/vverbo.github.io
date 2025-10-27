@@ -57,9 +57,18 @@
       margin: 24px auto 0; max-width: 960px; border: 0; border-top: 1px solid #eee;
     }
     .rotate-notice {
-      display: none; background: #fffae6; color: #333;
-      padding: 10px; margin: 10px auto; font-size: 0.9rem; max-width: 960px;
+      display: none;
+      background: #ffeaea;        /* light red background */
+      color: #d00000;             /* bold red text */
+      padding: 10px;
+      margin: 10px auto;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border: 1px solid #ffcccc;  /* optional subtle border */
+      border-radius: 6px;
+      max-width: 960px;
     }
+
     @media screen and (max-width: 768px) and (orientation: portrait) {
       .rotate-notice { display: block; }
     }
@@ -91,7 +100,16 @@
       <h1>Werner Bonadio</h1>
       <p class="description">Economist · Explorer · AI Practitioner · Recovery Plan Consultant (esperto PNRR)</p>
 
-      <p><a class="link" href="mailto:werner.bonadio@wernerbot.com">Contact</a></p>
+      <p>
+        <button id="contactBtn" class="link" type="button"
+                aria-controls="contactBoxInline" aria-expanded="false">
+          Contact
+        </button>
+      </p>
+      <div id="contactBoxInline" hidden>
+        <p><a href="mailto:werner.bonadio@wernerbot.com">werner.bonadio@wernerbot.com</a></p>
+      </div>
+
       <div class="rotate-notice">📱🔄 For the best experience, rotate your phone horizontally.</div>
     </header>
 
@@ -285,7 +303,7 @@
 -->
 <footer>
   © 2025 Werner Bonadio | VAT number: IT03155460219 |
-  <a href="mailto:werner.bonadio@wernerbot.com">Contact</a>
+  <a href="#" onclick="openContactModal(); return false;">Contact</a>
 </footer>
 
 <!-- Privacy Notice Popup (FIXED - only one popup now) -->
@@ -313,7 +331,53 @@
   };
 </script>
 
-<!-- Contact handled via direct mailto links above -->
+<div id="contactModal" style="display:none; position:fixed; top:30%; left:50%;
+  transform:translate(-50%, -50%); background:#fff; padding:20px; border:2px solid #ccc;
+  border-radius:10px; box-shadow:0 0 15px rgba(0,0,0,0.3); z-index:9999;">
+  <p>You can contact me at:</p>
+  <p><a href="mailto:werner.bonadio@wernerbot.com" id="emailToCopy">werner.bonadio@wernerbot.com</a></p>
+  <button onclick="copyEmail()">📋 Copy</button>
+  <span id="copyConfirm" style="display:none; color: green; margin-left: 10px;">Copied!</span><br>
+  <button onclick="closeContactModal()" style="margin-top:10px;">Close</button>
+</div>
+
+<!-- Script unico finale -->
+<script>
+  // Toggle box inline (header)
+  const contactBtn = document.getElementById('contactBtn');
+  const contactBoxInline = document.getElementById('contactBoxInline');
+  if (contactBtn && contactBoxInline) {
+    contactBtn.addEventListener('click', () => {
+      const expanded = contactBtn.getAttribute('aria-expanded') === 'true';
+      contactBtn.setAttribute('aria-expanded', String(!expanded));
+      contactBoxInline.hidden = expanded; // true = nasconde, false = mostra
+    });
+  }
+
+  // Modale open/close (footer)
+  function openContactModal() {
+    document.getElementById('contactModal').style.display = 'block';
+  }
+  function closeContactModal() {
+    document.getElementById('contactModal').style.display = 'none';
+  }
+
+  // Chiudi modale con ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeContactModal();
+  });
+
+  // Copia email
+  function copyEmail() {
+    const email = document.getElementById("emailToCopy").innerText;
+    navigator.clipboard.writeText(email).then(function() {
+      document.getElementById("copyConfirm").style.display = "inline";
+      setTimeout(() => {
+        document.getElementById("copyConfirm").style.display = "none";
+      }, 2000);
+    });
+  }
+</script>
 
 </body>
 </html>
