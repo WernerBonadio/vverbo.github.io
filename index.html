@@ -91,12 +91,7 @@
       <h1>Werner Bonadio</h1>
       <p class="description">Economist · Explorer · AI Practitioner · Recovery Plan Consultant (esperto PNRR)</p>
 
-      <p>
-        <button id="contactBtn" class="link" type="button" aria-controls="contactBox" aria-expanded="false">Contact</button>
-      </p>
-      <div id="contactBox" hidden>
-        <p><a href="mailto:werner@wernerbot.com">werner@wernerbot.com</a></p>
-      </div>
+      <p><a class="link" href="mailto:werner.bonadio@wernerbot.com">Contact</a></p>
       <div class="rotate-notice">📱🔄 For the best experience, rotate your phone horizontally.</div>
     </header>
 
@@ -290,7 +285,7 @@
 -->
 <footer>
   © 2025 Werner Bonadio | VAT number: IT03155460219 |
-  <a href="#" onclick="document.getElementById('contactBox').style.display='block'; return false;">Contact</a>
+  <a href="mailto:werner.bonadio@wernerbot.com">Contact</a>
 </footer>
 
 <!-- Privacy Notice Popup (FIXED - only one popup now) -->
@@ -318,35 +313,7 @@
   };
 </script>
 
-<div id="contactBox" style="display:none; position:fixed; top:30%; left:50%; transform:translate(-50%, -50%);
-  background:#fff; padding:20px; border:2px solid #ccc; border-radius:10px; box-shadow:0 0 15px rgba(0,0,0,0.3); z-index:9999;">
-  <p>You can contact me at:</p>
-  
-  <!-- Email text to copy -->
-  <p>
-    <a href="mailto:werner.bonadio@wernerbot.com" id="emailToCopy">werner.bonadio@wernerbot.com</a>
-  </p>
-
-  <!-- Copy button + confirmation -->
-  <button onclick="copyEmail()">📋 Copy</button>
-  <span id="copyConfirm" style="display:none; color: green; margin-left: 10px;">Copied!</span>
-  
-  <!-- Close button -->
-  <br>
-  <button onclick="document.getElementById('contactBox').style.display='none';" style="margin-top:10px;">Close</button>
-</div>
-
-<script>
-  function copyEmail() {
-    const email = document.getElementById("emailToCopy").innerText;
-    navigator.clipboard.writeText(email).then(function() {
-      document.getElementById("copyConfirm").style.display = "inline";
-      setTimeout(() => {
-        document.getElementById("copyConfirm").style.display = "none";
-      }, 2000);
-    });
-  }
-</script>
+<!-- Contact handled via direct mailto links above -->
 
 </body>
 </html>
