@@ -27,13 +27,6 @@
   <meta property="og:image" content="https://wernerbot.com/wb_og.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Dev only: uncomment to defeat caching while you iterate -->
-  <!--
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-  -->
-
   <style>
     :root { color-scheme: light dark; }
     * { box-sizing: border-box; }
@@ -88,6 +81,7 @@
     .latin-translation { display: block; font-size: 14px; color: #777; margin-top: 6px; }
 
         /* Quipsterina embed card */
+        /* Quipsterina embed card */
     .quipsterina-embed {
       width: 100%;
       max-width: 760px;
@@ -96,9 +90,12 @@
       overflow: hidden;
       background-color: #eef7ff;
       box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      position: relative;
     }
+
     .quipsterina-embed iframe {
-      width: 100%;
+      width: 110%;          /* a bit wider than the container */
+      margin-left: -5%;     /* center the extra width */
       height: clamp(520px, 80vh, 720px);
       border: none;
       display: block;
@@ -106,7 +103,7 @@
 
     @media (max-width: 600px) {
       .quipsterina-embed iframe {
-        height: 80vh; /* use most of the screen height on small phones */
+        height: 80vh;       /* use most of the screen height on small phones */
       }
     }
 
@@ -167,8 +164,10 @@
   <section class="vision-block" id="quipsterina">
     <h2>🌸 Quipsterina – Beta Version</h2>
     <p>
-      🌸 Quipsterina is becoming more autonomous, with short-term memory and a stronger identity — the artificial girlfriend to my artificial assistant.
+      🌸 Quipsterina is becoming more autonomous, with short-term memory and a stronger identity — the artificial girlfriend to my artificial assistant. She now runs on GPT-5.1 and can stream responses.
       Just for fun: step into the role of Quipster, talk to her, and see how surprisingly present she feels. New look, smoother streaming replies.
+      Click here to open the chat window below and start chatting or go straight to <a href="https://quipsterina-1003766064674.europe-west4.run.app/" target="_blank">the full app</a>. 
+
     </p>
         <div class="quipsterina-embed">
       <iframe
