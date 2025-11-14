@@ -87,6 +87,29 @@
     .latin-quote { margin-top: 20px; font-style: italic; font-size: 18px; color: #444; }
     .latin-translation { display: block; font-size: 14px; color: #777; margin-top: 6px; }
 
+        /* Quipsterina embed card */
+    .quipsterina-embed {
+      width: 100%;
+      max-width: 760px;
+      margin: 20px auto;
+      border-radius: 12px;
+      overflow: hidden;
+      background-color: #eef7ff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    .quipsterina-embed iframe {
+      width: 100%;
+      height: clamp(520px, 80vh, 720px);
+      border: none;
+      display: block;
+    }
+
+    @media (max-width: 600px) {
+      .quipsterina-embed iframe {
+        height: 80vh; /* use most of the screen height on small phones */
+      }
+    }
+
     footer {
       margin-top: 32px; padding: 20px;
       font-size: 0.9rem; color: #888; border-top: 1px solid #eee;
@@ -147,53 +170,15 @@
       🌸 Quipsterina is becoming more autonomous, with short-term memory and a stronger identity — the artificial girlfriend to my artificial assistant.
       Just for fun: step into the role of Quipster, talk to her, and see how surprisingly present she feels. New look, smoother streaming replies.
     </p>
-    <div style="background-color: #eef7ff; padding: 20px; max-width: 760px; margin: 20px auto; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
-      <iframe 
-        src="https://quipsterina-1003766064674.europe-west4.run.app/?embed=true" 
-        width="100%" 
-        height="500"
-        style="border:none; max-width: 760px; margin: 0 auto; display: block;"
-        loading="lazy" referrerpolicy="no-referrer">
+        <div class="quipsterina-embed">
+      <iframe
+        src="https://quipsterina-1003766064674.europe-west4.run.app/?embed=true"
+        loading="lazy"
+        referrerpolicy="no-referrer">
       </iframe>
     </div>
+
   </section>
-
-<!--
-<section class="vision-block" id="public-contracts">
-  <h2>📄 Public Contracts Assistant – Beta Version</h2>
-  <p>
-    📄 Bilingual Support: <strong>Italian / German</strong><br>
-    This assistant answers questions related to <strong>D.Lgs. 36/2023</strong> and <strong>L.P. 16/2015</strong> (Provincial Law for South Tyrol).
-    <br>🗓️ Updated: January 2025
-  </p>
-  <div style="background-color: #f5f5f5; padding: 20px; max-width: 760px; margin: 20px auto; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
-    <iframe 
-      src="https://cod36-assistant-852047028760.europe-west1.run.app/" 
-      width="100%" 
-      height="500"
-      style="border: none; display: block;">
-    </iframe>
-  </div>
-</section>
--->
-
-<section class="vision-block" id="revisione-prezzi">
-  <h2>📊 Tabella Calcolo Revisione Prezzi - Servizi e Forniture</h2>
-  <p>
-    This tool was built by humans — but at extremely high speed with the help of AI.<br>
-    Click the link below to visit the official website of the Agenzia dei Contratti Pubblici, where you can download both the revision table (tabella calcolo revisione prezzi) and the instructions (istruzioni) - D.Lgs. 36/2023.
-  </p>
-
-  <div style="background-color: #fff0ae; padding: 26px; max-width: 760px; margin: 20px auto; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.08); display: flex; justify-content: center;">
-    <a href="https://contratti-pubblici.provincia.bz.it/it/news/comunicazione-agli-utenti-tabella-per-il-calcolo-della-revisione-prezzi-servizi-e-forniture" target="_blank" rel="noopener noreferrer" style="font-size: 1.1em; padding: 12px 20px; background-color: #8dbac7; color: white; border-radius: 8px; text-decoration: none; font-weight: bold;">
-    👉 Open Tabella Revisione Prezzi
-    </a>
-    <a href="https://chatgpt.com/g/g-LITLOl54X-traduttore-italiano-tedesco-appalti-pubblici-2025" target="_blank" rel="noopener">🌐 Open Translator Assistant</a>
-    <a href="https://chatgpt.com/g/g-LeJq3fx4k-affidamenti-diretti-direktvergaben-sudtirol-beta" target="_blank" rel="noopener">🌐 Open Direct Awards Assistant</a>
-    <a href="https://chatgpt.com/g/g-678953939a9081918b03b4b5a58083b2-tutori-volontari-freiwillige-vormunde" target="_blank" rel="noopener">🌐 Open Guardianship Assistant</a>
-    <a href="https://chatgpt.com/g/g-68518daa342c8191b3a7a55204722009-calcolo-revisione-prezzi-sf-servizi-e-forniture" target="_blank" rel="noopener">🌐 Open Price Revision Assistant</a>
-  </div>
-</section>  <!-- make sure this closing tag exists -->
 
   <section class="vision-block" id="public-gpts"> 
   <h2>🤖 Public GPT Assistants – Legal & Social Tools</h2>
@@ -210,13 +195,13 @@
     <li style="margin-bottom: 12px;">
       📘 <strong>Affidamenti Diretti / Direktvergaben – Südtirol (Beta)</strong><br>
       Beta handbook for simplified direct awards in South Tyrol (ACP-AOV, 30.04.25).<br>
-      <a href="https://chatgpt.com/g/g-LeJq3fx4k-affidamenti-diretti-direktvergaben-sudtirol-beta" target="_blank">🌐 Open Direct Awards Assistant</a>
+      <a href="https://chatgpt.com/g/g-LeJq3fx4k-affidamenti-diretti-direktvergaben-sudtirol-beta" target="_blank">🌐 Open Assistente Affidamenti Diretti</a>
     </li>
 
     <li style="margin-bottom: 12px;">
       🧒 <strong>Voluntary Guardians – Tutori Volontari / Freiwillige Vormunde</strong><br>
       Information and documents for becoming a voluntary guardian in Italy.<br>
-      <a href="https://chatgpt.com/g/g-678953939a9081918b03b4b5a58083b2-tutori-volontari-freiwillige-vormunde" target="_blank">🌐 Open Guardianship Assistant</a>
+      <a href="https://chatgpt.com/g/g-678953939a9081918b03b4b5a58083b2-tutori-volontari-freiwillige-vormunde" target="_blank">🌐 Open Assistente Tutori Volontari</a>
     </li>
 
     <li>
@@ -238,23 +223,7 @@
         🔧 Other ideas in progress
     </h3>
   </section>
-    <!--
-    <h2>Love Assistant – Beta Version</h2>
-    <p>
-      💘 Support for love and emotional matters.
-      Here to show how human a machine can be — but it is not. Great for reflection and brainstorming — use with care.
-    </p>
-    <div style="background-color: #eef7ff; padding: 20px; max-width: 760px; margin: 20px auto; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
-      <iframe 
-        src="https://love-assistant-147402842121.europe-west4.run.app/" 
-        width="95%" 
-        height="450"
-        style="border:none; max-width: 760px; margin: 0 auto; display: block;">
-      </iframe>
-    </div>
-  </section>
-  -->
-  
+      
       <section class="vision-block" id="sudtirol-tourism">
       <h2>South Tyrol Tourism Assistant – Beta Version</h2>
       <p>
@@ -283,24 +252,7 @@
     <strong>Ukrainian and Italian institutions</strong>, and collaborating with existing initiatives.
   </p>
 </section>
-  <!--
-  <h3>🎭 Cultural Project: Ukrainian Artists on Tour</h3>
-  <p>
-    Bring <strong>Ukrainian artists to perform in Italy</strong> — musicians, dancers, theater performers, and visual artists — to share the 
-    <em>energy, creativity, and deep desire to live</em> of the Ukrainian people.
-  </p>
-  <p>
-    👉 This project will likely feature <strong>mostly women</strong>, since Ukrainian men aged 18–60 are currently not allowed to leave the country 
-    due to martial law. This limitation highlights the unique strength and voice of Ukrainian women artists — who will carry not only their talent, 
-    but the spirit of their communities.
-  </p>
-  <ul>
-    <li>Events in my town and other welcoming places</li>
-    <li>Shows of resilience through art and culture</li>
-    <li>Open to collaboration with municipalities, cultural institutions, and volunteers</li>
-  </ul>
-</section>
--->
+  
 <footer>
   © 2025 Werner Bonadio | VAT number: IT03155460219 |
   <a href="#" onclick="openContactModal(); return false;">Contact</a>
