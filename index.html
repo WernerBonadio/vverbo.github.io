@@ -10,7 +10,7 @@
   <meta name="google-site-verification" content="w1BhKGPnXJFI1xnMgdUCP3qigicESCy2mnOaVP3mFVg" />
   <link rel="canonical" href="https://wernerbot.com/" />
 
-  <!-- Favicons (ensure these paths exist; if files live beside index.html, remove leading /) -->
+  <!-- Favicons -->
   <link rel="icon" href="/wb_favicon-16x16.png" sizes="16x16" type="image/png" />
   <link rel="icon" href="/wb_favicon-32x32.png" sizes="32x32" type="image/png" />
   <link rel="icon" href="/wb_android-chrome-192x192.png" sizes="192x192" type="image/png" />
@@ -51,13 +51,13 @@
     }
     .rotate-notice {
       display: none;
-      background: #ffeaea;        /* light red background */
-      color: #d00000;             /* bold red text */
+      background: #ffeaea;
+      color: #d00000;
       padding: 10px;
       margin: 10px auto;
       font-size: 0.95rem;
       font-weight: 600;
-      border: 1px solid #ffcccc;  /* optional subtle border */
+      border: 1px solid #ffcccc;
       border-radius: 6px;
       max-width: 960px;
     }
@@ -80,8 +80,7 @@
     .latin-quote { margin-top: 20px; font-style: italic; font-size: 18px; color: #444; }
     .latin-translation { display: block; font-size: 14px; color: #777; margin-top: 6px; }
 
-        /* Quipsterina embed card */
-        /* Quipsterina embed card */
+    /* Generic embed card (used for Quipsterina & Audio bot) */
     .quipsterina-embed {
       width: 100%;
       max-width: 760px;
@@ -94,8 +93,8 @@
     }
 
     .quipsterina-embed iframe {
-      width: 110%;          /* a bit wider than the container */
-      margin-left: -5%;     /* center the extra width */
+      width: 110%;
+      margin-left: -5%;
       height: clamp(520px, 80vh, 720px);
       border: none;
       display: block;
@@ -103,7 +102,7 @@
 
     @media (max-width: 600px) {
       .quipsterina-embed iframe {
-        height: 80vh;       /* use most of the screen height on small phones */
+        height: 80vh;
       }
     }
 
@@ -129,7 +128,6 @@
       <div id="contactBoxInline" hidden>
         <p><a href="mailto:werner.bonadio@wernerbot.com">werner.bonadio@wernerbot.com</a></p>
       </div>
-      
     </header>
 
     <hr class="divider" />
@@ -146,20 +144,23 @@
         </p>
       </div>
     </section>
-  </main>   
+  </main>
 
-<nav style="margin: 40px auto; max-width: 700px; text-align: center;">
-  <h3 style="color: #888;">📑 Quick Navigation</h3>
-  <ul style="list-style-type: none; padding-left: 0; display: inline-block; text-align: left; margin: auto;">
-    <li><a href="#quipsterina">🌸 Quipsterina</a></li>
-    <!-- <li><a href="#public-contracts">📄 Public Contracts Assistant</a></li> -->
-    <li><a href="#revisione-prezzi">📊 Revisione Prezzi Table</a></li>
-    <li><a href="#public-gpts">🤖 Public GPT Assistants</a></li>
-    <li><a href="#sudtirol-tourism">🗺️ South Tyrol Tourism Assistant</a></li>
-    <li><a href="#ukraine-projects">🌱 Ukraine Project Ideas</a></li>
-  </ul>
-</nav>
+  <!-- Quick navigation -->
+  <nav style="margin: 40px auto; max-width: 700px; text-align: center;">
+    <h3 style="color: #888;">📑 Quick Navigation</h3>
+    <ul style="list-style-type: none; padding-left: 0; display: inline-block; text-align: left; margin: auto;">
+      <li><a href="#quipsterina">🌸 Quipsterina</a></li>
+      <li><a href="#audio-transcriber">🎧 Audio to Text</a></li>
+      <!-- <li><a href="#public-contracts">📄 Public Contracts Assistant</a></li> -->
+      <li><a href="#revisione-prezzi">📊 Revisione Prezzi Table</a></li>
+      <li><a href="#public-gpts">🤖 Public GPT Assistants</a></li>
+      <li><a href="#sudtirol-tourism">🗺️ South Tyrol Tourism Assistant</a></li>
+      <li><a href="#ukraine-projects">🌱 Ukraine Project Ideas</a></li>
+    </ul>
+  </nav>
 
+  <!-- Quipsterina -->
   <section class="vision-block" id="quipsterina">
     <h2>🌸 Quipsterina – Beta Version</h2>
     <p>
@@ -167,176 +168,202 @@
       the artificial girlfriend to my artificial assistant. She now runs on GPT-5.1 and can stream responses.<br>
       Just for fun: step into the role of Quipster, talk to her, and see how surprisingly present she feels.<br>
       New look, smoother streaming replies. Click here to open the chat window below and start chatting<br>
-      or go straight to 
-      <a href="https://quipsterina-1003766064674.europe-west4.run.app/" 
+      or go straight to
+      <a href="https://quipsterina-1003766064674.europe-west4.run.app/"
         target="_blank"
         style="display:inline-block; padding:6px 12px; margin-left:4px;
-                background:#ff6fa9; color:white; border-radius:6px; 
-                text-decoration:none; font-weight:600;">
+               background:#ff6fa9; color:white; border-radius:6px;
+               text-decoration:none; font-weight:600;">
         👉 Open Full App
       </a>
-      
     </p>
-        <div class="quipsterina-embed">
+
+    <div class="quipsterina-embed">
       <iframe
         src="https://quipsterina-1003766064674.europe-west4.run.app/?embed=true"
         loading="lazy"
         referrerpolicy="no-referrer">
       </iframe>
     </div>
-
   </section>
 
-  <section class="vision-block" id="public-gpts"> 
-  <h2>🤖 Public GPT Assistants – Legal & Social Tools</h2>
-  <p>Below are some specialized assistants created by <strong>Werner Bonadio</strong> to support public service, translation, and social work.  
-  <br><em>Note: You need to be signed in with a <strong>ChatGPT (free or paid) account</strong> to use these assistants.</em></p>
+  <!-- NEW: Audio Transcriber bot -->
+  <section class="vision-block" id="audio-transcriber">
+    <h2>🎧 Audio to Text – Free Whisper Transcriber</h2>
+    <p>
+      This experimental tool lets you upload short audio files and get instant text transcription using<br>
+      OpenAI Whisper. Please avoid uploading personal or sensitive content – treat this as a public demo.<br>
+      You can use it directly here below, or open the full-page version:
+      <a href="https://audio-transcriber-472236191426.europe-west4.run.app/"
+         target="_blank"
+         style="display:inline-block; padding:6px 12px; margin-left:4px;
+                background:#2563eb; color:white; border-radius:6px;
+                text-decoration:none; font-weight:600;">
+        👉 Open Full App
+      </a>
+    </p>
 
-  <ul style="list-style-type: none; padding: 0; font-size: 1.05em;">
-    <li style="margin-bottom: 12px;">
-      🔁 <strong>Translator: Italian–German (Public Procurement 2025)</strong><br>
-      For translating legal and administrative terms in the context of public tenders in South Tyrol.<br>
-      <a href="https://chatgpt.com/g/g-LITLOl54X-traduttore-italiano-tedesco-appalti-pubblici-2025" target="_blank">🌐 Open Translator Assistant</a>
-    </li>
+    <div class="quipsterina-embed">
+      <iframe
+        src="https://audio-transcriber-472236191426.europe-west4.run.app/"
+        loading="lazy"
+        referrerpolicy="no-referrer">
+      </iframe>
+    </div>
+  </section>
 
-    <li style="margin-bottom: 12px;">
-      📘 <strong>Affidamenti Diretti / Direktvergaben – Südtirol (Beta)</strong><br>
-      Beta handbook for simplified direct awards in South Tyrol (ACP-AOV, 30.04.25).<br>
-      <a href="https://chatgpt.com/g/g-LeJq3fx4k-affidamenti-diretti-direktvergaben-sudtirol-beta" target="_blank">🌐 Open Assistente Affidamenti Diretti</a>
-    </li>
+  <!-- Public GPT Assistants -->
+  <section class="vision-block" id="public-gpts">
+    <h2>🤖 Public GPT Assistants – Legal & Social Tools</h2>
+    <p>Below are some specialized assistants created by <strong>Werner Bonadio</strong> to support public service, translation, and social work.
+    <br><em>Note: You need to be signed in with a <strong>ChatGPT (free or paid) account</strong> to use these assistants.</em></p>
 
-    <li style="margin-bottom: 12px;">
-      🧒 <strong>Voluntary Guardians – Tutori Volontari / Freiwillige Vormunde</strong><br>
-      Information and documents for becoming a voluntary guardian in Italy.<br>
-      <a href="https://chatgpt.com/g/g-678953939a9081918b03b4b5a58083b2-tutori-volontari-freiwillige-vormunde" target="_blank">🌐 Open Assistente Tutori Volontari</a>
-    </li>
+    <ul style="list-style-type: none; padding: 0; font-size: 1.05em;">
+      <li style="margin-bottom: 12px;">
+        🔁 <strong>Translator: Italian–German (Public Procurement 2025)</strong><br>
+        For translating legal and administrative terms in the context of public tenders in South Tyrol.<br>
+        <a href="https://chatgpt.com/g/g-LITLOl54X-traduttore-italiano-tedesco-appalti-pubblici-2025" target="_blank">🌐 Open Translator Assistant</a>
+      </li>
 
-    <li>
-      📊 <strong>Calcolo revisione prezzi SF (servizi e forniture)</strong><br>
-      Calcola la revisione dei prezzi secondo l'allegato II.2-bis D.Lgs. 36/2023.<br>
-      <a href="https://chatgpt.com/g/g-68518daa342c8191b3a7a55204722009-calcolo-revisione-prezzi-sf-servizi-e-forniture" target="_blank">🌐 Open Price Revision Assistant</a>
-    </li>
-  </ul>
-</section>
+      <li style="margin-bottom: 12px;">
+        📘 <strong>Affidamenti Diretti / Direktvergaben – Südtirol (Beta)</strong><br>
+        Beta handbook for simplified direct awards in South Tyrol (ACP-AOV, 30.04.25).<br>
+        <a href="https://chatgpt.com/g/g-LeJq3fx4k-affidamenti-diretti-direktvergaben-sudtirol-beta" target="_blank">🌐 Open Assistente Affidamenti Diretti</a>
+      </li>
+
+      <li style="margin-bottom: 12px;">
+        🧒 <strong>Voluntary Guardians – Tutori Volontari / Freiwillige Vormunde</strong><br>
+        Information and documents for becoming a voluntary guardian in Italy.<br>
+        <a href="https://chatgpt.com/g/g-678953939a9081918b03b4b5a58083b2-tutori-volontari-freiwillige-vormunde" target="_blank">🌐 Open Assistente Tutori Volontari</a>
+      </li>
+
+      <li>
+        📊 <strong>Calcolo revisione prezzi SF (servizi e forniture)</strong><br>
+        Calcola la revisione dei prezzi secondo l'allegato II.2-bis D.Lgs. 36/2023.<br>
+        <a href="https://chatgpt.com/g/g-68518daa342c8191b3a7a55204722009-calcolo-revisione-prezzi-sf-servizi-e-forniture" target="_blank">🌐 Open Price Revision Assistant</a>
+      </li>
+    </ul>
+  </section>
 
   <section class="vision-block">
     <h3 style="
-        color: #ff8888; 
+        color: #ff8888;
         font-weight: bold;
-        margin: 40px auto 10px; 
-        text-align: center; 
+        margin: 40px auto 10px;
+        text-align: center;
         font-size: 1.7em;
         letter-spacing: 0.5px;">
         🔧 Other ideas in progress
     </h3>
   </section>
-      
-      <section class="vision-block" id="sudtirol-tourism">
-      <h2>South Tyrol Tourism Assistant – Beta Version</h2>
-      <p>
-        🛈 This chatbot helps you explore events, attractions, and travel tips for your trip to South Tyrol.
-        ⚠️Please note: Data are limited and not updated in real time. This is just a showcase. 
-      </p>
-      <div style="
-        width: 100%;
-        max-width: 760px;
-        height: 500px;
-        margin: 0 auto;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 0 10px rgba(0,0,0,0.05);">
-        <iframe 
-          src="https://sudtour-assistant-894385917658.europe-west4.run.app/" 
-          style="width: 100%; height: 100%; border: none; display: block;">
-        </iframe>
-        </div>  
-</section>
-  
-<section class="vision-block" id="ukraine-projects">
-  <h2>🌱 Project Ideas for Ukraine – In Development</h2>
-  <p>
-    I'm currently exploring two directions to support people affected by the war in Ukraine — with the aim of building bridges between 
-    <strong>Ukrainian and Italian institutions</strong>, and collaborating with existing initiatives.
-  </p>
-</section>
-  
-<footer>
-  © 2025 Werner Bonadio | VAT number: IT03155460219 |
-  <a href="#" onclick="openContactModal(); return false;">Contact</a>
-</footer>
 
-<!-- Privacy Notice Popup (FIXED - only one popup now) -->
-<div id="userNotice" style="display:none; position:fixed; bottom:0; left:0; right:0; background:#eee; padding:1rem; box-shadow:0 -2px 5px rgba(0,0,0,0.2); z-index:1000;">
-  <div style="max-width:900px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
-    <span style="margin-bottom:0.5rem;">
-      This site does not use cookies or tracking. Messages sent to the assistant are processed by OpenAI. See our <a href="/privacy.html" target="_blank">Privacy Policy</a>.
-    </span>
-    <button onclick="acceptNotice()" style="background:#2e8b57; color:white; border:none; padding:0.5rem 1rem; cursor:pointer;">
-      OK
-    </button>
+  <section class="vision-block" id="sudtirol-tourism">
+    <h2>South Tyrol Tourism Assistant – Beta Version</h2>
+    <p>
+      🛈 This chatbot helps you explore events, attractions, and travel tips for your trip to South Tyrol.
+      ⚠️Please note: Data are limited and not updated in real time. This is just a showcase.
+    </p>
+    <div style="
+      width: 100%;
+      max-width: 760px;
+      height: 500px;
+      margin: 0 auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);">
+      <iframe
+        src="https://sudtour-assistant-894385917658.europe-west4.run.app/"
+        style="width: 100%; height: 100%; border: none; display: block;">
+      </iframe>
+    </div>
+  </section>
+
+  <section class="vision-block" id="ukraine-projects">
+    <h2>🌱 Project Ideas for Ukraine – In Development</h2>
+    <p>
+      I'm currently exploring two directions to support people affected by the war in Ukraine — with the aim of building bridges between
+      <strong>Ukrainian and Italian institutions</strong>, and collaborating with existing initiatives.
+    </p>
+  </section>
+
+  <footer>
+    © 2025 Werner Bonadio | VAT number: IT03155460219 |
+    <a href="#" onclick="openContactModal(); return false;">Contact</a>
+  </footer>
+
+  <!-- Privacy Notice Popup -->
+  <div id="userNotice" style="display:none; position:fixed; bottom:0; left:0; right:0; background:#eee; padding:1rem; box-shadow:0 -2px 5px rgba(0,0,0,0.2); z-index:1000;">
+    <div style="max-width:900px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+      <span style="margin-bottom:0.5rem;">
+        This site does not use cookies or tracking. Messages sent to the assistant are processed by OpenAI. See our <a href="/privacy.html" target="_blank">Privacy Policy</a>.
+      </span>
+      <button onclick="acceptNotice()" style="background:#2e8b57; color:white; border:none; padding:0.5rem 1rem; cursor:pointer;">
+        OK
+      </button>
+    </div>
   </div>
-</div>
 
-<script>
-  function acceptNotice() {
-    sessionStorage.setItem("noticeAccepted", "true");
-    document.getElementById("userNotice").style.display = "none";
-  }
-
-  window.onload = function() {
-    if (!sessionStorage.getItem("noticeAccepted")) {
-      document.getElementById("userNotice").style.display = "block";
+  <script>
+    function acceptNotice() {
+      sessionStorage.setItem("noticeAccepted", "true");
+      document.getElementById("userNotice").style.display = "none";
     }
-  };
-</script>
 
-<div id="contactModal" style="display:none; position:fixed; top:30%; left:50%;
-  transform:translate(-50%, -50%); background:#fff; padding:20px; border:2px solid #ccc;
-  border-radius:10px; box-shadow:0 0 15px rgba(0,0,0,0.3); z-index:9999;">
-  <p>You can contact me at:</p>
-  <p><a href="mailto:werner.bonadio@wernerbot.com" id="emailToCopy">werner.bonadio@wernerbot.com</a></p>
-  <button onclick="copyEmail()">📋 Copy</button>
-  <span id="copyConfirm" style="display:none; color: green; margin-left: 10px;">Copied!</span><br>
-  <button onclick="closeContactModal()" style="margin-top:10px;">Close</button>
-</div>
+    window.onload = function() {
+      if (!sessionStorage.getItem("noticeAccepted")) {
+        document.getElementById("userNotice").style.display = "block";
+      }
+    };
+  </script>
 
-<!-- Script unico finale -->
-<script>
-  // Toggle box inline (header)
-  const contactBtn = document.getElementById('contactBtn');
-  const contactBoxInline = document.getElementById('contactBoxInline');
-  if (contactBtn && contactBoxInline) {
-    contactBtn.addEventListener('click', () => {
-      const expanded = contactBtn.getAttribute('aria-expanded') === 'true';
-      contactBtn.setAttribute('aria-expanded', String(!expanded));
-      contactBoxInline.hidden = expanded; // true = nasconde, false = mostra
+  <div id="contactModal" style="display:none; position:fixed; top:30%; left:50%;
+    transform:translate(-50%, -50%); background:#fff; padding:20px; border:2px solid #ccc;
+    border-radius:10px; box-shadow:0 0 15px rgba(0,0,0,0.3); z-index:9999;">
+    <p>You can contact me at:</p>
+    <p><a href="mailto:werner.bonadio@wernerbot.com" id="emailToCopy">werner.bonadio@wernerbot.com</a></p>
+    <button onclick="copyEmail()">📋 Copy</button>
+    <span id="copyConfirm" style="display:none; color: green; margin-left: 10px;">Copied!</span><br>
+    <button onclick="closeContactModal()" style="margin-top:10px;">Close</button>
+  </div>
+
+  <!-- Script unico finale -->
+  <script>
+    // Toggle box inline (header)
+    const contactBtn = document.getElementById('contactBtn');
+    const contactBoxInline = document.getElementById('contactBoxInline');
+    if (contactBtn && contactBoxInline) {
+      contactBtn.addEventListener('click', () => {
+        const expanded = contactBtn.getAttribute('aria-expanded') === 'true';
+        contactBtn.setAttribute('aria-expanded', String(!expanded));
+        contactBoxInline.hidden = expanded;
+      });
+    }
+
+    // Modale open/close (footer)
+    function openContactModal() {
+      document.getElementById('contactModal').style.display = 'block';
+    }
+    function closeContactModal() {
+      document.getElementById('contactModal').style.display = 'none';
+    }
+
+    // Chiudi modale con ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeContactModal();
     });
-  }
 
-  // Modale open/close (footer)
-  function openContactModal() {
-    document.getElementById('contactModal').style.display = 'block';
-  }
-  function closeContactModal() {
-    document.getElementById('contactModal').style.display = 'none';
-  }
-
-  // Chiudi modale con ESC
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeContactModal();
-  });
-
-  // Copia email
-  function copyEmail() {
-    const email = document.getElementById("emailToCopy").innerText;
-    navigator.clipboard.writeText(email).then(function() {
-      document.getElementById("copyConfirm").style.display = "inline";
-      setTimeout(() => {
-        document.getElementById("copyConfirm").style.display = "none";
-      }, 2000);
-    });
-  }
-</script>
+    // Copia email
+    function copyEmail() {
+      const email = document.getElementById("emailToCopy").innerText;
+      navigator.clipboard.writeText(email).then(function() {
+        document.getElementById("copyConfirm").style.display = "inline";
+        setTimeout(() => {
+          document.getElementById("copyConfirm").style.display = "none";
+        }, 2000);
+      });
+    }
+  </script>
 
 </body>
 </html>
+
