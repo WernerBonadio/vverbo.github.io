@@ -116,18 +116,24 @@
       height: 100%;
       object-fit: cover;
       border-radius: 999px;
-    }
+    
     #chat-panel {
       position: fixed;
       right: 18px;
       bottom: 86px;
-      width: 320px;
-      height: 240px;
-      background: white;
-      border: 2px solid #000;
+      width: 360px;
+      height: 420px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       z-index: 9999;
       display: flex;
       flex-direction: column;
+      overflow: hidden;
+    }
+    #chat-panel[hidden] { display: none !important; }
+
     }
     .user-msg{
       background: #dbeafe;
@@ -143,12 +149,16 @@
       margin: 6px auto 6px 0;
       max-width: 85%;
     }
+
     .chat-header {
-      padding: 10px;
-      font-weight: bold;
+      padding: 12px 12px;
+      font-weight: 700;
       display: flex;
       justify-content: space-between;
-      border-bottom: 1px solid #ddd;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+      background: #fafafa;
+      cursor: move; /* for dragging (next step) */
     }
 
     .chat-messages {
@@ -181,6 +191,16 @@
       padding: 8px;
       border-radius: 8px;
       margin-bottom: 6px;
+    }
+    #chat-close {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      background: #fff;
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 1;
     }
 
   </style>
