@@ -126,11 +126,23 @@
       background: white;
       border: 2px solid #000;
       z-index: 9999;
-
       display: flex;
       flex-direction: column;
     }
- 
+    .user-msg{
+      background: #dbeafe;
+      padding: 8px;
+      border-radius: 8px;
+      margin: 6px 0 6px auto;
+      max-width: 85%;
+    }
+    .bot-msg{
+      background: #f2f2f2;
+      padding: 8px;
+      border-radius: 8px;
+      margin: 6px auto 6px 0;
+      max-width: 85%;
+    }
     .chat-header {
       padding: 10px;
       font-weight: bold;
@@ -477,23 +489,47 @@
       const panel = document.getElementById("chat-panel");
       const closeBtn = document.getElementById("chat-close");
 
-      console.log("bubble:", bubble);
-      console.log("panel:", panel);
+      const input = document.getElementById("chat-text");
+      const sendBtn = document.getElementById("chat-send");
+      const messages = document.getElementById("chat-messages");
 
       if (!bubble || !panel) return;
 
       function toggleChat() {
         panel.hidden = !panel.hidden;
-        console.log("toggled. panel.hidden =", panel.hidden);
+      }
+
+      function addMsg(text, who) {
+        const div = document.createElement("div");
+        div.className = who === "user" ? "user-msg" : "bot-msg";
+        div.textContent = text;
+        messages.appendChild(div);
+        messages.scrollTop = messages.scrollHeight;
+      }
+
+      function handleSend() {
+        const text = (input.value || "").trim();
+        if (!text) return;
+
+        addMsg(text, "user");
+        input.value = "";
+
+        // TEMP: local echo bot (replace later with real backend call)
+        setTimeout(() => addMsg("Got it: " + text, "bot"), 200);
       }
 
       bubble.addEventListener("click", toggleChat);
+      if (closeBtn) closeBtn.addEventListener("click", toggleChat);
 
-      if (closeBtn) {
-        closeBtn.addEventListener("click", toggleChat);
+      if (sendBtn) sendBtn.addEventListener("click", handleSend);
+      if (input) {
+        input.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") handleSend();
+        });
       }
     })();
   </script>
+
 
 </body>
 </html>
