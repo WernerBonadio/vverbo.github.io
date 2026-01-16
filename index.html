@@ -143,13 +143,6 @@
       margin: 6px 0 6px auto;
       max-width: 85%;
     }
-    .bot-msg{
-      background: #f2f2f2;
-      padding: 8px;
-      border-radius: 8px;
-      margin: 6px auto 6px 0;
-      max-width: 85%;
-    }
 
     .chat-header {
       padding: 12px 12px;
@@ -516,8 +509,17 @@
 
       if (!bubble || !panel) return;
 
+      function addMsg(text, who) {
+        const div = document.createElement("div");
+        div.className = (who === "user") ? "user-msg" : "bot-msg";
+        div.textContent = text; // evita HTML injection
+        messages.appendChild(div);
+        messages.scrollTop = messages.scrollHeight; // auto-scroll
+      }
+
       function toggleChat() {
         panel.hidden = !panel.hidden;
+        if (!panel.hidden && input) input.focus();
       }
 
       function handleSend() {
@@ -536,7 +538,7 @@
           .then(data => addMsg(data.reply || data.response || data.message || JSON.stringify(data), "bot"))
           .catch(err => addMsg("Backend error: " + err.message, "bot"));
       }
-      
+
       bubble.addEventListener("click", toggleChat);
       if (closeBtn) closeBtn.addEventListener("click", toggleChat);
 
@@ -548,7 +550,6 @@
       }
     })();
   </script>
-
 
 </body>
 </html>
