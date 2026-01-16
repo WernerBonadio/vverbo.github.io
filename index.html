@@ -126,6 +126,49 @@
       background: white;
       border: 2px solid #000;
       z-index: 9999;
+
+      display: flex;
+      flex-direction: column;
+    }
+ 
+    .chat-header {
+      padding: 10px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      font-size: 14px;
+    }
+
+    .chat-input {
+      display: flex;
+      border-top: 1px solid #ddd;
+    }
+
+    .chat-input input {
+      flex: 1;
+      border: none;
+      padding: 10px;
+      outline: none;
+    }
+
+    .chat-input button {
+      border: none;
+      padding: 10px 14px;
+      cursor: pointer;
+    }
+
+    .bot-msg {
+      background: #f2f2f2;
+      padding: 8px;
+      border-radius: 8px;
+      margin-bottom: 6px;
     }
 
   </style>
@@ -413,31 +456,42 @@
   </button>
 
   <div id="chat-panel" hidden>
-    <div style="padding:16px;">
-      CHAT PANEL OPEN ✅  
-      <br>
-      If you see this, the toggle works.
+    <div class="chat-header">
+      WernerBot
+      <button id="chat-close">✕</button>
     </div>
-  </div>
 
-  <div id="chat-panel" hidden>
-    <!-- chat UI here -->
+    <div class="chat-messages" id="chat-messages">
+      <div class="bot-msg">Hello. I’m here.</div>
+    </div>
+
+    <div class="chat-input">
+      <input type="text" id="chat-text" placeholder="Type a message…" />
+      <button id="chat-send">Send</button>
+    </div>
   </div>
 
   <script>
     (function () {
       const bubble = document.getElementById("chat-bubble");
       const panel = document.getElementById("chat-panel");
+      const closeBtn = document.getElementById("chat-close");
 
       console.log("bubble:", bubble);
       console.log("panel:", panel);
 
       if (!bubble || !panel) return;
 
-      bubble.addEventListener("click", () => {
+      function toggleChat() {
         panel.hidden = !panel.hidden;
-        console.log("clicked. panel.hidden =", panel.hidden);
-      });
+        console.log("toggled. panel.hidden =", panel.hidden);
+      }
+
+      bubble.addEventListener("click", toggleChat);
+
+      if (closeBtn) {
+        closeBtn.addEventListener("click", toggleChat);
+      }
     })();
   </script>
 
