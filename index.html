@@ -30,6 +30,7 @@
   <style>
     :root { color-scheme: light dark; }
     * { box-sizing: border-box; }
+
     body {
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
       margin: 0; padding: 0; text-align: center;
@@ -94,6 +95,29 @@
       margin-top: 32px; padding: 20px;
       font-size: 0.9rem; color: #888; border-top: 1px solid #eee;
     }
+
+    /* Chat bubble */
+    #chat-bubble {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 56px;
+      height: 56px;
+      border-radius: 999px;
+      border: 1px solid #ddd;
+      background: white;
+      box-shadow: 0 6px 18px rgba(0,0,0,.12);
+      cursor: pointer;
+      z-index: 9999;
+    }
+
+    #chat-bubble img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 999px;
+    }
+
   </style>
 </head>
 <body>
@@ -374,6 +398,26 @@
     }
   </script>
 
+    <button id="chat-bubble" aria-label="Open chat">
+    <img src="wb.png" alt="Chat">
+  </button>
+
+  <div id="chat-panel" hidden>
+    <!-- chat UI here -->
+  </div>
+
+  <script>
+    const bubble = document.getElementById("chat-bubble");
+    const panel = document.getElementById("chat-panel");
+
+    if (bubble && panel) {
+      bubble.addEventListener("click", () => {
+        panel.hidden = !panel.hidden;
+      });
+    }
+  </script>
+
 </body>
 </html>
+
 
