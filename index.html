@@ -117,6 +117,16 @@
       object-fit: cover;
       border-radius: 999px;
     }
+    #chat-panel {
+      position: fixed;
+      right: 18px;
+      bottom: 86px;
+      width: 320px;
+      height: 240px;
+      background: white;
+      border: 2px solid #000;
+      z-index: 9999;
+    }
 
   </style>
 </head>
@@ -398,23 +408,37 @@
     }
   </script>
 
-    <button id="chat-bubble" aria-label="Open chat">
-    <img src="wb.png" alt="Chat">
+  <button id="chat-bubble" aria-label="Open chat">
+     <img src="wb.png" alt="Chat">
   </button>
+
+  <div id="chat-panel" hidden>
+    <div style="padding:16px;">
+      CHAT PANEL OPEN ✅  
+      <br>
+      If you see this, the toggle works.
+    </div>
+  </div>
 
   <div id="chat-panel" hidden>
     <!-- chat UI here -->
   </div>
 
   <script>
-    const bubble = document.getElementById("chat-bubble");
-    const panel = document.getElementById("chat-panel");
+    (function () {
+      const bubble = document.getElementById("chat-bubble");
+      const panel = document.getElementById("chat-panel");
 
-    if (bubble && panel) {
+      console.log("bubble:", bubble);
+      console.log("panel:", panel);
+
+      if (!bubble || !panel) return;
+
       bubble.addEventListener("click", () => {
         panel.hidden = !panel.hidden;
+        console.log("clicked. panel.hidden =", panel.hidden);
       });
-    }
+    })();
   </script>
 
 </body>
