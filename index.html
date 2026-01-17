@@ -116,23 +116,12 @@
       height: 100%;
       object-fit: cover;
       border-radius: 999px;
-
-    #chat-window {
-      position: fixed;
-      right: 12px;
-      bottom: 72px;
-      width: 92%;
-      max-width: 380px;
-      height: 70dvh;
     }
+        
     #chat-messages {
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
-    }
-    #chat-input {
-      position: sticky;
-      bottom: 0;
-      background: white;
+
     }
     #chat-panel{
       position: fixed;
@@ -193,6 +182,11 @@
       padding: 10px 14px;
       cursor: pointer;
     }
+    .chat-input {
+      position: sticky;
+      bottom: 0;
+      background: white;
+    }
 
     .bot-msg {
       background: #f2f2f2;
@@ -214,10 +208,6 @@
       opacity: 0.4;
       filter: grayscale(100%);
       pointer-events: none;
-    }
-    html, body {
-      height: 100%;
-      overflow: hidden;
     }
    
   </style>
