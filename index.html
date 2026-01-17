@@ -136,6 +136,24 @@
     #chat-panel[hidden] { 
       display: none !important; 
     }
+    #chat-window {
+      position: fixed;
+      right: 12px;
+      bottom: 72px;   /* IMPORTANT */
+      width: 92%;
+      max-width: 380px;
+      height: 70dvh;
+    }
+    #chat-messages {
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    #chat-input {
+      position: sticky;
+      bottom: 0;
+      background: white;
+    }
+
     .user-msg{
       background: #dbeafe;
       padding: 8px;
@@ -200,6 +218,10 @@
       opacity: 0.4;
       filter: grayscale(100%);
       pointer-events: none;
+    }
+    html, body {
+      height: 100%;
+      overflow: hidden;
     }
    
   </style>
