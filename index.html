@@ -196,6 +196,11 @@
       font-size: 18px;
       line-height: 1;
     }
+    .disabled-section {
+      opacity: 0.4;
+      filter: grayscale(100%);
+      pointer-events: none;
+    }
 
   </style>
 </head>
@@ -238,6 +243,7 @@
     <h3 style="color: #888;">📑 Quick Navigation</h3>
     <ul style="list-style-type: none; padding-left: 0; display: inline-block; text-align: left; margin: auto;">
       <li><a href="#quipsterina">🌸 Quipsterina</a></li>
+      <li><a href="#telegram">💬 TelegramBot</a></li>
       <li><a href="#audio-transcriber">🎧 Audio to Text</a></li>
       <!-- <li><a href="#public-contracts">📄 Public Contracts Assistant</a></li> -->
       <li><a href="#revisione-prezzi">📊 Revisione Prezzi Table</a></li>
@@ -264,13 +270,25 @@
       </a>
     </p>
 
-    <div class="quipsterina-embed">
+    <!-- <div class="quipsterina-embed">
       <iframe
         src="https://quipsterina-1003766064674.europe-west4.run.app/?embed=true"
         loading="lazy"
         referrerpolicy="no-referrer">
       </iframe>
-    </div>
+    </div> -->
+  </section>
+
+    <!-- Telegram Bot -->
+  <section id="telegram" style="margin: 40px auto; max-width: 700px; text-align: center;">
+    <h3 style="color:#888;">💬 Telegram Bot</h3>
+    <p style="color:#666; line-height: 1.5;">
+      Prefer chatting on Telegram? Try our first experimental bot — fast, lightweight, and always with you.
+    </p>
+    <a href="https://t.me/YOUR_BOT_USERNAME" target="_blank" rel="noopener"
+      style="display:inline-block; padding:10px 16px; border-radius:10px; border:1px solid #ddd; text-decoration:none;">
+      Open Telegram Bot
+    </a>
   </section>
 
   <!-- NEW: Audio Transcriber bot -->
@@ -289,13 +307,13 @@
       </a>
     </p>
 
-    <div class="quipsterina-embed">
+    <!-- <div class="quipsterina-embed">
       <iframe
         src="https://audio-transcriber-472236191426.europe-west4.run.app/"
         loading="lazy"
         referrerpolicy="no-referrer">
       </iframe>
-    </div>
+    </div> -->
   </section>
 
   <section class="vision-block" id="revisione-prezzi">
