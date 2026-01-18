@@ -27,10 +27,12 @@
   <meta property="og:image" content="https://wernerbot.com/wb_og.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
   <style>
     :root { color-scheme: light dark; }
     * { box-sizing: border-box; }
-
+ 
     body {
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
       margin: 0; padding: 0; text-align: center;
@@ -551,7 +553,13 @@
       function addMsg(text, who) {
         const div = document.createElement("div");
         div.className = (who === "user") ? "user-msg" : "bot-msg";
-        div.textContent = text; // evita HTML injection
+        
+        if (who === "bot" && window.marked) {
+          div.innerHTML = marked.parse(text);
+        } else {
+          div.textContent = text; // evita HTML injection
+        }
+
         messages.appendChild(div);
         messages.scrollTop = messages.scrollHeight; // auto-scroll
       }
