@@ -601,7 +601,8 @@
       function addBotPlaceholder() {
         const div = document.createElement("div");
         div.className = "bot-msg streaming";
-        div.textContent = "";     // truly empty
+        div.textContent = "Thinking…";     // show immediately
+        div.dataset.thinking = "1";         // marker
         messages.appendChild(div);
         messages.scrollTop = messages.scrollHeight;
         return div;
@@ -609,6 +610,9 @@
 
       // NEW: render markdown progressively
       function renderBotDiv(div, text) {
+        if (div.dataset.thinking === "1") {
+          div.dataset.thinking = "0";
+        }
         if (text && div.classList.contains("streaming")) {
           div.classList.remove("streaming");
         }
