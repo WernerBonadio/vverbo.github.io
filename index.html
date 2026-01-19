@@ -155,8 +155,10 @@
     }
     .user-msg,
     .bot-msg {
-      line-height: 1.4;
-      min-height: 1.4em;   /* exactly one text line */
+      line-height: 1.4;     
+    }
+    .bot-msg.streaming {
+      min-height: 1.4em;   /* one line */
     }
 
     .chat-header {
@@ -596,8 +598,8 @@
       // NEW: create an empty bot bubble to stream into
       function addBotPlaceholder() {
         const div = document.createElement("div");
-        div.className = "bot-msg";
-        div.textContent = "&nbsp;"; // placeholder to keep height
+        div.className = "bot-msg streaming";
+        div.textContent = "";     // truly empty
         messages.appendChild(div);
         messages.scrollTop = messages.scrollHeight;
         return div;
@@ -605,6 +607,9 @@
 
       // NEW: render markdown progressively
       function renderBotDiv(div, text) {
+        if (text && div.classList.contains("streaming")) {
+          div.classList.remove("streaming");
+        }
         if (window.marked) div.innerHTML = marked.parse(text);
         else div.textContent = text;
         messages.scrollTop = messages.scrollHeight;
