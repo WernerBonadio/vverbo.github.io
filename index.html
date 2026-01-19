@@ -575,15 +575,33 @@
       function addMsg(text, who) {
         const div = document.createElement("div");
         div.className = (who === "user") ? "user-msg" : "bot-msg";
-        
+
         if (who === "bot" && window.marked) {
           div.innerHTML = marked.parse(text);
         } else {
-          div.textContent = text; // evita HTML injection
+          div.textContent = text; // avoid HTML injection
         }
 
         messages.appendChild(div);
         messages.scrollTop = messages.scrollHeight; // auto-scroll
+        return div;
+      }
+
+      // NEW: create an empty bot bubble to stream into
+      function addBotPlaceholder() {
+        const div = document.createElement("div");
+        div.className = "bot-msg";
+        div.textContent = "";
+        messages.appendChild(div);
+        messages.scrollTop = messages.scrollHeight;
+        return div;
+      }
+
+      // NEW: render markdown progressively
+      function renderBotDiv(div, text) {
+        if (window.marked) div.innerHTML = marked.parse(text);
+        else div.textContent = text;
+        messages.scrollTop = messages.scrollHeight;
       }
 
       function toggleChat() {
@@ -591,21 +609,77 @@
         if (!panel.hidden && input) input.focus();
       }
 
-      function handleSend() {
+      // IMPORTANT: must be async because we use await
+      async function handleSend() {
         const text = (input.value || "").trim();
         if (!text) return;
 
         addMsg(text, "user");
         input.value = "";
 
-        fetch("https://wernerbotapp-218955992134.europe-west4.run.app/chat", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: text })
-        })
-          .then(r => r.json())
-          .then(data => addMsg(data.reply || data.response || data.message || JSON.stringify(data), "bot"))
-          .catch(err => addMsg("Backend error: " + err.message, "bot"));
+        const botDiv = addBotPlaceholder();
+        let fullText = "";
+
+        try {
+          const res = await fetch("https://wernerbotapp-218955992134.europe-west4.run.app/chat/stream", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "text/event-stream"
+            },
+            body: JSON.stringify({ message: text })
+          });
+
+          if (!res.ok || !res.body) {
+            throw new Error(`HTTP ${res.status}`);
+          }
+
+          const reader = res.body.getReader();
+          const decoder = new TextDecoder("utf-8");
+          let buffer = "";
+
+          while (true) {
+            const { value, done } = await reader.read();
+            if (done) break;
+
+            buffer += decoder.decode(value, { stream: true });
+
+            // SSE events are separated by a blank line
+            const parts = buffer.split("\n\n");
+            buffer = parts.pop() || "";
+
+            for (const part of parts) {
+              const line = part.split("\n").find(l => l.startsWith("data: "));
+              if (!line) continue;
+
+              const jsonStr = line.slice(6).trim(); // after "data: "
+              if (!jsonStr) continue;
+
+              let msg;
+              try {
+                msg = JSON.parse(jsonStr);
+              } catch {
+                continue;
+              }
+
+              if (msg.type === "delta" && msg.text) {
+                fullText += msg.text;
+                renderBotDiv(botDiv, fullText);
+              } else if (msg.type === "done") {
+                renderBotDiv(botDiv, fullText.trim());
+                return;
+              } else if (msg.type === "error") {
+                throw new Error(msg.message || "Stream error");
+              }
+            }
+          }
+
+          // fallback if stream ends without "done"
+          renderBotDiv(botDiv, fullText.trim());
+
+        } catch (err) {
+          botDiv.textContent = "Backend error: " + (err?.message || String(err));
+        }
       }
 
       bubble.addEventListener("click", toggleChat);
