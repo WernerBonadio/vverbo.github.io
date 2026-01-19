@@ -153,6 +153,12 @@
       max-width: 85%;
       text-align: left;
     }
+    .user-msg,
+    .bot-msg {
+      line-height: 1.4;
+      min-height: 1.4em;   /* exactly one text line */
+    }
+
     .chat-header {
       padding: 12px 12px;
       font-weight: 700;
@@ -591,7 +597,7 @@
       function addBotPlaceholder() {
         const div = document.createElement("div");
         div.className = "bot-msg";
-        div.textContent = "&nbsp;";
+        div.textContent = "&nbsp;"; // placeholder to keep height
         messages.appendChild(div);
         messages.scrollTop = messages.scrollHeight;
         return div;
