@@ -145,25 +145,31 @@
       display: none !important;
     }
 
+    
     #voice-bubble{
       position: fixed;
       left: 18px;
       bottom: 18px;
       width: 56px;
       height: 56px;
-      border-radius: 999px;
-      border: 1px solid #ddd;
-      background: white;
-      box-shadow: 0 6px 18px rgba(0,0,0,.12);
+      border-radius: 50%;
+      background: black;   /* <-- HERE */
+      border: 1px solid #222;
+      box-shadow: 0 6px 18px rgba(0,0,0,.25);
+      overflow: hidden;
+      padding: 0;
+      appearance: none;
+      -webkit-appearance: none;
       cursor: pointer;
-      z-index: 9999;
     }
+
     #voice-bubble img{
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      border-radius: 999px;
+      object-fit: contain;  /* better than cover here */
+      display: block;
     }
+      
     #voice-panel[hidden] {
       display: none !important;
     }
