@@ -1011,10 +1011,31 @@
 
         // 3) PeerConnection + remote audio playback
         pc = new RTCPeerConnection();
+
         remoteAudio = document.createElement("audio");
         remoteAudio.autoplay = true;
         remoteAudio.playsInline = true;
-        pc.ontrack = (e) => { remoteAudio.srcObject = e.streams[0]; };
+        remoteAudio.controls = false;
+
+        // ✅ append inside your panel so Firefox treats it as real media output
+        voicePanel.appendChild(remoteAudio);
+
+        pc.ontrack = async (e) => {
+          remoteAudio.srcObject = e.streams[0];
+
+          // ✅ minimal Firefox fix
+          try {
+            await remoteAudio.play();
+          } catch (err) {
+            console.log("Audio play blocked:", err);
+          }
+        };
+
+        // Firefox sometimes needs an explicit play() after a user gesture.
+        remoteAudio.play().catch(() => {
+          // If it fails, show a message in debug
+          debug("Audio playback blocked. Tap Start again or unmute your device.");
+        });
 
         // Add mic track
         pc.addTrack(micStream.getTracks()[0]);
@@ -1023,23 +1044,7 @@
         dc = pc.createDataChannel("oai-events");
         dc.addEventListener("open", () => {
           debug("connected");
-
-          // Optional: set instructions on the session
-          dc.send(JSON.stringify({
-            type: "session.update",
-            session: { type: "realtime" }
-          }));
-
-          // Optional: quick test text
-          dc.send(JSON.stringify({
-            type: "conversation.item.create",
-            item: {
-              type: "message",
-              role: "user",
-              content: [{ type: "input_text", text: "Hi! Please say a short hello." }]
-            }
-          }));
-          dc.send(JSON.stringify({ type: "response.create" }));
+                  
         });
 
         dc.addEventListener("message", (e) => {
@@ -1064,9 +1069,17 @@
         const answerSdp = await sdpRes.text();
         await pc.setRemoteDescription({ type: "answer", sdp: answerSdp });
 
+        // ✅ Force audio playback (helps Firefox / iOS autoplay rules)
+        try {
+          await remoteAudio.play();
+        } catch (e) {
+          // Not fatal. Some browsers still block; we’ll see console errors.
+        }
+
         setStatus("listening");
         startBtn.disabled = true;
         stopBtn.disabled = false;
+
 
       } catch (err) {
         setStatus("error");
