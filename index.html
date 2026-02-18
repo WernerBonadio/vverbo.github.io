@@ -164,7 +164,9 @@
       object-fit: cover;
       border-radius: 999px;
     }
-
+    #voice-panel[hidden] {
+      display: none !important;
+    }
 
     .user-msg{
       background: #dbeafe;
@@ -964,17 +966,286 @@
   </script>
 
   <script>
-    (function () {
-      const voiceBubble = document.getElementById("voice-bubble");
-      if (!voiceBubble) return;
+  (function () {
+    const voiceBubble = document.getElementById("voice-bubble");
+    const voicePanel  = document.getElementById("voice-panel");
+    const closeBtn    = document.getElementById("voice-close");
+    const startBtn    = document.getElementById("voice-start");
+    const stopBtn     = document.getElementById("voice-stop");
+    const statusEl    = document.getElementById("voice-status");
+    const debugEl     = document.getElementById("voice-debug");
 
-      voiceBubble.addEventListener("click", () => {
-        window.open("https://wernerbotapp-audio-218955992134.europe-west4.run.app/", "_blank", "noopener");
-      });
-    })();
+    if (!voiceBubble || !voicePanel) return;
+
+    let pc = null, dc = null, micStream = null, remoteAudio = null;
+
+    const TOKEN_URL = "https://wernerbotapp-audio-218955992134.europe-west4.run.app/realtime/token";
+    const REALTIME_CALLS_URL = "https://api.openai.com/v1/realtime/calls";
+
+    function setStatus(s) { if (statusEl) statusEl.textContent = s; }
+    function debug(msg) { if (debugEl) debugEl.textContent = msg || ""; }
+
+    function openPanel() { voicePanel.hidden = false; }
+    function closePanel() { voicePanel.hidden = true; }
+
+    voiceBubble.addEventListener("click", openPanel);
+    if (closeBtn) closeBtn.addEventListener("click", closePanel);
+
+    async function startVoice() {
+      try {
+        setStatus("starting…");
+        debug("");
+
+        // 1) Get ephemeral key from your backend
+        const tokenRes = await fetch(TOKEN_URL, { method: "POST" });
+        if (!tokenRes.ok) throw new Error("Token HTTP " + tokenRes.status);
+        const tokenData = await tokenRes.json();
+        const ek = tokenData.value;
+        if (!ek) throw new Error("No ek_ token returned");
+
+        // 2) Mic
+        micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+
+        // 3) PeerConnection + remote audio playback
+        pc = new RTCPeerConnection();
+        remoteAudio = document.createElement("audio");
+        remoteAudio.autoplay = true;
+        remoteAudio.playsInline = true;
+        pc.ontrack = (e) => { remoteAudio.srcObject = e.streams[0]; };
+
+        // Add mic track
+        pc.addTrack(micStream.getTracks()[0]);
+
+        // 4) Data channel for events
+        dc = pc.createDataChannel("oai-events");
+        dc.addEventListener("open", () => {
+          debug("connected");
+
+          // Optional: set instructions on the session
+          dc.send(JSON.stringify({
+            type: "session.update",
+            session: { type: "realtime" }
+          }));
+
+          // Optional: quick test text
+          dc.send(JSON.stringify({
+            type: "conversation.item.create",
+            item: {
+              type: "message",
+              role: "user",
+              content: [{ type: "input_text", text: "Hi! Please say a short hello." }]
+            }
+          }));
+          dc.send(JSON.stringify({ type: "response.create" }));
+        });
+
+        dc.addEventListener("message", (e) => {
+          // You can log events while debugging
+          // console.log("realtime event:", e.data);
+        });
+
+        // 5) SDP exchange with OpenAI Realtime
+        const offer = await pc.createOffer();
+        await pc.setLocalDescription(offer);
+
+        const sdpRes = await fetch(REALTIME_CALLS_URL, {
+          method: "POST",
+          body: offer.sdp,
+          headers: {
+            "Authorization": `Bearer ${ek}`,
+            "Content-Type": "application/sdp"
+          }
+        });
+
+        if (!sdpRes.ok) throw new Error("SDP HTTP " + sdpRes.status);
+        const answerSdp = await sdpRes.text();
+        await pc.setRemoteDescription({ type: "answer", sdp: answerSdp });
+
+        setStatus("listening");
+        startBtn.disabled = true;
+        stopBtn.disabled = false;
+
+      } catch (err) {
+        setStatus("error");
+        debug(err?.message || String(err));
+        await stopVoice();
+      }
+    }
+
+    async function stopVoice() {
+      try {
+        if (dc) { try { dc.close(); } catch {} dc = null; }
+        if (pc) { try { pc.close(); } catch {} pc = null; }
+
+        if (micStream) {
+          micStream.getTracks().forEach(t => t.stop());
+          micStream = null;
+        }
+
+        if (remoteAudio) {
+          try { remoteAudio.srcObject = null; } catch {}
+          remoteAudio = null;
+        }
+
+        setStatus("idle");
+        startBtn.disabled = false;
+        stopBtn.disabled = true;
+
+      } catch {}
+    }
+
+    if (startBtn) startBtn.addEventListener("click", startVoice);
+    if (stopBtn) stopBtn.addEventListener("click", stopVoice);
+  })();
   </script>
 
 </body>
 </html>
 
+<script>
+(function () {
+  const voiceBubble = document.getElementById("voice-bubble");
+  const voicePanel  = document.getElementById("voice-panel");
+  const closeBtn    = document.getElementById("voice-close");
+  const startBtn    = document.getElementById("voice-start");
+  const stopBtn     = document.getElementById("voice-stop");
+  const statusEl    = document.getElementById("voice-status");
+  const debugEl     = document.getElementById("voice-debug");
+
+  if (!voiceBubble || !voicePanel) return;
+
+  let pc, dc, micStream, remoteAudio;
+
+  function setStatus(s) { if (statusEl) statusEl.textContent = s; }
+  function debug(msg) { if (debugEl) debugEl.textContent = msg; }
+
+  function togglePanel() {
+    voicePanel.hidden = !voicePanel.hidden;
+  }
+
+  voiceBubble.addEventListener("click", togglePanel);
+  if (closeBtn) closeBtn.addEventListener("click", togglePanel);
+
+  async function startVoice() {
+    try {
+      setStatus("starting…");
+      debug("");
+
+      // 1) Get ephemeral key from your backend (YOU must implement this endpoint)
+      // It should return JSON like: { value: "ek_...." }
+      const tokenRes = await fetch("https://wernerbotapp-audio-218955992134.europe-west4.run.app/realtime/token");
+      if (!tokenRes.ok) throw new Error("Token HTTP " + tokenRes.status);
+      const tokenData = await tokenRes.json();
+      const EPHEMERAL_KEY = tokenData.value;
+      if (!EPHEMERAL_KEY) throw new Error("No ephemeral key returned");
+
+      // 2) Mic
+      micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+
+      // 3) PeerConnection + remote audio element
+      pc = new RTCPeerConnection();
+      remoteAudio = document.createElement("audio");
+      remoteAudio.autoplay = true;
+      remoteAudio.playsInline = true;
+      pc.ontrack = (e) => { remoteAudio.srcObject = e.streams[0]; };
+
+      // Add mic track
+      const track = micStream.getTracks()[0];
+      pc.addTrack(track);
+
+      // 4) Data channel for events
+      dc = pc.createDataChannel("oai-events");
+      dc.addEventListener("open", () => {
+        debug("data channel open");
+
+        // You can set instructions and voice with session.update (GA format)
+        dc.send(JSON.stringify({
+          type: "session.update",
+          session: {
+            type: "realtime",
+            // optional: instructions here if you want
+          }
+        }));
+
+        // Send a quick test message (optional)
+        dc.send(JSON.stringify({
+          type: "conversation.item.create",
+          item: {
+            type: "message",
+            role: "user",
+            content: [{ type: "input_text", text: "Hello! Please say hi back in one short sentence." }]
+          }
+        }));
+
+        // Ask for a response (some apps rely on server VAD; but this is a safe explicit request)
+        dc.send(JSON.stringify({ type: "response.create" }));
+      });
+
+      dc.addEventListener("message", (e) => {
+        try {
+          const evt = JSON.parse(e.data);
+          // Helpful to inspect events while building
+          // console.log(evt);
+
+          // Optional: show transcripts/debug
+          if (evt.type === "response.output_audio_transcript.delta" && evt.delta) {
+            debug((debugEl.textContent || "") + evt.delta);
+          }
+        } catch {}
+      });
+
+      // 5) SDP offer/answer with OpenAI
+      const offer = await pc.createOffer();
+      await pc.setLocalDescription(offer);
+
+      const sdpRes = await fetch("https://api.openai.com/v1/realtime/calls", {
+        method: "POST",
+        body: offer.sdp,
+        headers: {
+          "Authorization": `Bearer ${EPHEMERAL_KEY}`,
+          "Content-Type": "application/sdp"
+        }
+      });
+
+      if (!sdpRes.ok) throw new Error("SDP HTTP " + sdpRes.status);
+      const answerSdp = await sdpRes.text();
+      await pc.setRemoteDescription({ type: "answer", sdp: answerSdp });
+
+      setStatus("listening");
+      startBtn.disabled = true;
+      stopBtn.disabled = false;
+
+    } catch (err) {
+      setStatus("error");
+      debug(String(err?.message || err));
+      await stopVoice();
+    }
+  }
+
+  async function stopVoice() {
+    try {
+      setStatus("idle");
+
+      if (dc) { try { dc.close(); } catch {} dc = null; }
+      if (pc) { try { pc.close(); } catch {} pc = null; }
+
+      if (micStream) {
+        micStream.getTracks().forEach(t => t.stop());
+        micStream = null;
+      }
+
+      if (remoteAudio) {
+        try { remoteAudio.srcObject = null; } catch {}
+        remoteAudio = null;
+      }
+
+      if (startBtn) startBtn.disabled = false;
+      if (stopBtn) stopBtn.disabled = true;
+    } catch {}
+  }
+
+  if (startBtn) startBtn.addEventListener("click", startVoice);
+  if (stopBtn) stopBtn.addEventListener("click", stopVoice);
+})();
+</script>
 
