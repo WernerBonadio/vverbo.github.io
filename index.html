@@ -149,7 +149,7 @@
     #voice-bubble {
       position: fixed;
       left: 18px;
-      bottom: 18px;
+      bottom: calc(18px + env(safe-area-inset-bottom));
       width: 56px;
       height: 56px;
       border-radius: 999px;
@@ -160,12 +160,14 @@
       z-index: 9999;
     }
 
-    #voice-bubble img {
+    #voice-bubble img{
       width: 100%;
       height: 100%;
       object-fit: cover;
       border-radius: 999px;
+      display: block;
     }
+
       
     #voice-panel[hidden] {
       display: none !important;
