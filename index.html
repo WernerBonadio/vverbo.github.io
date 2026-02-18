@@ -145,6 +145,27 @@
       display: none !important;
     }
 
+    #voice-bubble{
+      position: fixed;
+      left: 18px;
+      bottom: 18px;
+      width: 56px;
+      height: 56px;
+      border-radius: 999px;
+      border: 1px solid #ddd;
+      background: white;
+      box-shadow: 0 6px 18px rgba(0,0,0,.12);
+      cursor: pointer;
+      z-index: 9999;
+    }
+    #voice-bubble img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 999px;
+    }
+
+
     .user-msg{
       background: #dbeafe;
       padding: 8px;
@@ -709,6 +730,62 @@
      <img src="wb.png" alt="Chat">
   </button>
 
+  <button id="voice-bubble" aria-label="Open voice chat">
+  <img src="wb_voice.png" alt="Voice">
+  </button>
+
+  <div id="voice-panel" hidden style="
+    position: fixed;
+    left: 12px;
+    bottom: calc(72px + env(safe-area-inset-bottom));
+    width: min(92vw, 380px);
+    height: min(55dvh, 420px);
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  ">
+    <div style="
+      padding: 12px;
+      font-weight: 700;
+      border-bottom: 1px solid #eee;
+      background: #fafafa;
+      position: relative;
+    ">
+      WernerBot Voice
+      <button id="voice-close" aria-label="Close voice"
+        style="
+          position:absolute;
+          right:10px; top:8px;
+          width:36px; height:36px;
+          border-radius:10px;
+          border:1px solid #ddd;
+          background:#fff;
+          cursor:pointer;
+          font-size:18px;
+        ">✕</button>
+    </div>
+
+    <div style="padding: 12px; text-align:left; font-size:14px;">
+      <div><strong>Status:</strong> <span id="voice-status">idle</span></div>
+
+      <div style="margin-top:10px; display:flex; gap:10px;">
+        <button id="voice-start">Start</button>
+        <button id="voice-stop" disabled>Stop</button>
+      </div>
+
+      <div style="margin-top:10px; color:#555;">
+        Click <b>Start</b> and speak. This uses the same WernerBot backend.
+      </div>
+
+      <div id="voice-debug" style="margin-top:10px; color:#888; font-size:12px;"></div>
+    </div>
+  </div>
+
   <div id="chat-panel" hidden>
     <div class="chat-header">
       <span>WernerBot</span>
@@ -724,6 +801,7 @@
       <button id="chat-send">Send</button>
     </div>
   </div>
+
 
   <script>
     (function () {
@@ -754,6 +832,9 @@
         messages.scrollTop = messages.scrollHeight; // auto-scroll
         return div;
       }
+
+
+
 
       // NEW: create an empty bot bubble to stream into
       function addBotPlaceholder(showThinking) {
@@ -879,6 +960,17 @@
           if (e.key === "Enter") handleSend();
         });
       }
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const voiceBubble = document.getElementById("voice-bubble");
+      if (!voiceBubble) return;
+
+      voiceBubble.addEventListener("click", () => {
+        window.open("https://wernerbotapp-audio-218955992134.europe-west4.run.app/", "_blank", "noopener");
+      });
     })();
   </script>
 
