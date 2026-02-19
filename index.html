@@ -1069,13 +1069,13 @@
                 fullText += msg.text;
                 renderBotDiv(botDiv, fullText);
               } else if (msg.type === "done") {
-                // fallback if stream ends without "done"
                 renderBotDiv(botDiv, fullText.trim());
+
                 const messageId = "web_" + Date.now() + "_" + Math.random().toString(16).slice(2);
                 attachFeedback(botDiv, messageId);
-                const messageId = "web_" + Date.now() + "_" + Math.random().toString(16).slice(2);
-                attachFeedback(botDiv, messageId);
+
                 return;
+              
               } else if (msg.type === "error") {
                 throw new Error(msg.message || "Stream error");
               }
