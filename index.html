@@ -1186,8 +1186,14 @@
           remoteAudio = null;
         }
 
+        // ✅ RESET UI to original
         setStatus("idle");
+        debug(""); // optional
+
+        startBtn.classList.remove("btn-connected");
+        startBtn.textContent = "Start";
         startBtn.disabled = false;
+
         stopBtn.disabled = true;
 
       } catch {}
