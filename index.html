@@ -374,6 +374,26 @@
       color: #222;
     }
 
+    .feedback-row{
+      display:flex;
+      gap:8px;
+      margin-top:6px;
+    }
+
+    .thumb{
+      border:1px solid #ddd;
+      background:#fff;
+      border-radius:999px;
+      padding:6px 10px;
+      cursor:pointer;
+      font-size:14px;
+    }
+
+    .thumb:disabled{
+      opacity:.5;
+      cursor:not-allowed;
+    }
+
   </style>
 </head>
 <body>
@@ -909,6 +929,33 @@
         return div;
       }
 
+      function attachFeedback(div, messageId) {
+        const row = document.createElement("div");
+        row.className = "feedback-row";
+
+        const up = document.createElement("button");
+        up.className = "thumb";
+        up.textContent = "👍";
+
+        const down = document.createElement("button");
+        down.className = "thumb";
+        down.textContent = "👎";
+
+        up.onclick = () => {
+          console.log("WEB vote up for", messageId);
+          up.disabled = true; down.disabled = true;
+        };
+
+        down.onclick = () => {
+          console.log("WEB vote down for", messageId);
+          up.disabled = true; down.disabled = true;
+        };
+
+        row.appendChild(up);
+        row.appendChild(down);
+        div.appendChild(row);
+      }
+
 
 
 
@@ -1012,6 +1059,8 @@
                 renderBotDiv(botDiv, fullText);
               } else if (msg.type === "done") {
                 renderBotDiv(botDiv, fullText.trim());
+                const messageId = "web_" + Date.now() + "_" + Math.random().toString(16).slice(2);
+                attachFeedback(botDiv, messageId);
                 return;
               } else if (msg.type === "error") {
                 throw new Error(msg.message || "Stream error");
