@@ -462,7 +462,7 @@
       <li><a href="#quipsterina">🌸 Quipsterina</a></li>
       <li>
         <a href="#whatsapp">
-          💬 WhatsApp Bot - available at +39 351 804 7629.
+          💬 WhatsApp Bot (+39 351 804 7629).
         </a>
       </li>
       <li><a href="#telegram">💬 TelegramBot</a></li>
@@ -592,7 +592,7 @@
       Click the 
       <img src="wb_voice.png" alt="Voice Bot icon"
           style="height:20px; vertical-align:middle; border-radius:50%;">
-      white circle in the bottom-left corner to start.
+      black circle in the bottom-left corner to start.
     </p>
   </section>
 
@@ -1128,14 +1128,15 @@
     const voiceFeedback = document.getElementById("voice-feedback");
     const voiceUp = document.getElementById("voice-up");
     const voiceDown = document.getElementById("voice-down");
+
     let voiceSessionId = null;
+    let pc = null, dc = null, micStream = null, remoteAudio = null;
 
     if (!voiceBubble || !voicePanel) return;
 
-    let pc = null, dc = null, micStream = null, remoteAudio = null;
-
     const TOKEN_URL = "https://wernerbotapp-audio-218955992134.europe-west4.run.app/realtime/token";
     const REALTIME_CALLS_URL = "https://api.openai.com/v1/realtime/calls";
+    const VOTES_URL = "https://wernerbotapp-audio-218955992134.europe-west4.run.app/votes";
 
     function setStatus(s) { if (statusEl) statusEl.textContent = s; }
     function debug(msg) { if (debugEl) debugEl.textContent = msg || ""; }
@@ -1144,10 +1145,27 @@
     function closePanel() { voicePanel.hidden = true; }
 
     voiceBubble.addEventListener("click", openPanel);
+
     if (closeBtn) closeBtn.addEventListener("click", async () => {
       await stopVoice();
       closePanel();
     });
+
+    async function sendVote(id, vote) {
+      if (!id) throw new Error("No voiceSessionId");
+      const res = await fetch(VOTES_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, vote, channel: "voice" }),
+      });
+      if (!res.ok) throw new Error("Vote HTTP " + res.status);
+      return res.json().catch(() => ({}));
+    }
+
+    function setVoteButtonsEnabled(enabled) {
+      if (voiceUp) voiceUp.disabled = !enabled;
+      if (voiceDown) voiceDown.disabled = !enabled;
+    }
 
     async function startVoice() {
       try {
@@ -1171,54 +1189,33 @@
         remoteAudio.autoplay = true;
         remoteAudio.playsInline = true;
         remoteAudio.controls = false;
-
-        // ✅ append inside your panel so Firefox treats it as real media output
         voicePanel.appendChild(remoteAudio);
 
         pc.ontrack = async (e) => {
           remoteAudio.srcObject = e.streams[0];
-
-          // ✅ minimal Firefox fix
-          try {
-            await remoteAudio.play();
-          } catch (err) {
-            console.log("Audio play blocked:", err);
-          }
+          try { await remoteAudio.play(); } catch {}
         };
 
-        // Firefox sometimes needs an explicit play() after a user gesture.
-        remoteAudio.play().catch(() => {
-          // If it fails, show a message in debug
-          debug("Audio playback blocked. Tap Start again or unmute your device.");
-        });
-
-        // Add mic track
         pc.addTrack(micStream.getTracks()[0]);
 
         // 4) Data channel for events
         dc = pc.createDataChannel("oai-events");
+
         dc.addEventListener("open", () => {
           debug("connected");
 
-          // existing UI changes
           startBtn.classList.add("btn-connected");
           startBtn.textContent = "Connected";
+
+          startBtn.disabled = true;
           stopBtn.disabled = false;
 
-          // ✅ NEW: create an id for this voice session (for counting)
+          // Create a new session id for this voice run
           voiceSessionId = "voice_" + Date.now() + "_" + Math.random().toString(16).slice(2);
 
-          // ✅ NEW: show thumbs
+          // Show thumbs and enable them
           if (voiceFeedback) voiceFeedback.hidden = false;
-
-          // ✅ NEW: ensure buttons are clickable
-          if (voiceUp) voiceUp.disabled = false;
-          if (voiceDown) voiceDown.disabled = false;
-        });
-
-        dc.addEventListener("message", (e) => {
-          // You can log events while debugging
-          // console.log("realtime event:", e.data);
+          setVoteButtonsEnabled(true);
         });
 
         // 5) SDP exchange with OpenAI Realtime
@@ -1238,18 +1235,7 @@
         const answerSdp = await sdpRes.text();
         await pc.setRemoteDescription({ type: "answer", sdp: answerSdp });
 
-        // ✅ Force audio playback (helps Firefox / iOS autoplay rules)
-        try {
-          await remoteAudio.play();
-        } catch (e) {
-          // Not fatal. Some browsers still block; we’ll see console errors.
-        }
-
         setStatus("listening");
-        startBtn.disabled = true;
-        stopBtn.disabled = false;
-
-
       } catch (err) {
         setStatus("error");
         debug(err?.message || String(err));
@@ -1269,65 +1255,52 @@
 
         if (remoteAudio) {
           try { remoteAudio.srcObject = null; } catch {}
+          try { remoteAudio.remove(); } catch {}
           remoteAudio = null;
         }
 
-        // ✅ RESET UI to original
         setStatus("idle");
-        debug(""); // optional
+        debug("");
 
         startBtn.classList.remove("btn-connected");
         startBtn.textContent = "Start";
         startBtn.disabled = false;
 
         stopBtn.disabled = true;
-        // ✅ NEW: hide thumbs + clear session id
+
         if (voiceFeedback) voiceFeedback.hidden = true;
         voiceSessionId = null;
-        
+
+        // disable vote buttons when not in session
+        setVoteButtonsEnabled(false);
       } catch {}
     }
 
     if (startBtn) startBtn.addEventListener("click", startVoice);
     if (stopBtn) stopBtn.addEventListener("click", stopVoice);
-    if (voiceUp) voiceUp.addEventListener("click", () => {
-
-    async function sendVote(id, vote) {
-      if (!id) return; // safety
-      try {
-        const res = await fetch("https://wernerbotapp-audio-218955992134.europe-west4.run.app/votes", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ id, vote, channel: "voice" }),
-        });
-        const data = await res.json();
-        console.log("VOICE vote saved:", data);
-      } catch (e) {
-        console.log("VOICE vote error:", e);
-      }
-    }
 
     if (voiceUp) voiceUp.addEventListener("click", async () => {
-      await sendVote(voiceSessionId, "up");
-      voiceUp.disabled = true;
-      voiceDown.disabled = true;
+      try {
+        const data = await sendVote(voiceSessionId, "up");
+        console.log("VOICE vote saved:", data);
+      } catch (e) {
+        console.error("VOICE vote failed:", e);
+        debug("Vote failed: " + (e?.message || String(e)));
+        return;
+      }
+      setVoteButtonsEnabled(false);
     });
 
     if (voiceDown) voiceDown.addEventListener("click", async () => {
-      await sendVote(voiceSessionId, "down");
-      voiceUp.disabled = true;
-      voiceDown.disabled = true;
-    });
-
-      
-      voiceUp.disabled = true;
-      voiceDown.disabled = true;
-    });
-
-    if (voiceDown) voiceDown.addEventListener("click", () => {
-      console.log("VOICE vote down for", voiceSessionId);
-      voiceUp.disabled = true;
-      voiceDown.disabled = true;
+      try {
+        const data = await sendVote(voiceSessionId, "down");
+        console.log("VOICE vote saved:", data);
+      } catch (e) {
+        console.error("VOICE vote failed:", e);
+        debug("Vote failed: " + (e?.message || String(e)));
+        return;
+      }
+      setVoteButtonsEnabled(false);
     });
 
   })();
