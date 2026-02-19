@@ -394,6 +394,12 @@
       cursor:not-allowed;
     }
 
+    .thumb{
+      appearance: none;
+      -webkit-appearance: none;
+      color: #111;
+    }
+
   </style>
 </head>
 <body>
@@ -874,6 +880,11 @@
         <button id="voice-stop" class="btn btn-stop" disabled>Stop</button>
       </div>
 
+      <div id="voice-feedback" style="margin-top:10px; display:flex; gap:10px;" hidden>
+        <button id="voice-up" class="thumb">👍</button>
+        <button id="voice-down" class="thumb">👎</button>
+      </div>
+
       <div style="margin-top:10px; color:#555;">
         Click <b>Start</b> and speak. This uses the same WernerBot backend.
       </div>
@@ -1058,7 +1069,10 @@
                 fullText += msg.text;
                 renderBotDiv(botDiv, fullText);
               } else if (msg.type === "done") {
+                // fallback if stream ends without "done"
                 renderBotDiv(botDiv, fullText.trim());
+                const messageId = "web_" + Date.now() + "_" + Math.random().toString(16).slice(2);
+                attachFeedback(botDiv, messageId);
                 const messageId = "web_" + Date.now() + "_" + Math.random().toString(16).slice(2);
                 attachFeedback(botDiv, messageId);
                 return;
@@ -1097,6 +1111,10 @@
     const stopBtn     = document.getElementById("voice-stop");
     const statusEl    = document.getElementById("voice-status");
     const debugEl     = document.getElementById("voice-debug");
+    const voiceFeedback = document.getElementById("voice-feedback");
+    const voiceUp = document.getElementById("voice-up");
+    const voiceDown = document.getElementById("voice-down");
+    let voiceSessionId = null;
 
     if (!voiceBubble || !voicePanel) return;
 
@@ -1168,15 +1186,20 @@
         dc.addEventListener("open", () => {
           debug("connected");
 
-          const startBtn = document.getElementById("voice-start");
-          const stopBtn  = document.getElementById("voice-stop");
-
-          // show connected visually
+          // existing UI changes
           startBtn.classList.add("btn-connected");
           startBtn.textContent = "Connected";
-
-          // optional: enable Stop when connected
           stopBtn.disabled = false;
+
+          // ✅ NEW: create an id for this voice session (for counting)
+          voiceSessionId = "voice_" + Date.now() + "_" + Math.random().toString(16).slice(2);
+
+          // ✅ NEW: show thumbs
+          if (voiceFeedback) voiceFeedback.hidden = false;
+
+          // ✅ NEW: ensure buttons are clickable
+          if (voiceUp) voiceUp.disabled = false;
+          if (voiceDown) voiceDown.disabled = false;
         });
 
         dc.addEventListener("message", (e) => {
@@ -1244,12 +1267,27 @@
         startBtn.disabled = false;
 
         stopBtn.disabled = true;
-
+        // ✅ NEW: hide thumbs + clear session id
+        if (voiceFeedback) voiceFeedback.hidden = true;
+        voiceSessionId = null;
+        
       } catch {}
     }
 
     if (startBtn) startBtn.addEventListener("click", startVoice);
     if (stopBtn) stopBtn.addEventListener("click", stopVoice);
+    if (voiceUp) voiceUp.addEventListener("click", () => {
+      console.log("VOICE vote up for", voiceSessionId);
+      voiceUp.disabled = true;
+      voiceDown.disabled = true;
+    });
+
+    if (voiceDown) voiceDown.addEventListener("click", () => {
+      console.log("VOICE vote down for", voiceSessionId);
+      voiceUp.disabled = true;
+      voiceDown.disabled = true;
+    });
+
   })();
   </script>
 
