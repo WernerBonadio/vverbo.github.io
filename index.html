@@ -381,26 +381,26 @@
     }
 
     .thumb{
-      appearance: none;
-      -webkit-appearance: none;
       border: 1px solid #e5e7eb;
-      background: #f9fafb;
-      color: #6b7280;          /* soft gray */
+      background: transparent;
+      color: #6b7280;          /* neutral gray */
       border-radius: 999px;
-      padding: 6px 10px;
+      padding: 6px 8px;
       cursor: pointer;
-      font-size: 14px;
-      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
     }
 
     .thumb:hover{
       background: #f3f4f6;
-      border-color: #d1d5db;
       color: #111;
+      border-color: #d1d5db;
     }
 
     .thumb:disabled{
-      opacity: 0.5;
+      opacity: 0.4;
       cursor: not-allowed;
     }
     
@@ -885,8 +885,17 @@
       </div>
 
       <div id="voice-feedback" style="margin-top:10px; display:flex; gap:10px;" hidden>
-        <button id="voice-up" class="thumb">Like</button>
-        <button id="voice-down" class="thumb">Dislike</button>
+        <button id="voice-up" class="thumb" aria-label="Like">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 9V5a3 3 0 0 0-6 0v4M5 15h4V9H5a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2zm4 0h6a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-1"/>
+          </svg>
+        </button>
+
+        <button id="voice-down" class="thumb" aria-label="Dislike">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M10 15v4a3 3 0 0 0 6 0v-4m-9-6h4v6H7a2 2 0 0 1-2-2V11a2 2 0 0 1 2-2zm4 0h6a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-1"/>
+          </svg>
+        </button>
       </div>
 
       <div style="margin-top:10px; color:#555;">
