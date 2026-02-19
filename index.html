@@ -1291,7 +1291,35 @@
     if (startBtn) startBtn.addEventListener("click", startVoice);
     if (stopBtn) stopBtn.addEventListener("click", stopVoice);
     if (voiceUp) voiceUp.addEventListener("click", () => {
-      console.log("VOICE vote up for", voiceSessionId);
+
+    async function sendVote(id, vote) {
+      if (!id) return; // safety
+      try {
+        const res = await fetch("https://wernerbotapp-audio-218955992134.europe-west4.run.app/votes", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id, vote, channel: "voice" }),
+        });
+        const data = await res.json();
+        console.log("VOICE vote saved:", data);
+      } catch (e) {
+        console.log("VOICE vote error:", e);
+      }
+    }
+
+    if (voiceUp) voiceUp.addEventListener("click", async () => {
+      await sendVote(voiceSessionId, "up");
+      voiceUp.disabled = true;
+      voiceDown.disabled = true;
+    });
+
+    if (voiceDown) voiceDown.addEventListener("click", async () => {
+      await sendVote(voiceSessionId, "down");
+      voiceUp.disabled = true;
+      voiceDown.disabled = true;
+    });
+
+      
       voiceUp.disabled = true;
       voiceDown.disabled = true;
     });
