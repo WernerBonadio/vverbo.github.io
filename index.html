@@ -381,25 +381,29 @@
     }
 
     .thumb{
-      border:1px solid #ddd;
-      background:#fff;
-      border-radius:999px;
-      padding:6px 10px;
-      cursor:pointer;
-      font-size:14px;
-    }
-
-    .thumb:disabled{
-      opacity:.5;
-      cursor:not-allowed;
-    }
-
-    .thumb{
       appearance: none;
       -webkit-appearance: none;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      color: #6b7280;          /* soft gray */
+      border-radius: 999px;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .thumb:hover{
+      background: #f3f4f6;
+      border-color: #d1d5db;
       color: #111;
     }
 
+    .thumb:disabled{
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
   </style>
 </head>
 <body>
@@ -881,8 +885,8 @@
       </div>
 
       <div id="voice-feedback" style="margin-top:10px; display:flex; gap:10px;" hidden>
-        <button id="voice-up" class="thumb">👍</button>
-        <button id="voice-down" class="thumb">👎</button>
+        <button id="voice-up" class="thumb">▲</button>
+        <button id="voice-down" class="thumb">▼</button>
       </div>
 
       <div style="margin-top:10px; color:#555;">
