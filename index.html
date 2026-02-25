@@ -1132,6 +1132,38 @@
     let voiceSessionId = null;
     let pc = null, dc = null, micStream = null, remoteAudio = null;
 
+    // ---------------- WAKE LOCK (Call mode) ----------------
+    let wakeLock = null;
+
+    async function requestWakeLock() {
+      try {
+        if (!("wakeLock" in navigator)) return false;
+        wakeLock = await navigator.wakeLock.request("screen");
+        wakeLock.addEventListener("release", () => { wakeLock = null; });
+        return true;
+      } catch (err) {
+        wakeLock = null;
+        return false;
+      }
+    }
+
+    async function releaseWakeLock() {
+      try {
+        if (wakeLock) await wakeLock.release();
+      } finally {
+        wakeLock = null;
+      }
+    }
+
+    document.addEventListener("visibilitychange", async () => {
+      if (document.visibilityState === "visible") {
+        if (window.__CALL_ACTIVE__) await requestWakeLock();
+      } else {
+        await releaseWakeLock();
+      }
+    });
+    // -------------------------------------------------------
+
     if (!voiceBubble || !voicePanel) return;
 
     const TOKEN_URL = "https://wernerbotapp-audio-218955992134.europe-west4.run.app/realtime/token";
@@ -1169,6 +1201,9 @@
 
     async function startVoice() {
       try {
+        window.__CALL_ACTIVE__ = true;
+        await requestWakeLock();
+
         setStatus("starting…");
         debug("");
 
@@ -1273,6 +1308,9 @@
 
         // disable vote buttons when not in session
         setVoteButtonsEnabled(false);
+
+        window.__CALL_ACTIVE__ = false;
+        await releaseWakeLock();
       } catch {}
     }
 
