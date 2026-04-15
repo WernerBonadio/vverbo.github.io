@@ -470,6 +470,15 @@
       margin-bottom: 14px;
     }
 
+    .quick-nav-list--main a {
+      border-color: rgba(21, 122, 103, 0.16);
+      background: linear-gradient(180deg, rgba(236, 246, 242, 0.96), rgba(248, 251, 249, 0.96));
+    }
+
+    .quick-nav-list--main .quick-nav-title {
+      color: var(--accent-dark);
+    }
+
     .quick-nav-secondary {
       margin-top: 12px;
       border-top: 1px solid rgba(22, 36, 42, 0.07);
@@ -538,10 +547,51 @@
       padding: 0 4px;
     }
 
+    .section-band {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      margin: 0 0 18px;
+      padding: 0 4px;
+    }
+
+    .section-band-copy {
+      max-width: 36rem;
+      color: var(--muted);
+    }
+
+    .section-band--main {
+      margin-top: 4px;
+    }
+
+    .section-band--main .eyebrow {
+      background: rgba(21, 122, 103, 0.09);
+      border-color: rgba(21, 122, 103, 0.12);
+      color: var(--accent-dark);
+    }
+
+    .section-band--experiments .eyebrow {
+      background: rgba(217, 138, 95, 0.09);
+      border-color: rgba(217, 138, 95, 0.12);
+      color: #8d5637;
+    }
+
+    .section-band--context .eyebrow {
+      background: rgba(39, 85, 102, 0.08);
+      border-color: rgba(39, 85, 102, 0.1);
+      color: #295564;
+    }
+
     .card-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 20px;
+    }
+
+    .card-grid + .section-band,
+    .section-card--wide + .section-band {
+      margin-top: 34px;
     }
 
     .section-card {
@@ -554,6 +604,24 @@
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.78), var(--shadow-soft);
       overflow: hidden;
       text-align: left;
+    }
+
+    .section-card--main {
+      border-color: rgba(21, 122, 103, 0.14);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.84), 0 18px 34px rgba(18, 30, 35, 0.055);
+    }
+
+    .section-card--main::before {
+      height: 5px;
+      opacity: 0.28;
+    }
+
+    .section-card--experiment {
+      border-color: rgba(217, 138, 95, 0.1);
+    }
+
+    .section-card--context {
+      border-color: rgba(39, 85, 102, 0.1);
     }
 
     .section-card::before {
@@ -625,6 +693,24 @@
 
     .card-kicker {
       margin-bottom: 14px;
+    }
+
+    .section-card--main .card-kicker {
+      background: rgba(21, 122, 103, 0.08);
+      border-color: rgba(21, 122, 103, 0.11);
+      color: var(--accent-dark);
+    }
+
+    .section-card--experiment .card-kicker {
+      background: rgba(217, 138, 95, 0.08);
+      border-color: rgba(217, 138, 95, 0.1);
+      color: #8d5637;
+    }
+
+    .section-card--context .card-kicker {
+      background: rgba(39, 85, 102, 0.08);
+      border-color: rgba(39, 85, 102, 0.1);
+      color: #295564;
     }
 
     .section-card h2 {
@@ -991,7 +1077,8 @@
         grid-template-columns: 1fr;
       }
 
-      .section-heading {
+      .section-heading,
+      .section-band {
         flex-direction: column;
         align-items: start;
       }
@@ -1006,6 +1093,18 @@
     }
 
     @media (max-width: 700px) {
+      body {
+        background:
+          linear-gradient(180deg, #f3f5f2 0%, #f7f4ee 100%);
+      }
+
+      body::before,
+      .hero-copy::after,
+      .hero-panel-card::after,
+      .section-card::after {
+        display: none;
+      }
+
       .brand-lockup {
         flex-direction: column;
         align-items: flex-start;
@@ -1024,6 +1123,22 @@
       .quick-nav-secondary .quick-nav-list {
         grid-template-columns: 1fr;
       }
+
+      .hero-copy,
+      .hero-panel-card,
+      .quick-nav,
+      .section-card,
+      .site-footer {
+        backdrop-filter: none;
+        box-shadow: 0 8px 20px rgba(18, 30, 35, 0.045);
+      }
+
+      .quick-nav-list a,
+      .mini-card,
+      .argument-list li,
+      .contact-inline {
+        box-shadow: none;
+      }
     }
 
     @media (max-width: 600px) {
@@ -1036,8 +1151,39 @@
       .hero-panel-card,
       .quick-nav,
       .section-card,
+      .site-footer,
+      .quick-nav-list a,
+      .mini-card,
+      .argument-list li,
+      .contact-inline,
+      .logo {
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: none;
+      }
+
+      .hero-copy,
+      .hero-panel-card,
+      .quick-nav,
+      .section-card,
+      .site-footer {
+        border-color: rgba(22, 36, 42, 0.07);
+      }
+
+      .section-card::before {
+        height: 3px;
+        opacity: 0.14;
+      }
+
+      .hero-copy,
+      .hero-panel-card,
+      .quick-nav,
+      .section-card,
       .site-footer {
         padding: 18px;
+      }
+
+      .logo {
+        border-color: rgba(22, 36, 42, 0.07);
       }
 
       .hero-actions,
@@ -1056,7 +1202,16 @@
         margin-bottom: 24px;
       }
 
+      .quick-nav-list a {
+        background: rgba(249, 250, 249, 0.98);
+      }
+
       .section-heading {
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+
+      .section-band {
         gap: 10px;
         margin-bottom: 14px;
       }
@@ -1084,6 +1239,11 @@
       .card-kicker,
       .eyebrow {
         letter-spacing: 0.12em;
+      }
+
+      .button,
+      button.button {
+        box-shadow: none;
       }
 
       .quipsterina-embed iframe {
@@ -1152,9 +1312,9 @@
         </div>
         <p class="section-copy">Start with the core tools, then open the rest only if you need them.</p>
       </div>
-      <ul class="quick-nav-list quick-nav-primary">
-        <li><a href="#quipsterina"><span class="quick-nav-title">🌸 Quipsterina</span><span class="quick-nav-note">Experimental conversational AI demo.</span></a></li>
+      <ul class="quick-nav-list quick-nav-primary quick-nav-list--main">
         <li><a href="#whatsapp"><span class="quick-nav-title">💬 WhatsApp Bot</span><span class="quick-nav-note">Direct chat on phone or desktop.</span></a></li>
+        <li><a href="#telegram"><span class="quick-nav-title">💬 Telegram Bot</span><span class="quick-nav-note">Lightweight channel with the same AI core.</span></a></li>
         <li>
           <a href="#webpage-bot">
             <span class="quick-nav-title">💬 Webpage Bot</span>
@@ -1168,30 +1328,72 @@
           </a>
         </li>
         <li><a href="#revisione-prezzi"><span class="quick-nav-title">📊 Revisione Prezzi</span><span class="quick-nav-note">Public procurement price revision tool.</span></a></li>
+        <li><a href="#istat-index-bot"><span class="quick-nav-title">ISTAT Index Bot</span><span class="quick-nav-note">Fast index lookup utility.</span></a></li>
       </ul>
       <details class="quick-nav-secondary">
         <summary>More tools and experiments</summary>
         <p class="quick-nav-secondary-copy">Secondary links stay available without crowding the first screen.</p>
         <ul class="quick-nav-list">
-          <li><a href="#telegram"><span class="quick-nav-title">💬 Telegram Bot</span><span class="quick-nav-note">Lightweight experimental channel.</span></a></li>
+          <li><a href="#quipsterina"><span class="quick-nav-title">🌸 Quipsterina</span><span class="quick-nav-note">Experimental conversational AI demo.</span></a></li>
           <li><a href="#audio-transcriber"><span class="quick-nav-title">🎧 Audio to Text</span><span class="quick-nav-note">Short audio transcription demo.</span></a></li>
           <li><a href="#public-gpts"><span class="quick-nav-title">🤖 Public GPT Assistants</span><span class="quick-nav-note">Open legal and social tools.</span></a></li>
-          <li><a href="#istat-index-bot"><span class="quick-nav-title">ISTAT Index Bot</span><span class="quick-nav-note">Fast index lookup utility.</span></a></li>
           <li><a href="#public-funding"><span class="quick-nav-title">🌱 Public Funding Systems</span><span class="quick-nav-note">Recovery and funding focus.</span></a></li>
         </ul>
       </details>
     </nav>
 
-    <section class="workspace-intro section-heading">
+    <section class="section-band section-band--main">
       <div>
-        <p class="eyebrow">Applied experiments</p>
-        <h2>Prototypes, assistants, and public utilities</h2>
+        <p class="eyebrow">Main tools</p>
+        <h2>Core tools and direct access</h2>
       </div>
-      <p class="section-copy">A consistent card-based layout for the live tools, embedded navigation, and public-facing AI projects on this page.</p>
+      <p class="section-band-copy">The main tools are grouped first so the most useful entry points are immediately recognizable.</p>
     </section>
 
     <div class="card-grid">
-      <section id="istat-index-bot" class="project-section section-card tone-sky">
+      <section id="whatsapp" class="section-card section-card--main tone-mint">
+        <p class="card-kicker">Messaging channel</p>
+        <h2>💬 WhatsApp Bot</h2>
+        <p>Chat with WernerBot on phone or desktop through WhatsApp. <img src="wb.png" alt="Webpage Bot icon" class="inline-icon"> Same AI brain, faster access.</p>
+        <div class="button-wrap">
+          <a class="button button-whatsapp" href="https://wa.me/393518047629" target="_blank" rel="noopener">Open WhatsApp Chat (+39 351 804 7629)</a>
+        </div>
+      </section>
+
+      <section id="telegram" class="section-card section-card--main tone-sky">
+        <p class="card-kicker">Messaging channel</p>
+        <h2>💬 Telegram Bot</h2>
+        <p>A lightweight Telegram bot powered by the same core AI system as the on-page assistant.</p>
+        <div class="button-wrap">
+          <a class="button button-telegram" href="https://t.me/WernerInfoBot" target="_blank" rel="noopener">Open Telegram Bot</a>
+        </div>
+      </section>
+
+      <section id="webpage-bot" class="section-card section-card--main tone-ink">
+        <p class="card-kicker">On-page interaction</p>
+        <h2>💬 Webpage Bot</h2>
+        <p>Already on this page? You can chat instantly using the assistant in the bottom-right corner.</p>
+        <p class="card-note">Click the <img src="wb.png" alt="Webpage Bot icon" class="inline-icon"> white circle in the bottom-right corner to start.</p>
+      </section>
+
+      <section id="voice-bot" class="section-card section-card--main tone-earth">
+        <p class="card-kicker">On-page interaction</p>
+        <h2>🎙️ Voice Bot</h2>
+        <p>Already on this page? You can chat instantly using the VOICE assistant in the bottom-left corner.</p>
+        <p class="card-note">Click the <img src="wb_voice.png" alt="Voice Bot icon" class="inline-icon round"> black circle in the bottom-left corner to start.</p>
+      </section>
+
+      <section class="vision-block section-card section-card--main tone-mint" id="revisione-prezzi">
+        <p class="card-kicker">Public procurement</p>
+        <h2>📊 Revisione Prezzi SF – Public Web Tool</h2>
+        <p>Public version of the <strong>tabella revisione prezzi</strong> based on Allegato II.2-bis del D.Lgs. 36/2023.</p>
+        <p>Includes instructions and examples for services and supplies.</p>
+        <div class="button-wrap">
+          <a class="button button-green" href="https://wernerbonadio.github.io/revisione_prezzi_SF/" target="_blank">👉 Open Revisione Prezzi Webpage</a>
+        </div>
+      </section>
+
+      <section id="istat-index-bot" class="project-section section-card section-card--main tone-sky">
         <p class="card-kicker">Data utility</p>
         <h2>ISTAT Index Bot</h2>
         <p>Simple ISTAT index lookup with direct SDMX data access.</p>
@@ -1200,8 +1402,18 @@
           <a class="button button-secondary" href="https://istat-index-bot-662928293009.europe-west4.run.app/" target="_blank" rel="noopener noreferrer">Open app</a>
         </div>
       </section>
+    </div>
 
-      <section class="vision-block section-card tone-rose" id="quipsterina">
+    <section class="section-band section-band--experiments">
+      <div>
+        <p class="eyebrow">Experiments</p>
+        <h2>Prototypes and public AI demos</h2>
+      </div>
+      <p class="section-band-copy">Experimental assistants and test interfaces stay visible, but separate from the main utility layer.</p>
+    </section>
+
+    <div class="card-grid">
+      <section class="vision-block section-card section-card--experiment tone-rose" id="quipsterina">
         <p class="card-kicker">Conversation demo</p>
         <h2>🌸 Quipsterina – Beta Version</h2>
         <p>Experimental conversational AI focused on streaming UX, short-term memory, and natural dialogue.</p>
@@ -1219,39 +1431,7 @@
         </div> -->
       </section>
 
-      <section id="whatsapp" class="section-card tone-mint">
-        <p class="card-kicker">Messaging channel</p>
-        <h2>💬 WhatsApp Bot</h2>
-        <p>Chat with WernerBot on phone or desktop through WhatsApp. <img src="wb.png" alt="Webpage Bot icon" class="inline-icon"> Same AI brain, faster access.</p>
-        <div class="button-wrap">
-          <a class="button button-whatsapp" href="https://wa.me/393518047629" target="_blank" rel="noopener">Open WhatsApp Chat (+39 351 804 7629)</a>
-        </div>
-      </section>
-
-      <section id="telegram" class="section-card tone-sky">
-        <p class="card-kicker">Messaging channel</p>
-        <h2>💬 Telegram Bot</h2>
-        <p>A lightweight Telegram bot powered by the same core AI system as the on-page assistant.</p>
-        <div class="button-wrap">
-          <a class="button button-telegram" href="https://t.me/WernerInfoBot" target="_blank" rel="noopener">Open Telegram Bot</a>
-        </div>
-      </section>
-
-      <section id="webpage-bot" class="section-card tone-ink">
-        <p class="card-kicker">On-page interaction</p>
-        <h2>💬 Webpage Bot</h2>
-        <p>Already on this page? You can chat instantly using the assistant in the bottom-right corner.</p>
-        <p class="card-note">Click the <img src="wb.png" alt="Webpage Bot icon" class="inline-icon"> white circle in the bottom-right corner to start.</p>
-      </section>
-
-      <section id="voice-bot" class="section-card tone-earth">
-        <p class="card-kicker">On-page interaction</p>
-        <h2>🎙️ Voice Bot</h2>
-        <p>Already on this page? You can chat instantly using the VOICE assistant in the bottom-left corner.</p>
-        <p class="card-note">Click the <img src="wb_voice.png" alt="Voice Bot icon" class="inline-icon round"> black circle in the bottom-left corner to start.</p>
-      </section>
-
-      <section class="vision-block section-card tone-sky" id="audio-transcriber">
+      <section class="vision-block section-card section-card--experiment tone-sky" id="audio-transcriber">
         <p class="card-kicker">Speech tool</p>
         <h2>🎧 Audio to Text – Free Transcriber (Test App)</h2>
         <p>Experimental public demo for short audio transcription.</p>
@@ -1268,19 +1448,9 @@
           </iframe>
         </div> -->
       </section>
-
-      <section class="vision-block section-card tone-mint" id="revisione-prezzi">
-        <p class="card-kicker">Public procurement</p>
-        <h2>📊 Revisione Prezzi SF – Public Web Tool</h2>
-        <p>Public version of the <strong>tabella revisione prezzi</strong> based on Allegato II.2-bis del D.Lgs. 36/2023.</p>
-        <p>Includes instructions and examples for services and supplies.</p>
-        <div class="button-wrap">
-          <a class="button button-green" href="https://wernerbonadio.github.io/revisione_prezzi_SF/" target="_blank">👉 Open Revisione Prezzi Webpage</a>
-        </div>
-      </section>
     </div>
 
-    <section class="vision-block section-card section-card--wide tone-earth" id="public-gpts">
+    <section class="vision-block section-card section-card--wide section-card--experiment tone-earth" id="public-gpts">
       <p class="card-kicker">Open assistants</p>
       <h2>🤖 Public GPT Assistants – Legal &amp; Social Tools</h2>
       <p>Specialized assistants created by <strong>Werner Bonadio</strong> for public service, translation, and social work.</p>
@@ -1311,6 +1481,14 @@
           <a href="https://chatgpt.com/g/g-68518daa342c8191b3a7a55204722009-calcolo-revisione-prezzi-sf-servizi-e-forniture" target="_blank">🌐 Open Price Revision Assistant</a>
         </article>
       </div>
+    </section>
+
+    <section class="section-band section-band--context">
+      <div>
+        <p class="eyebrow">Background</p>
+        <h2>Research focus and long-term context</h2>
+      </div>
+      <p class="section-band-copy">Broader themes, funding systems, and recovery work sit apart from the tool layer for clearer orientation.</p>
     </section>
 
   <!--
@@ -1354,7 +1532,7 @@
   </section>
   -->
 
-    <section class="vision-block section-card section-card--wide tone-ink" id="public-funding">
+    <section class="vision-block section-card section-card--wide section-card--context tone-ink" id="public-funding">
     <h2>🌱 Reconstruction, Public Funding & Recovery — Ukraine</h2>
 
     <div class="vision-text">
