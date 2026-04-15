@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Werner Bonadio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Werner Bonadio – Economist, Explorer, and AI Practitioner working on digital innovation and AI tools. Includes a tool for 'tabella revisione prezzi' (D.Lgs. 36/2023) for public contracts." />
+  <meta name="author" content="Werner Bonadio" />
+  <meta name="robots" content="index, follow" />
+  <meta name="google-site-verification" content="w1BhKGPnXJFI1xnMgdUCP3qigicESCy2mnOaVP3mFVg" />
+  <link rel="canonical" href="https://wernerbot.com/" />
+
+  <!-- Favicons -->
+  <link rel="icon" href="/wb_favicon-16x16.png" sizes="16x16" type="image/png" />
+  <link rel="icon" href="/wb_favicon-32x32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="/wb_android-chrome-192x192.png" sizes="192x192" type="image/png" />
+  <link rel="icon" href="/wb_android-chrome-512x512.png" sizes="512x512" type="image/png" />
+  <link rel="apple-touch-icon" href="/wb_apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#ffffff" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Werner Bonadio" />
+  <meta property="og:description" content="Economist · Explorer · AI Practitioner · Recovery Plan Consultant (esperto PNRR)" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://wernerbot.com/" />
+  <meta property="og:image" content="https://wernerbot.com/wb_og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <style>
+    :root { color-scheme: light dark; }
+    * { box-sizing: border-box; }
+ 
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      margin: 0; padding: 0; text-align: center;
+      background-color: #fdfdfd; color: #222;
+    }
+    header { padding: 24px 16px 8px; }
+    img.logo {
+      display: block; margin: 28px auto 12px;
+      width: 96px; height: 96px; object-fit: contain;
+    }
+    h1 { font-size: 2rem; margin: 12px 0 6px; }
+    p.description { font-size: 1.05rem; color: #555; margin: 0 0 16px; }
+    a, button.link {
+      color: #0055aa; background: none; border: 0; padding: 0;
+      font: inherit; cursor: pointer; text-decoration: none;
+    }
+    .divider {
+      margin: 24px auto 0; max-width: 960px; border: 0; border-top: 1px solid #eee;
+    }
+    
+    /* Vision block */
+    .vision-block {
+      background-color: #f5f5f5;
+      padding: 40px 20px;
+      margin: 40px 0;
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+    }
+    .vision-inner { max-width: 900px; margin: 0 auto; }
+    .vision-block h2 { font-size: 24px; margin: 0 0 18px; color: #333; }
+    .vision-block p { font-size: 16px; line-height: 1.7; color: #444; margin: 0 0 12px; }
+    .latin-quote { margin-top: 20px; font-style: italic; font-size: 18px; color: #444; }
+    .latin-translation { display: block; font-size: 14px; color: #777; margin-top: 6px; }
+
+    /* Generic embed card (used for Quipsterina & Audio bot) */
+    .quipsterina-embed {
+      width: 100%;
+      max-width: 760px;
+      margin: 20px auto;
+      border-radius: 12px;
+      overflow: hidden;
+      background-color: #eef7ff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      position: relative;
+    }
+
+    .quipsterina-embed iframe {
+      width: 110%;
+      margin-left: -5%;
+      height: clamp(520px, 80vh, 720px);
+      border: none;
+      display: block;
+    }
+
+    @media (max-width: 600px) {
+      .quipsterina-embed iframe {
+        height: 80vh;
+      }
+    }
+
+    @media (max-width: 600px) {
+      #userNotice > div {
+        justify-content: center !important;   /* stop space-between */
+      }
+
+      #userNotice button {
+        margin-left: 0 !important;
+      }
+    }
+    
+    footer {
+      margin-top: 32px; padding: 20px;
+      font-size: 0.9rem; color: #888; border-top: 1px solid #eee;
+    }
+
+    /* Chat bubble */
+    #chat-bubble {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 56px;
+      height: 56px;
+      border-radius: 999px;
+      border: 1px solid #ddd;
+      background: white;
+      box-shadow: 0 6px 18px rgba(0,0,0,.12);
+      cursor: pointer;
+      z-index: 9999;
+    }
+
+    #chat-bubble img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 999px;
+    }
+        
+    #chat-messages {
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+
+    }
+    #chat-panel{
+      position: fixed;
+      right: 12px;
+      bottom: calc(72px + env(safe-area-inset-bottom));
+      width: min(92vw, 380px);
+      height: min(70dvh, 520px);
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    #chat-panel[hidden] {
+      display: none !important;
+    }
+    
+    /* Voice bubble */
+    #voice-bubble {
+      position: fixed;
+      left: 18px;
+      bottom: calc(18px + env(safe-area-inset-bottom));
+      width: 56px;
+      height: 56px;
+      border-radius: 999px;
+      border: 1px solid #ddd;
+      background: white;
+      box-shadow: 0 6px 18px rgba(0,0,0,.12);
+      cursor: pointer;
+      z-index: 9999;
+    }
+
+    #voice-bubble img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 999px;
+      display: block;
+    }
+
+      
+    #voice-panel[hidden] {
+      display: none !important;
+    }
+    #chat-close,
+    #voice-close {
+      color: #111 !important;
+      background: #fff !important;
+      border: 1px solid #ddd !important;
+    }
+    .user-msg{
+      background: #dbeafe;
+      padding: 8px;
+      border-radius: 8px;
+      margin: 6px 0 6px auto;
+      max-width: 85%;
+      text-align: left;
+    }
+    .user-msg,
+    .bot-msg {
+      line-height: 1.4;   
+    }  
+    .bot-msg p { margin: 0; }
+    
+    .bot-msg.streaming {
+      min-height: calc(1.4em + 16px); /* 1 line + padding top/bottom (8px + 8px) */
+    }
+
+    .chat-header {
+      padding: 12px 12px;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+      background: #fafafa;
+      cursor: move; /* for dragging (next step) */
+    }
+
+    .chat-header {
+      padding-right: 52px; /* space for the close button */
+    }
+
+    .chat-messages{
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      font-size: 14px;
+    }
+    
+    .chat-input {
+      display: flex;
+      border-top: 1px solid #ddd;
+    }
+
+    .chat-input input {
+      flex: 1;
+      border: none;
+      padding: 10px;
+      outline: none;
+    }
+
+    .chat-input button {
+      border: none;
+      padding: 10px 14px;
+      cursor: pointer;
+    }
+    .chat-input {
+      position: sticky;
+      bottom: 0;
+      background: white;
+    }
+
+    .bot-msg {
+      background: #f2f2f2;
+      padding: 6px 8px;
+      border-radius: 8px;
+      margin-bottom: 6px;
+      text-align: left;
+    }
+    .bot-msg ol {
+      padding-left: 18px;
+      margin: 8px 0;
+    }
+
+    .bot-msg li {
+      margin-bottom: 6px;
+    }
+
+    .bot-msg a {
+      color: #2563eb;        /* clean blue */
+      text-decoration: underline;
+      word-break: break-all; /* prevents ugly overflow */
+    }
+    
+    .chat-header {
+      position: relative; /* NEW: anchor for absolute close button */
+    }
+
+    .chat-header {
+      padding-right: 52px; /* space for the close button */
+    }
+
+    .btn{
+      border: none;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn:disabled{
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    /* Start = green */
+    .btn-start{
+      background: #22c55e;
+      color: #fff;
+    }
+
+    /* Stop = red */
+    .btn-stop{
+      background: #ef4444;
+      color: #fff;
+    }
+
+    /* Connected state (green + a bit “confirmed”) */
+    .btn-connected{
+      box-shadow: 0 0 0 3px rgba(34,197,94,0.35);
+    }
+
+
+    #chat-close {
+      position: absolute; /* NEW */
+      right: 10px;        /* NEW */
+      top: 8px;           /* NEW */
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+
+      /* optional: better contrast on mobile/dark mode */
+      color: #111;
+    }
+
+
+    #chat-close {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      background: #fff;
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 1;
+
+      /* add these */
+      z-index: 99999;
+      color: #111;
+    }
+    .disabled-section {
+      opacity: 0.4;
+      filter: grayscale(100%);
+      pointer-events: none;
+    }
+      #public-funding.vision-block{
+      padding: 24px 20px;  /* was 40px 20px */
+      margin: 24px 0;      /* was 40px 0 */
+    }
+
+    #public-funding + footer{
+      margin-top: 16px;       /* was 32px */
+    }
+    #public-funding .vision-text{
+      max-width: 900px;
+      margin: 0 auto;
+    }
+        .argument-list{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+    }
+
+    .argument-list li{
+      margin: 0 0 12px 0;
+      line-height: 1.7;
+    }
+
+    .argument-list li strong{
+      color: #222;
+    }
+
+    .feedback-row{
+      display:flex;
+      gap:8px;
+      margin-top:6px;
+    }
+
+    .thumb{
+      appearance: none;
+      -webkit-appearance: none;
+
+      width: 32px;
+      height: 32px;
+
+      border: 1px solid #e5e7eb;
+      border-radius: 50%;
+
+      background: transparent;
+      cursor: pointer;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 14px;
+      line-height: 1;
+
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .thumb:hover{
+      background: #f3f4f6;
+      border-color: #d1d5db;
+    }
+
+    .thumb:disabled{
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <img class="logo" src="wb.png" alt="Portrait of Werner Bonadio, AI consultant and economist" width="96" height="96" />
+      <h1>Werner Bonadio</h1>
+      <p class="description">Economist · Explorer · Applied AI Practitioner · Recovery and Resilience Facility (RRF) Consultant</p>
+
+      <p>
+        <button id="contactBtn" class="link" type="button"
+                aria-controls="contactBoxInline" aria-expanded="false">
+          Contact
+        </button>
+      </p>
+      <div id="contactBoxInline" hidden>
+        <p><a href="mailto:werner.bonadio@wernerbot.com">werner.bonadio@wernerbot.com</a></p>
+      </div>
+    </header>
+
+    <hr class="divider" />
+
+    <section class="vision-block" aria-labelledby="vision-title">
+      <div class="vision-inner">
+        <h2 id="vision-title">Embracing Change</h2>
+        <p>Machine Learning was already a milestone, but modern AI especially conversational tools like ChatGPT is reshaping everything.</p>
+        <p>The way we work, communicate, and learn is evolving at an incredible pace. We’re not just observing this shift we’re part of it.</p>
+        <p>Driven by curiosity and purpose, we explore these tools, experiment with new ideas, and create applications that open up new markets and meaningful opportunities.</p>
+        <p class="latin-quote">
+          “Tempora mutantur, nos et mutamur in illis. Et amor mundum movet.”
+          <span class="latin-translation">Times change, and we change with them. And love moves the world.</span>
+        </p>
+        <p>
+        This website is a living workspace rather than a polished showcase.
+        Ideas are tested here, prototypes are exposed early, and experiments are shared
+        as part of the process of learning what AI can meaningfully enable.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Quick navigation -->
+  <nav style="margin: 40px auto; max-width: 700px; text-align: center;">
+    <h3 style="color: #888;">📑 Quick Navigation</h3>
+    <ul style="list-style-type: none; padding-left: 0; display: inline-block; text-align: left; margin: auto;">
+      <li><a href="#quipsterina">🌸 Quipsterina</a></li>
+      <li>
+        <a href="#whatsapp">
+          💬 WhatsApp Bot
+        </a>
+      </li>
+      <li><a href="#telegram">💬 TelegramBot</a></li>
+      <li>
+        <a href="#webpage-bot" style="display:block; text-align:left;">
+          <span style="display:block;">💬 Webpage Bot</span>
+          <span style="display:block; padding-left: 28px;">
+            Click the 
+            <img src="wb.png" alt="chat icon" style="height:20px; vertical-align:middle;">
+            white bottom-right
+          </span>
+        </a>
+      </li>
+      <li>
+        <a href="#webpage-bot" style="display:block; text-align:left;">
+          <span style="display:block;">🎙️ Voice Bot</span>
+          <span style="display:block; padding-left: 28px;">
+            Click the 
+            <img src="wb_voice.png" alt="chat icon"
+                style="height:20px; vertical-align:middle; border-radius:50%;">
+            black bottom-left
+          </span>
+        </a>
+      </li>
+      <li><a href="#audio-transcriber">🎧 Audio to Text</a></li>
+      <!-- <li><a href="#public-contracts">📄 Public Contracts Assistant</a></li> -->
+      <li><a href="#revisione-prezzi">📊 Revisione Prezzi Table</a></li>
+      <li><a href="#public-gpts">🤖 Public GPT Assistants</a></li>
+      <!--<li><a href="#sudtirol-tourism">🗺️ South Tyrol Tourism Assistant</a></li> -->
+      <li><a href="#istat-index-bot">ISTAT Index Bot</a></li>
+      <li><a href="#public-funding">🌱 Public Funding Systems</a></li>
+    </ul>
+  </nav>
+
+  <section id="istat-index-bot" class="project-section">
+    <h2>ISTAT Index Bot</h2>
+    <p>Calcolo indici ISTAT con interfaccia semplice e chiara.</p>
+    <p>
+      I dati sono recuperati direttamente da ISTAT tramite SDMX.
+    </p>
+    <p>
+      Supporta PPI, PPS, IR e PC.
+      Per PPI, PPS e IR usare un codice ATECO 2007.
+      Per PC usare un codice ECOICOP/NIC.
+    </p>
+    <p>
+      <a href="https://istat-index-bot-662928293009.europe-west4.run.app/" target="_blank" rel="noopener noreferrer">
+        Open app
+      </a>
+    </p>
+  </section>  
+
+  <!-- Quipsterina -->
+  <section class="vision-block" id="quipsterina">
+    <h2>🌸 Quipsterina – Beta Version</h2>
+    <p>
+        🌸 Quipsterina is an experimental conversational AI demo focused on streaming UX,
+        short-term memory, and natural dialogue.<br>
+        Her tone is loosely inspired by classic love poetry and literary reflections on human connection.<br>
+        It is part of my ongoing work on applied AI interfaces and prototypes.<br><br>
+
+        You can try the full-page version here:
+      <a href="https://quipsterina-1003766064674.europe-west4.run.app/"
+        target="_blank"
+        style="display:inline-block; padding:6px 12px; margin-left:4px;
+               background:#ff6fa9; color:white; border-radius:6px;
+               text-decoration:none; font-weight:600;">
+        👉 Open Full App
+      </a>
+    </p>
+
+    <!-- <div class="quipsterina-embed">
+      <iframe
+        src="https://quipsterina-1003766064674.europe-west4.run.app/?embed=true"
+        loading="lazy"
+        referrerpolicy="no-referrer">
+      </iframe>
+    </div> -->
+  </section>
+
+  <!-- WhatsApp Bot -->
+  <section id="whatsapp" style="margin: 40px auto; max-width: 700px; text-align: center;">
+    <h2> 💬 WhatsApp Bot </h2>
+    <p style="color:#666; line-height: 1.5;">
+      Prefer WhatsApp?  
+      Chat directly with WernerBot on your phone or desktop.  
+      <img src="wb.png" alt="Webpage Bot icon"
+          style="height:18px; vertical-align:middle;">
+      Fast, personal, and connected to the same AI brain.
+    </p>
+    <a href="https://wa.me/393518047629" target="_blank" rel="noopener"
+      style="
+        display:inline-block;
+        padding:10px 18px;
+        border-radius:12px;
+        background:#E8F8EF;
+        color:#25D366;
+        border:1px solid #cceedd;
+        text-decoration:none;
+        font-weight:500;
+      ">
+      Open WhatsApp Chat (+39 351 804 7629)
+    </a>
+  </section>
+
+    <!-- Telegram Bot -->
+  <section id="telegram" style="margin: 40px auto; max-width: 700px; text-align: center;">
+    <h2> 💬 Telegram Bot </h2>
+    <p style="color:#666; line-height: 1.5;">
+      Prefer chatting on Telegram?  
+      Try our first experimental bot — fast, lightweight, and always with you.  
+      Powered by the same core AI brain as the assistant in the bottom right.
+    </p>
+    <a href="https://t.me/WernerInfoBot" target="_blank" rel="noopener"
+      style="
+        display:inline-block;
+        padding:10px 18px;
+        border-radius:12px;
+        background:#E6F2FA;
+        color:#0088cc;
+        border:1px solid #cfe6f5;
+        text-decoration:none;
+        font-weight:500;
+      ">
+      Open Telegram Bot
+    </a>
+  </section>
+
+  <!-- Webpage Bot -->
+  <section id="webpage-bot" style="margin: 40px auto; max-width: 700px; text-align: center;">
+    <h2> 💬 Webpage Bot </h2>
+    <p style="color:#666; line-height: 1.5;">
+      Already on this page?  
+      You can chat instantly using the assistant in the bottom-right corner.
+    </p>
+    <p style="color:#000; font-weight:600;">
+      Click the 
+      <img src="wb.png" alt="Webpage Bot icon"
+          style="height:20px; vertical-align:middle;">
+      white circle in the bottom-right corner to start.
+    </p>
+  </section>
+
+<!-- Webpage Bot -->
+  <section id="webpage-bot" style="margin: 40px auto; max-width: 700px; text-align: center;">
+    <h2> 🎙️ Voice Bot </h2>
+    <p style="color:#666; line-height: 1.5;">
+      Already on this page?  
+      You can chat instantly using the VOICE assistant in the bottom-left corner.
+    </p>
+    <p style="color:#000; font-weight:600;">
+      Click the 
+      <img src="wb_voice.png" alt="Voice Bot icon"
+          style="height:20px; vertical-align:middle; border-radius:50%;">
+      black circle in the bottom-left corner to start.
+    </p>
+  </section>
+
+  <!-- NEW: Audio Transcriber bot -->
+  <section class="vision-block" id="audio-transcriber">
+    <h2>🎧 Audio to Text – Free Transcriber (Test App)</h2>
+    <p>
+      This is an experimental public demo for short audio transcription.<br>
+      Please avoid uploading personal or sensitive content.<br><br>
+
+      <b>Limits (test app):</b> recommended up to <b>2 MB</b> per file.<br>
+      <b>Allowed:</b> mp3, wav, m4a, ogg/opus.<br><br>
+
+      Open the full-page version here:
+      <a href="https://audio-transcriber-472236191426.europe-west4.run.app/"
+         target="_blank"
+         style="display:inline-block; padding:6px 12px; margin-left:4px;
+                background:#2563eb; color:white; border-radius:6px;
+                text-decoration:none; font-weight:600;">
+        👉 Open Full App
+      </a>
+    </p>
+
+    <!-- <div class="quipsterina-embed">
+      <iframe
+        src="https://audio-transcriber-472236191426.europe-west4.run.app/"
+        loading="lazy"
+        referrerpolicy="no-referrer">
+      </iframe>
+    </div> -->
+  </section>
+
+  <section class="vision-block" id="revisione-prezzi">
+    <h2>📊 Revisione Prezzi SF – Public Web Tool</h2>
+    <p>
+      Complete public version of the <strong>tabella revisione prezzi</strong>, based on
+      Allegato II.2-bis del D.Lgs. 36/2023.<br>
+      Includes instructions and examples for services & supplies.
+    </p>
+
+    <a href="https://wernerbonadio.github.io/revisione_prezzi_SF/"
+      target="_blank"
+      style="
+        display:inline-block;
+        padding:10px 16px;
+        background:#0a7d30;
+        color:white;
+        border-radius:8px;
+        text-decoration:none;
+        font-size:1.1rem;
+        font-weight:600;
+        margin-top:10px;">
+      👉 Open Revisione Prezzi Webpage
+    </a>
+
+  </section>
+
+  <!-- Public GPT Assistants -->
+  <section class="vision-block" id="public-gpts">
+    <h2>🤖 Public GPT Assistants – Legal & Social Tools</h2>
+    <p>Below are some specialized assistants created by <strong>Werner Bonadio</strong> to support public service, translation, and social work.
+    <br><em>Note: You need to be signed in with a <strong>ChatGPT (free or paid) account</strong> to use these assistants.</em></p>
+
+    <ul style="list-style-type: none; padding: 0; font-size: 1.05em;">
+      <li style="margin-bottom: 12px;">
+        🔁 <strong>Translator: Italian–German (Public Procurement 2025)</strong><br>
+        For translating legal and administrative terms in the context of public tenders in South Tyrol.<br>
+        <a href="https://chatgpt.com/g/g-LITLOl54X-traduttore-italiano-tedesco-appalti-pubblici-2025" target="_blank">🌐 Open Translator Assistant</a>
+      </li>
+
+      <li style="margin-bottom: 12px;">
+        📘 <strong>Affidamenti Diretti / Direktvergaben – Südtirol (Beta)</strong><br>
+        Beta handbook for simplified direct awards in South Tyrol (ACP-AOV, 30.04.25).<br>
+        <a href="https://chatgpt.com/g/g-LeJq3fx4k-affidamenti-diretti-direktvergaben-sudtirol-beta" target="_blank">🌐 Open Assistente Affidamenti Diretti</a>
+      </li>
+
+      <li style="margin-bottom: 12px;">
+        🧒 <strong>Voluntary Guardians – Tutori Volontari / Freiwillige Vormunde</strong><br>
+        Information and documents for becoming a voluntary guardian in Italy.<br>
+        <a href="https://chatgpt.com/g/g-678953939a9081918b03b4b5a58083b2-tutori-volontari-freiwillige-vormunde" target="_blank">🌐 Open Assistente Tutori Volontari</a>
+      </li>
+
+      <li>
+        📊 <strong>Calcolo revisione prezzi SF (servizi e forniture)</strong><br>
+        Calcola la revisione dei prezzi secondo l'allegato II.2-bis D.Lgs. 36/2023.<br>
+        <a href="https://chatgpt.com/g/g-68518daa342c8191b3a7a55204722009-calcolo-revisione-prezzi-sf-servizi-e-forniture" target="_blank">🌐 Open Price Revision Assistant</a>
+      </li>
+    </ul>
+  </section>
+
+  <!--
+  <section class="vision-block">
+    <h3 style="
+      color: #ff8888;
+      font-weight: bold;
+      margin: 20px auto;
+      text-align: center;
+      font-size: 1.7em;
+      letter-spacing: 0.5px;
+      line-height: 1.3;
+    ">
+      🔧 Other ideas in progress
+    </h3>
+  </section>
+    -->
+
+  <!--
+  <section class="vision-block" id="sudtirol-tourism">
+    <h2>South Tyrol Tourism Assistant – Beta Version</h2>
+    <p>
+      🛈 This chatbot helps you explore events, attractions, and travel tips for your trip to South Tyrol.
+    </p>
+    <p>
+      ⚠️Please note: Data are limited and not updated in real time. This is just a showcase.
+    </p>
+    <div style="
+      width: 100%;
+      max-width: 760px;
+      height: 500px;
+      margin: 0 auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);">
+      <iframe
+        src="https://sudtour-assistant-894385917658.europe-west4.run.app/"
+        style="width: 100%; height: 100%; border: none; display: block;">
+      </iframe>
+    </div>
+  </section>
+  -->
+
+  <section class="vision-block" id="public-funding">
+    <h2>🌱 Reconstruction, Public Funding & Recovery — Ukraine</h2>
+
+    <div class="vision-text">
+      <ul class="argument-list">
+        <li>
+          <strong>Focus:</strong> Public funding systems, strategy, and project development,
+          with growing attention to reconstruction and recovery frameworks.
+        </li>
+
+        <li>
+          <strong>Experience:</strong> Building on work with the
+          <strong>Recovery and Resilience Facility (RRF)</strong> (PNRR in Italy),
+          with interest extending to broader European and international recovery mechanisms,
+          especially Ukraine.
+        </li>
+
+        <li>
+          <strong>Research:</strong> European funding programmes—structure, strategic priorities,
+          and access mechanisms—supporting companies and institutions through analysis,
+          project exploration, and clearer positioning within complex frameworks, including
+          opportunities related to the <strong>European Defence Fund (EDF)</strong>.
+        </li>
+
+        <li>
+          <strong>Cultural bridge:</strong> Beyond programmes and institutions, I value cultural exchange.
+          Kyiv has an extraordinary and vibrant artistic life shaped by resilience, creativity,
+          and a strong sense of identity.
+        </li>
+
+        <li>
+          <strong>Recovery project:</strong> A human-centred initiative bringing people and families
+          affected by war to the mountains for restorative experiences through hiking and climbing,
+          conceived as a space for physical and mental recovery, reconnection, and rebuilding trust.
+        </li>
+
+        <li>
+          <strong>Service:</strong> I also contribute as a volunteer tutor, continuing to learn while supporting others.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Werner Bonadio | VAT number: IT03155460219 |
+    <a href="#" onclick="openContactModal(); return false;">Contact</a>
+  </footer>
+
+  <!-- Privacy Notice Popup -->
+  <div id="userNotice" style="display:none; position:fixed; bottom:0; left:0; right:0; background:#eee; padding:1rem; box-shadow:0 -2px 5px rgba(0,0,0,0.2); z-index:1000;">
+    <div style="max-width:900px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+      <span style="margin-bottom:0.5rem;">
+        This site does not use cookies or tracking. Messages sent to the assistant are processed by OpenAI. See our <a href="/privacy.html" target="_blank">Privacy Policy</a>.
+      </span>
+      <button onclick="acceptNotice()" style="background:#2e8b57; color:white; border:none; padding:0.5rem 1rem; cursor:pointer;">
+        OK
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function acceptNotice() {
+      sessionStorage.setItem("noticeAccepted", "true");
+      document.getElementById("userNotice").style.display = "none";
+    }
+
+    window.onload = function() {
+      if (!sessionStorage.getItem("noticeAccepted")) {
+        document.getElementById("userNotice").style.display = "block";
+      }
+    };
+  </script>
+
+  <div id="contactModal" style="display:none; position:fixed; top:30%; left:50%;
+    transform:translate(-50%, -50%); background:#fff; padding:20px; border:2px solid #ccc;
+    border-radius:10px; box-shadow:0 0 15px rgba(0,0,0,0.3); z-index:9999;">
+    <p>You can contact me at:</p>
+    <p><a href="mailto:werner.bonadio@wernerbot.com" id="emailToCopy">werner.bonadio@wernerbot.com</a></p>
+    <button onclick="copyEmail()">📋 Copy</button>
+    <span id="copyConfirm" style="display:none; color: green; margin-left: 10px;">Copied!</span><br>
+    <button onclick="closeContactModal()" style="margin-top:10px;">Close</button>
+  </div>
+
+  <!-- Script unico finale -->
+  <script>
+    // Toggle box inline (header)
+    const contactBtn = document.getElementById('contactBtn');
+    const contactBoxInline = document.getElementById('contactBoxInline');
+    if (contactBtn && contactBoxInline) {
+      contactBtn.addEventListener('click', () => {
+        const expanded = contactBtn.getAttribute('aria-expanded') === 'true';
+        contactBtn.setAttribute('aria-expanded', String(!expanded));
+        contactBoxInline.hidden = expanded;
+      });
+    }
+
+    // Modale open/close (footer)
+    function openContactModal() {
+      document.getElementById('contactModal').style.display = 'block';
+    }
+    function closeContactModal() {
+      document.getElementById('contactModal').style.display = 'none';
+    }
+
+    // Chiudi modale con ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeContactModal();
+    });
+
+    // Copia email
+    function copyEmail() {
+      const email = document.getElementById("emailToCopy").innerText;
+      navigator.clipboard.writeText(email).then(function() {
+        document.getElementById("copyConfirm").style.display = "inline";
+        setTimeout(() => {
+          document.getElementById("copyConfirm").style.display = "none";
+        }, 2000);
+      });
+    }
+  </script>
+
+  <button id="chat-bubble" aria-label="Open chat">
+     <img src="wb.png" alt="Chat">
+  </button>
+
+  <button id="voice-bubble" aria-label="Open voice chat">
+  <img src="wb_voice.png" alt="Voice">
+  </button>
+
+  <div id="voice-panel" hidden style="
+    position: fixed;
+    left: 12px;
+    bottom: calc(72px + env(safe-area-inset-bottom));
+    width: min(92vw, 380px);
+    height: min(55dvh, 420px);
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  ">
+    <div style="
+      padding: 12px;
+      font-weight: 700;
+      border-bottom: 1px solid #eee;
+      background: #fafafa;
+      position: relative;
+    ">
+      WernerBot Voice
+      <button id="voice-close" aria-label="Close voice"
+        style="
+          position:absolute;
+          right:10px; top:8px;
+          width:36px; height:36px;
+          border-radius:10px;
+          border:1px solid #ddd;
+          background:#fff;
+          cursor:pointer;
+          font-size:18px;
+          color:#111;   /* ✅ ADD THIS */
+        ">✕</button>
+    </div>
+
+    <div style="padding: 12px; text-align:left; font-size:14px;">
+      <div><strong>Status:</strong> <span id="voice-status">idle</span></div>
+
+      <div style="margin-top:10px; display:flex; gap:10px;">
+        <button id="voice-start" class="btn btn-start">Start</button>
+        <button id="voice-stop" class="btn btn-stop" disabled>Stop</button>
+      </div>
+
+      <div id="voice-feedback" style="margin-top:10px; display:flex; gap:10px;" hidden>
+        <button id="voice-up" class="thumb">👍</button>
+        <button id="voice-down" class="thumb">👎</button>
+      </div>
+
+      <div style="margin-top:10px; color:#555;">
+        Click <b>Start</b> and speak. This uses the same WernerBot backend.
+      </div>
+
+      <div id="voice-debug" style="margin-top:10px; color:#888; font-size:12px;"></div>
+    </div>
+  </div>
+
+  <div id="chat-panel" hidden>
+    <div class="chat-header">
+      <span>WernerBot</span>
+      <button id="chat-close" aria-label="Close chat">✕</button>
+    </div>
+
+    <div class="chat-messages" id="chat-messages">
+      <div class="bot-msg">Hello. I’m here.</div>
+    </div>
+
+    <div class="chat-input">
+      <input type="text" id="chat-text" placeholder="Type a message…" />
+      <button id="chat-send">Send</button>
+    </div>
+  </div>
+
+
+  <script>
+    (function () {
+      const bubble = document.getElementById("chat-bubble");
+      const panel = document.getElementById("chat-panel");
+      const closeBtn = document.getElementById("chat-close");
+
+      const input = document.getElementById("chat-text");
+      const sendBtn = document.getElementById("chat-send");
+      const messages = document.getElementById("chat-messages");
+
+      if (!bubble || !panel) return;
+
+      // NEW: tracks whether the first message was already sent
+      let didFirstRequest = false;      
+
+      function addMsg(text, who) {
+        const div = document.createElement("div");
+        div.className = (who === "user") ? "user-msg" : "bot-msg";
+
+        if (who === "bot" && window.marked) {
+          div.innerHTML = marked.parse(text);
+        } else {
+          div.textContent = text; // avoid HTML injection
+        }
+
+        messages.appendChild(div);
+        messages.scrollTop = messages.scrollHeight; // auto-scroll
+        return div;
+      }
+
+      function attachFeedback(div, messageId) {
+        const row = document.createElement("div");
+        row.className = "feedback-row";
+
+        const up = document.createElement("button");
+        up.className = "thumb";
+        up.textContent = "👍";
+
+        const down = document.createElement("button");
+        down.className = "thumb";
+        down.textContent = "👎";
+
+        up.onclick = () => {
+          console.log("WEB vote up for", messageId);
+          up.disabled = true; down.disabled = true;
+        };
+
+        down.onclick = () => {
+          console.log("WEB vote down for", messageId);
+          up.disabled = true; down.disabled = true;
+        };
+
+        row.appendChild(up);
+        row.appendChild(down);
+        div.appendChild(row);
+      }
+
+
+
+
+      // NEW: create an empty bot bubble to stream into
+      function addBotPlaceholder(showThinking) {
+        const div = document.createElement("div");
+        div.className = "bot-msg streaming";
+        if (showThinking) {
+          div.textContent = "Thinking…";
+          div.dataset.thinking = "1";
+        } else {
+          div.textContent = "";          // no thinking for later messages
+          div.dataset.thinking = "0";
+        }
+        messages.appendChild(div);
+        messages.scrollTop = messages.scrollHeight;
+        return div;
+      }
+
+      // NEW: render markdown progressively
+      function renderBotDiv(div, text) {
+        // First real token: clear placeholder text immediately
+        if (div.dataset.thinking === "1" && text && text.length > 0) {
+          div.dataset.thinking = "0";
+          div.textContent = ""; // clear "Thinking…" before markdown renders
+        }
+
+        if (text && div.classList.contains("streaming")) {
+          div.classList.remove("streaming");
+        }
+
+        if (window.marked) div.innerHTML = marked.parse(text);
+        else div.textContent = text;
+
+        messages.scrollTop = messages.scrollHeight;
+      }
+
+      function toggleChat() {
+        panel.hidden = !panel.hidden;
+        if (!panel.hidden && input) input.focus();
+        if (!panel.hidden) didFirstRequest = false;
+      }
+
+      // IMPORTANT: must be async because we use await
+      async function handleSend() {
+        const text = (input.value || "").trim();
+        if (!text) return;
+
+        addMsg(text, "user");
+        input.value = "";
+
+        const showThinking = !didFirstRequest;
+        const botDiv = addBotPlaceholder(showThinking);
+        didFirstRequest = true;
+        let fullText = "";
+
+        try {
+          const res = await fetch("https://wernerbotapp-218955992134.europe-west4.run.app/chat/stream", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "text/event-stream"
+            },
+            body: JSON.stringify({ message: text })
+          });
+
+          if (!res.ok || !res.body) {
+            throw new Error(`HTTP ${res.status}`);
+          }
+
+          const reader = res.body.getReader();
+          const decoder = new TextDecoder("utf-8");
+          let buffer = "";
+
+          while (true) {
+            const { value, done } = await reader.read();
+            if (done) break;
+
+            buffer += decoder.decode(value, { stream: true });
+
+            // SSE events are separated by a blank line
+            const parts = buffer.split("\n\n");
+            buffer = parts.pop() || "";
+
+            for (const part of parts) {
+              const line = part.split("\n").find(l => l.startsWith("data: "));
+              if (!line) continue;
+
+              const jsonStr = line.slice(6).trim(); // after "data: "
+              if (!jsonStr) continue;
+
+              let msg;
+              try {
+                msg = JSON.parse(jsonStr);
+              } catch {
+                continue;
+              }
+
+              if (msg.type === "delta" && msg.text) {
+                fullText += msg.text;
+                renderBotDiv(botDiv, fullText);
+              } else if (msg.type === "done") {
+                renderBotDiv(botDiv, fullText.trim());
+
+                const messageId = "web_" + Date.now() + "_" + Math.random().toString(16).slice(2);
+                attachFeedback(botDiv, messageId);
+
+                return;
+              
+              } else if (msg.type === "error") {
+                throw new Error(msg.message || "Stream error");
+              }
+            }
+          }
+
+          // fallback if stream ends without "done"
+          renderBotDiv(botDiv, fullText.trim());
+
+        } catch (err) {
+          botDiv.textContent = "Backend error: " + (err?.message || String(err));
+        }
+      }
+
+      bubble.addEventListener("click", toggleChat);
+      if (closeBtn) closeBtn.addEventListener("click", toggleChat);
+
+      if (sendBtn) sendBtn.addEventListener("click", handleSend);
+      if (input) {
+        input.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") handleSend();
+        });
+      }
+    })();
+  </script>
+
+  <script>
+  (function () {
+    const voiceBubble = document.getElementById("voice-bubble");
+    const voicePanel  = document.getElementById("voice-panel");
+    const closeBtn    = document.getElementById("voice-close");
+    const startBtn    = document.getElementById("voice-start");
+    const stopBtn     = document.getElementById("voice-stop");
+    const statusEl    = document.getElementById("voice-status");
+    const debugEl     = document.getElementById("voice-debug");
+    const voiceFeedback = document.getElementById("voice-feedback");
+    const voiceUp = document.getElementById("voice-up");
+    const voiceDown = document.getElementById("voice-down");
+
+    let voiceSessionId = null;
+    let pc = null, dc = null, micStream = null, remoteAudio = null;
+
+    // ---------------- WAKE LOCK (Call mode) ----------------
+    let wakeLock = null;
+
+    async function requestWakeLock() {
+      try {
+        if (!("wakeLock" in navigator)) return false;
+        wakeLock = await navigator.wakeLock.request("screen");
+        wakeLock.addEventListener("release", () => { wakeLock = null; });
+        return true;
+      } catch (err) {
+        wakeLock = null;
+        return false;
+      }
+    }
+
+    async function releaseWakeLock() {
+      try {
+        if (wakeLock) await wakeLock.release();
+      } finally {
+        wakeLock = null;
+      }
+    }
+
+    document.addEventListener("visibilitychange", async () => {
+      if (document.visibilityState === "visible") {
+        if (window.__CALL_ACTIVE__) await requestWakeLock();
+      } else {
+        await releaseWakeLock();
+      }
+    });
+    // -------------------------------------------------------
+
+    if (!voiceBubble || !voicePanel) return;
+
+    const TOKEN_URL = "https://wernerbotapp-audio-218955992134.europe-west4.run.app/realtime/token";
+    const REALTIME_CALLS_URL = "https://api.openai.com/v1/realtime/calls";
+    const VOTES_URL = "https://wernerbotapp-audio-218955992134.europe-west4.run.app/votes";
+
+    function setStatus(s) { if (statusEl) statusEl.textContent = s; }
+    function debug(msg) { if (debugEl) debugEl.textContent = msg || ""; }
+
+    function openPanel() { voicePanel.hidden = false; }
+    function closePanel() { voicePanel.hidden = true; }
+
+    voiceBubble.addEventListener("click", openPanel);
+
+    if (closeBtn) closeBtn.addEventListener("click", async () => {
+      await stopVoice();
+      closePanel();
+    });
+
+    async function sendVote(id, vote) {
+      if (!id) throw new Error("No voiceSessionId");
+      const res = await fetch(VOTES_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, vote, channel: "voice" }),
+      });
+      if (!res.ok) throw new Error("Vote HTTP " + res.status);
+      return res.json().catch(() => ({}));
+    }
+
+    function setVoteButtonsEnabled(enabled) {
+      if (voiceUp) voiceUp.disabled = !enabled;
+      if (voiceDown) voiceDown.disabled = !enabled;
+    }
+
+    async function startVoice() {
+      try {
+        window.__CALL_ACTIVE__ = true;
+        await requestWakeLock();
+
+        setStatus("starting…");
+        debug("");
+
+        // 1) Get ephemeral key from your backend
+        const tokenRes = await fetch(TOKEN_URL, { method: "POST" });
+        if (!tokenRes.ok) throw new Error("Token HTTP " + tokenRes.status);
+        const tokenData = await tokenRes.json();
+        const ek = tokenData.value;
+        if (!ek) throw new Error("No ek_ token returned");
+
+        // 2) Mic
+        micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+
+        // 3) PeerConnection + remote audio playback
+        pc = new RTCPeerConnection();
+
+        remoteAudio = document.createElement("audio");
+        remoteAudio.autoplay = true;
+        remoteAudio.playsInline = true;
+        remoteAudio.controls = false;
+        voicePanel.appendChild(remoteAudio);
+
+        pc.ontrack = async (e) => {
+          remoteAudio.srcObject = e.streams[0];
+          try { await remoteAudio.play(); } catch {}
+        };
+
+        pc.addTrack(micStream.getTracks()[0]);
+
+        // 4) Data channel for events
+        dc = pc.createDataChannel("oai-events");
+
+        dc.addEventListener("open", () => {
+          debug("connected");
+
+          startBtn.classList.add("btn-connected");
+          startBtn.textContent = "Connected";
+
+          startBtn.disabled = true;
+          stopBtn.disabled = false;
+
+          // Create a new session id for this voice run
+          voiceSessionId = "voice_" + Date.now() + "_" + Math.random().toString(16).slice(2);
+
+          // Show thumbs and enable them
+          if (voiceFeedback) voiceFeedback.hidden = false;
+          setVoteButtonsEnabled(true);
+        });
+
+        // 5) SDP exchange with OpenAI Realtime
+        const offer = await pc.createOffer();
+        await pc.setLocalDescription(offer);
+
+        const sdpRes = await fetch(REALTIME_CALLS_URL, {
+          method: "POST",
+          body: offer.sdp,
+          headers: {
+            "Authorization": `Bearer ${ek}`,
+            "Content-Type": "application/sdp"
+          }
+        });
+
+        if (!sdpRes.ok) throw new Error("SDP HTTP " + sdpRes.status);
+        const answerSdp = await sdpRes.text();
+        await pc.setRemoteDescription({ type: "answer", sdp: answerSdp });
+
+        setStatus("listening");
+      } catch (err) {
+        setStatus("error");
+        debug(err?.message || String(err));
+        await stopVoice();
+      }
+    }
+
+    async function stopVoice() {
+      try {
+        if (dc) { try { dc.close(); } catch {} dc = null; }
+        if (pc) { try { pc.close(); } catch {} pc = null; }
+
+        if (micStream) {
+          micStream.getTracks().forEach(t => t.stop());
+          micStream = null;
+        }
+
+        if (remoteAudio) {
+          try { remoteAudio.srcObject = null; } catch {}
+          try { remoteAudio.remove(); } catch {}
+          remoteAudio = null;
+        }
+
+        setStatus("idle");
+        debug("");
+
+        startBtn.classList.remove("btn-connected");
+        startBtn.textContent = "Start";
+        startBtn.disabled = false;
+
+        stopBtn.disabled = true;
+
+        if (voiceFeedback) voiceFeedback.hidden = true;
+        voiceSessionId = null;
+
+        // disable vote buttons when not in session
+        setVoteButtonsEnabled(false);
+
+        window.__CALL_ACTIVE__ = false;
+        await releaseWakeLock();
+      } catch {}
+    }
+
+    if (startBtn) startBtn.addEventListener("click", startVoice);
+    if (stopBtn) stopBtn.addEventListener("click", stopVoice);
+
+    if (voiceUp) voiceUp.addEventListener("click", async () => {
+      try {
+        const data = await sendVote(voiceSessionId, "up");
+        console.log("VOICE vote saved:", data);
+      } catch (e) {
+        console.error("VOICE vote failed:", e);
+        debug("Vote failed: " + (e?.message || String(e)));
+        return;
+      }
+      setVoteButtonsEnabled(false);
+    });
+
+    if (voiceDown) voiceDown.addEventListener("click", async () => {
+      try {
+        const data = await sendVote(voiceSessionId, "down");
+        console.log("VOICE vote saved:", data);
+      } catch (e) {
+        console.error("VOICE vote failed:", e);
+        debug("Vote failed: " + (e?.message || String(e)));
+        return;
+      }
+      setVoteButtonsEnabled(false);
+    });
+
+  })();
+  </script>
+
+</body>
+</html>
+
