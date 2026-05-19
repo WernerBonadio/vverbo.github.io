@@ -871,19 +871,20 @@
     }
 
     #close-video-ad {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      z-index: 3;
-      width: 30px;
-      height: 30px;
-      border-radius: 999px;
-      border: none;
-      background: rgba(0, 0, 0, 0.65);
-      color: white;
-      cursor: pointer;
-      font-size: 16px;
-      line-height: 1;
+      position: absolute !important;
+      top: 8px !important;
+      right: 8px !important;
+      z-index: 2147483647 !important;
+      width: 34px !important;
+      height: 34px !important;
+      border-radius: 999px !important;
+      border: 1px solid rgba(255, 255, 255, 0.35) !important;
+      background: rgba(0, 0, 0, 0.78) !important;
+      color: white !important;
+      cursor: pointer !important;
+      font-size: 18px !important;
+      line-height: 1 !important;
+      pointer-events: auto !important;
     }
 
     @media (max-width: 600px) {
@@ -2233,18 +2234,20 @@
   })();
   </script>
 
-<script>
-  (function () {
-    const videoAd = document.getElementById("video-ad");
-    const closeBtn = document.getElementById("close-video-ad");
+  <script>
+    (function () {
+      const videoAd = document.getElementById("video-ad");
+      const closeBtn = document.getElementById("close-video-ad");
 
-    if (!videoAd || !closeBtn) return;
+      if (!videoAd || !closeBtn) return;
 
-    closeBtn.addEventListener("click", () => {
-      videoAd.style.display = "none";
-    });
-  })();
-</script>
+      closeBtn.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        videoAd.remove();
+      });
+    })();
+  </script>
 
 </body>
 </html>
