@@ -1,8 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.wernerbot.com/</loc>
-    <lastmod>2025-05-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.wernerbot.com/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.wernerbot.com/it/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.wernerbot.com/de/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.wernerbot.com/" />
+    <lastmod>2026-08-31</lastmod>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.wernerbot.com/it/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.wernerbot.com/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.wernerbot.com/it/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.wernerbot.com/de/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.wernerbot.com/" />
+    <lastmod>2026-08-31</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.wernerbot.com/de/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.wernerbot.com/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.wernerbot.com/it/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.wernerbot.com/de/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.wernerbot.com/" />
+    <lastmod>2026-08-31</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.wernerbot.com/privacy.html</loc>
+    <lastmod>2026-08-31</lastmod>
+  </url>
+  <url>
+    <loc>https://www.wernerbot.com/terms.html</loc>
+    <lastmod>2026-08-31</lastmod>
+  </url>
+  <url>
+    <loc>https://www.wernerbot.com/data-deletion.html</loc>
+    <lastmod>2026-08-31</lastmod>
   </url>
 </urlset>

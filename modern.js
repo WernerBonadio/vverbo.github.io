@@ -1,4 +1,32 @@
 (() => {
+  const locale = document.documentElement.lang.slice(0, 2).toLowerCase();
+  const messages = {
+    en: {
+      copied: "Copied",
+      copyAddress: "Copy address",
+      thinking: "Thinking…",
+      assistantUnavailable: "The assistant is temporarily unavailable.",
+      voiceUnavailable: "Voice connection is unavailable.",
+      voiceStatus: { idle: "idle", starting: "starting…", listening: "listening", error: "error" }
+    },
+    it: {
+      copied: "Copiato",
+      copyAddress: "Copia indirizzo",
+      thinking: "Sto pensando…",
+      assistantUnavailable: "L’assistente è temporaneamente non disponibile.",
+      voiceUnavailable: "La connessione vocale non è disponibile.",
+      voiceStatus: { idle: "inattivo", starting: "avvio…", listening: "in ascolto", error: "errore" }
+    },
+    de: {
+      copied: "Kopiert",
+      copyAddress: "Adresse kopieren",
+      thinking: "Denke nach…",
+      assistantUnavailable: "Der Assistent ist vorübergehend nicht verfügbar.",
+      voiceUnavailable: "Die Sprachverbindung ist nicht verfügbar.",
+      voiceStatus: { idle: "inaktiv", starting: "wird gestartet…", listening: "hört zu", error: "Fehler" }
+    }
+  };
+  const ui = messages[locale] || messages.en;
   const email = "werner.bonadio@wernerbot.com";
   const emailReveal = document.getElementById("email-reveal");
   const copyEmail = document.getElementById("copy-email");
@@ -20,9 +48,9 @@
 
   copyEmail.addEventListener("click", async () => {
     await navigator.clipboard.writeText(email);
-    copyEmail.textContent = "Copied";
+    copyEmail.textContent = ui.copied;
     window.setTimeout(() => {
-      copyEmail.textContent = "Copy address";
+      copyEmail.textContent = ui.copyAddress;
     }, 1800);
   });
 
@@ -74,7 +102,7 @@
     chatInput.value = "";
     sending = true;
     chatSend.disabled = true;
-    const reply = addMessage("Thinking…", "bot");
+    const reply = addMessage(ui.thinking, "bot");
     let fullText = "";
 
     try {
@@ -86,7 +114,7 @@
         },
         body: JSON.stringify({ message: text })
       });
-      if (!response.ok || !response.body) throw new Error("The assistant is temporarily unavailable.");
+      if (!response.ok || !response.body) throw new Error(ui.assistantUnavailable);
 
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
@@ -113,12 +141,12 @@
             if (window.marked) reply.innerHTML = window.marked.parse(fullText);
             else reply.textContent = fullText;
           }
-          if (payload.type === "error") throw new Error(payload.message);
+          if (payload.type === "error") throw new Error(payload.message || ui.assistantUnavailable);
           chatMessages.scrollTop = chatMessages.scrollHeight;
         }
       }
     } catch (error) {
-      reply.textContent = error.message || "The assistant is temporarily unavailable.";
+      reply.textContent = error.message || ui.assistantUnavailable;
     } finally {
       sending = false;
       chatSend.disabled = false;
@@ -137,10 +165,13 @@
   let peer = null;
   let mic = null;
 
-  function setVoiceStatus(status) {
-    voiceStatus.textContent = status;
-    voiceOrb.classList.toggle("voice-listening", status === "listening");
+  function setVoiceStatus(state) {
+    voiceStatus.dataset.state = state;
+    voiceStatus.textContent = ui.voiceStatus[state] || state;
+    voiceOrb.classList.toggle("voice-listening", state === "listening");
   }
+
+  setVoiceStatus("idle");
 
   function stopVoice() {
     if (peer) peer.close();
@@ -163,9 +194,9 @@
         "https://wernerbotapp-audio-218955992134.europe-west4.run.app/realtime/token",
         { method: "POST" }
       );
-      if (!tokenResponse.ok) throw new Error("Voice connection is unavailable.");
+      if (!tokenResponse.ok) throw new Error(ui.voiceUnavailable);
       const token = await tokenResponse.json();
-      if (!token.value) throw new Error("Voice connection is unavailable.");
+      if (!token.value) throw new Error(ui.voiceUnavailable);
 
       mic = await navigator.mediaDevices.getUserMedia({ audio: true });
       peer = new RTCPeerConnection();
@@ -191,12 +222,12 @@
           "Content-Type": "application/sdp"
         }
       });
-      if (!sdpResponse.ok) throw new Error("Voice connection is unavailable.");
+      if (!sdpResponse.ok) throw new Error(ui.voiceUnavailable);
       await peer.setRemoteDescription({ type: "answer", sdp: await sdpResponse.text() });
     } catch (error) {
       stopVoice();
       setVoiceStatus("error");
-      voiceError.textContent = error.message || "Voice connection is unavailable.";
+      voiceError.textContent = error.message || ui.voiceUnavailable;
     }
   }
 

@@ -37,13 +37,14 @@ main {
   border-bottom: 1px solid var(--line);
 }
 
-.brand, .nav-links { display: flex; align-items: center; }
+.brand, .nav-links, .nav-actions, .language-switcher { display: flex; align-items: center; }
 .brand { gap: 12px; font-weight: 700; letter-spacing: -.02em; }
 .brand-mark {
   width: 38px; height: 38px; border: 1px solid var(--ink); border-radius: 50%;
   display: grid; place-items: center; font-size: 10px; letter-spacing: .08em;
 }
-.nav-links { gap: 36px; font-size: 14px; font-weight: 600; }
+.nav-actions { gap: 22px; }
+.nav-links { gap: 30px; font-size: 14px; font-weight: 600; }
 .nav-links > a:not(.nav-cta) { color: var(--muted); transition: color .2s; }
 .nav-links > a:hover { color: var(--green); }
 .nav-cta {
@@ -51,6 +52,13 @@ main {
   background: transparent; color: inherit; font: inherit; cursor: pointer;
 }
 .nav-cta span { margin-left: 12px; }
+.language-switcher {
+  gap: 7px; color: var(--muted); font-size: 10px; font-weight: 750; letter-spacing: .1em;
+}
+.language-switcher a { padding: 7px 1px; transition: color .2s; }
+.language-switcher a:hover, .language-switcher a[aria-current="page"] { color: var(--green); }
+.language-switcher a[aria-current="page"] { text-decoration: underline; text-underline-offset: 4px; }
+.language-switcher span { color: rgba(23,35,33,.28); }
 
 .hero {
   width: min(1280px, calc(100% - 64px));
@@ -84,6 +92,9 @@ main {
   letter-spacing: -.075em;
   font-weight: 780;
 }
+
+html[lang="it"] .hero h1 { font-size: clamp(58px, 6.6vw, 98px); }
+html[lang="de"] .hero h1 { font-size: clamp(56px, 6.3vw, 94px); }
 
 h1 em, .contact-section h2 em {
   color: var(--green);
@@ -246,8 +257,11 @@ blockquote {
 .button-light { border: 0; cursor: pointer; }
 .contact-footer {
   width: 100%; margin-top: auto; padding-top: 28px; border-top: 1px solid rgba(255,255,255,.3);
-  display: flex; justify-content: space-between; font-size: 11px; letter-spacing: .04em;
+  display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+  font-size: 11px; letter-spacing: .04em;
 }
+.contact-footer span:last-child { margin-left: auto; text-align: right; }
+.contact-footer a { text-decoration: underline; text-underline-offset: 3px; }
 
 .email-reveal-backdrop {
   position: fixed; inset: 0; z-index: 12000; display: grid; place-items: center;
@@ -344,6 +358,7 @@ blockquote {
 
 @media (max-width: 900px) {
   .site-nav, .hero, .about-section { width: min(100% - 38px, 700px); }
+  .nav-actions { gap: 18px; }
   .nav-links > a:not(.nav-cta) { display: none; }
   .hero { grid-template-columns: 1fr; gap: 40px; padding: 80px 0; }
   .lab-visual { max-width: 470px; justify-self: center; }
@@ -358,6 +373,11 @@ blockquote {
 @media (max-width: 560px) {
   .site-nav { height: 74px; }
   .brand > span:last-child { display: none; }
+  .nav-actions { gap: 11px; }
+  .nav-links { gap: 0; }
+  .nav-cta { padding: 10px 13px; }
+  .nav-cta span { display: none; }
+  .language-switcher { gap: 5px; font-size: 9px; }
   .hero { min-height: auto; padding-top: 64px; }
   .hero h1 { font-size: 58px; }
   .hero-actions { align-items: flex-start; flex-direction: column; }
@@ -378,6 +398,7 @@ blockquote {
   .contact-section { min-height: 560px; }
   .contact-section::after { width: 250px; height: 250px; right: -80px; top: 18%; }
   .contact-footer { flex-direction: column; gap: 8px; }
+  .contact-footer span:last-child { margin-left: 0; text-align: left; }
   .archive-section { width: calc(100% - 38px); padding-top: 85px; }
   .archive-list > a, .archive-list summary { grid-template-columns: 30px 1fr 24px; padding: 18px 0; }
   .archive-list small { grid-column: 2; }
@@ -390,6 +411,14 @@ blockquote {
   .dock-panel { bottom: 82px; }
   .chat-panel { right: 8px; }
   .voice-panel { left: 8px; }
+}
+
+@media (max-width: 390px) {
+  .site-nav { width: calc(100% - 24px); }
+  .brand-mark { width: 34px; height: 34px; }
+  .nav-actions { gap: 7px; }
+  .nav-cta { padding: 9px 10px; font-size: 12px; }
+  .language-switcher { gap: 3px; letter-spacing: .06em; }
 }
 
 @media (prefers-reduced-motion: reduce) {
