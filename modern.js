@@ -196,6 +196,37 @@
     voiceStop.disabled = true;
   }
 
+  let fallbackVoiceSessionId = null;
+
+  function getVoiceSessionId() {
+    const storageKey = "wernerbot_voice_session_id";
+
+    try {
+      const existing = window.localStorage.getItem(storageKey);
+      if (existing && /^[A-Za-z0-9_-]{20,128}$/.test(existing)) {
+        return existing;
+      }
+    } catch {
+      // Continue with an in-memory identifier when storage is unavailable.
+    }
+
+    if (!fallbackVoiceSessionId) {
+      const bytes = new Uint8Array(16);
+      window.crypto.getRandomValues(bytes);
+      fallbackVoiceSessionId = Array.from(bytes, (byte) =>
+        byte.toString(16).padStart(2, "0")
+      ).join("");
+
+      try {
+        window.localStorage.setItem(storageKey, fallbackVoiceSessionId);
+      } catch {
+        // The in-memory identifier remains valid for this page.
+      }
+    }
+
+    return fallbackVoiceSessionId;
+  }
+
   async function startVoice() {
     try {
       voiceError.textContent = "";
@@ -204,7 +235,11 @@
 
       const tokenResponse = await fetch(
         "https://wernerbotapp-audio-218955992134.europe-west4.run.app/realtime/token",
-        { method: "POST" }
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ session_id: getVoiceSessionId() })
+        }
       );
       if (!tokenResponse.ok) throw new Error(ui.voiceUnavailable);
       const token = await tokenResponse.json();
