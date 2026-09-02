@@ -67,6 +67,18 @@
   const chatMessages = document.getElementById("chat-messages");
   let sending = false;
 
+  const chatSessionKey = "wernerbot_web_session_id";
+  let chatSessionId;
+  try {
+    chatSessionId = window.localStorage.getItem(chatSessionKey);
+    if (!chatSessionId) {
+      chatSessionId = window.crypto.randomUUID();
+      window.localStorage.setItem(chatSessionKey, chatSessionId);
+    }
+  } catch {
+    chatSessionId = window.crypto.randomUUID();
+  }
+
   function openChat() {
     chatPanel.hidden = false;
     voicePanel.hidden = true;
@@ -112,7 +124,7 @@
           "Content-Type": "application/json",
           "Accept": "text/event-stream"
         },
-        body: JSON.stringify({ message: text })
+        body: JSON.stringify({ message: text, session_id: chatSessionId })
       });
       if (!response.ok || !response.body) throw new Error(ui.assistantUnavailable);
 
